@@ -7,49 +7,41 @@ require './lib/district_repository'
 
 class DistrictRepositoryTest < Minitest::Test
 
-  def test
+  def setup
+    @dr = DistrictRepository.new
+  end
+
+  def test_it_exists
+    assert_equal DistrictRepository, @dr.class
+  end
+
+  def test_it_can_hold_district_objects
+    assert_equal Array, @dr.districts.class
+    assert_equal [], @dr.districts
+  end
+
+  def test_it_can_create_district_instances
+    d = District.new({:name => "ACADEMY 20"})
+    @dr.districts = [d]
+
+    assert_equal [d], @dr.districts
+  end
+
+  def test_it_can_find_a_district_by_name
+    d = District.new({:name => "ACADEMY 20"})
+    @dr.districts = [d]
+
+    assert_equal d, @dr.find_by_name("ACADEMY 20")
+  end
+
+  def test_it_can_find_all_matching_districts
+    d = District.new({:name => "ACADEMY 20"})
+
+    @dr.districts = [d]
+
+  end
+
+  def test_it_can_take_in_data_from_a_csv
+    assert_equal , @dr.load_data(#enrollment obj data)
   end
 end
-
-
-
-# class ToppingsMenuTest < Minitest::Test
-#   def test_finds_no_topping_when_there_are_none
-#     tm = ToppingsMenu.new
-#     assert_equal nil, tm.find_by_name("Anchovies")
-#   end
-#
-#   def test_finds_a_topping_by_name
-#     topping = Topping.new({name: "Anchovies"})
-#
-#     tm = ToppingsMenu.new
-#     tm.toppings = [topping]
-#
-#     assert_equal topping, tm.find_by_name("Anchovies")
-#
-#     # tm.load_topping(topping)
-#     # tm.toppings = [topping]
-#     # ToppingsMenu.new([topping, topping2, topping3])
-#
-#   end
-#
-#   def test_can_btw_also_load_from_a_stupid_csv
-#     tm = ToppingsMenu.new
-#     assert_equal nil, tm.find_by_name("Anchovies")
-#
-#     tm.load_data("./data/toppings.csv")
-#
-#     assert_equal "Anchovies", tm.find_by_name("Anchovies").name
-#   end
-#
-#   def test_topping_with_string_price_sucks
-#     topping = Topping.new({name: "Anchovies", price: "15"})
-#     tm = ToppingsMenu.new
-#     tm.toppings = [topping]
-#
-#     assert_equal 15, tm.find_by_name("Anchovies").price
-#   end
-#
-#   def test_topping_with_nil_price
-#   end
-# end
