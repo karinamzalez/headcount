@@ -9,10 +9,14 @@ class EnrollmentRepositoryTest < Minitest::Test
     @er = EnrollmentRepository.new
   end
 
-  def test_it_can_find_a_repository_by_name
-    @er.find_by_name("ACADEMY 20")
+  def test_new_enrollment_repo_has_no_enrollments
+    assert_equal [], @er.enrollments
+  end
 
-    assert_equal 
+  def test_it_can_find_a_repository_by_name
+    e = Enrollment.new({:name => "ACADEMY 20"})
+    @er.enrollments << e 
+    assert_equal "ACADEMY 20", @er.find_by_name("ACADEMY 20").name
   end
 
   def test_it_returns_nil_if_no_enrollment_object_exists
