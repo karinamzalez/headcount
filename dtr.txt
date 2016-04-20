@@ -1,0 +1,57 @@
+Defining the Relationship
+
+* Expectations?
+Finish the project. Come with one creative extension.
+TDD should be a priority.
+
+* Availability?
+Karine: Super flexible. Down to stay as late as necessary.
+Erin: Flexible. Commute is long(leaving bw 8/9 ideal)
+
+* Communication?
+Working together for the most time at a work station. Writing test and refactoring
+can be done individually on separate branch. Slack/phone.
+
+* Strengths?
+Karina: Typing/workflow. Enumerables.
+Erin: TDD.
+
+* Work on?
+Karina: Refactoring. Time management.
+Erin: Refactoring. Take more pomodoros, ask for help when necessary.
+
+* Features?
+Intrigued by drop out rates per demographic/income.
+
+* Git Workflow?
+Branches. Branches. Branches.
+Don't push things onto origin master until fully functional.
+Have small branches per iteration/break things into workable pieces.
+Clear expectations for what will happen in each branch. Waffle.
+
+* Problems when implementing?
+Don't push it onto origin master until both have consented on the subject.
+Utilize resources.
+
+* Feedback?
+Immediately when potential feedback noticed.  Don't hold back bc of feelings.
+Project first.
+
+* Personal work/communication style?
+Take walks while there's still sun out. (Ice cream is nice-- as is eating).
+ Stay HYDRATED... and caffeinated.
+
+
+ WHEN WORKING ON BRANCHES, PLEASE CONSIDER THE FOLLOWING:
+
+ * create branch
+ git checkout -b new_branch
+
+ * push it onto git
+ git push origin new_branch
+
+ * when branch ready to merge onto master
+ Create pull request.
+ Accept it.
+ git checkout master.
+ git pull origin master.
