@@ -13,31 +13,25 @@ class EnrollmentTest < Minitest::Test
   end
 
   def test_it_truncates_percents
-    assert_equal "", @enrollment.truncate_percents
+    assert_equal({"pizza" => 0.123}, @enrollment.truncate_percents({"pizza" => 0.1234}))
   end
 
-  # def test_it_can_give_kindergarten_participation_by_year
-  #   skip
-  #   data =
-  #   { 2010 => 0.391
-  #     2011 => 0.353
-  #     2012 => 0.267 }
-  #   assert_equal data, @enrollment.kindergarten_participation_by_year
-  # end
-  #
-  #
-  #
-  # def test_it_can_give_kindergarten_participation_for_a_given_year
-  #   skip
-  #   assert_equal 0.391, @enrollment.kindergarten_participation_in_year(2010)
-  # end
-  #
-  # def test_it_can_return_nil_if_no_year_exists
-  #   skip
-  #   assert_equal nil, @enrollment.kindergarten_participation_in_year(2008)
-  # end
+  def test_it_can_give_kindergarten_participation_by_year
+    data = { 2010 => 0.391,
+      2011 => 0.353,
+      2012 => 0.267 }
+    assert_equal data, @enrollment.kindergarten_participation_by_year
+  end
+
+  def test_it_can_give_kindergarten_participation_for_a_given_year
+    assert_equal 0.391, @enrollment.kindergarten_participation_in_year(2010)
+  end
+
+  def test_it_can_return_nil_if_no_year_exists
+    assert_equal nil, @enrollment.kindergarten_participation_in_year(2008)
+  end
 
 
-  #edge cases: case insensitive? takes in a decimal longer than 3 points?
+  #edge cases: case insensitive?
   #numbers come in as strings intead of ints?
 end
