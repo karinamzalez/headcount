@@ -1,1 +1,5 @@
-class DistrictRepository  
+require 'csv'
+require './lib/district'
+
+class DistrictRepository
+end
