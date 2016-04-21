@@ -30,25 +30,4 @@ class DistrictRepository
     end
     @districts
   end
-
-
-
-
-    #group the raw data by key[:location]
-    #then grab the name of the district from that data
-    #then add that to the district object
-  #   formatted = raw_csv_data.each do |hash|
-  #     name = hash[:location]
-  #     d = District.new({name: name})
-  #     @districts << d
-  #   end
-  #   @districts
-  #   binding.pry
-  # end
-
-  # def group_by_name
-  #
-  # end
-
-
 end
