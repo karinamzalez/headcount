@@ -17,7 +17,7 @@ class DistrictRepository
     kindergarten_file = data[:enrollment][:kindergarten]
     raw_csv_data = CSV.open(kindergarten_file,
     headers: true, header_converters: :symbol).map(&:to_h)
-    # binding.pry
+
     grouped = raw_csv_data.group_by do |hash|
       hash[:location]
     end
@@ -30,4 +30,8 @@ class DistrictRepository
     end
     @districts
   end
+
+  def arion
+
+
 end
