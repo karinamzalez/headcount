@@ -30,19 +30,20 @@ class DistrictRepositoryTest < Minitest::Test
   def test_it_can_find_a_district_by_name
     d = District.new({:name => "ACADEMY 20"})
     @dr.districts = [d]
-
     assert_equal d, @dr.find_by_name("ACADEMY 20")
   end
 
   def test_it_can_find_all_matching_districts
     d = District.new({:name => "ACADEMY 20"})
-
     @dr.districts = [d]
-
   end
 
-  # def test_it_can_take_in_data_from_a_csv
-  #   skip
-  #   assert_equal , @dr.load_data()#enrollment obj data)
-  # end
+  def test_it_can_take_in_data_from_a_csv
+    @dr.load_data({
+      :enrollment => {
+      :kindergarten => "./test/data/kindergarten.csv"
+      }
+    })
+    assert_equal 4, @dr.districts.count
+  end
 end
