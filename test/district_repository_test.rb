@@ -41,8 +41,12 @@ class DistrictRepositoryTest < Minitest::Test
 
   end
 
-  # def test_it_can_take_in_data_from_a_csv
-  #   skip
-  #   assert_equal , @dr.load_data()#enrollment obj data)
-  # end
+  def test_it_can_take_in_data_from_a_csv
+    @dr.load_data({
+      :enrollment => {
+        :kindergarten => "./test/data/kindergarten.csv"
+      }
+      })
+    assert_equal 4, @dr.districts.count
+  end
 end

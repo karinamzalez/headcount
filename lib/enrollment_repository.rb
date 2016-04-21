@@ -1,6 +1,13 @@
+require 'simplecov'
+SimpleCov.start
+
 require "csv"
+require 'pry'
+require './lib/parser'
+
 
 class EnrollmentRepository
+  include Parser
   attr_reader :enrollments
 
   def initialize
@@ -13,33 +20,28 @@ class EnrollmentRepository
 
   def load_data(data)
     kindergarten_file = data[:enrollment][:kindergarten]
-
-    raw_csv_data = CSV.open(kindergarten_file, headers: true, header_converters: :symbol).map(&:to_h)
-
-    new_data = raw_csv_data.map do |hash|
-      hash.delete(:dataformat)
-      hash
+    formatted_hashes = format_data_to_hash(kindergarten_file)
+    formatted_hashes.each do |hash|
+      @enrollments << Enrollment.new(hash)
     end
+  end
 
-    new2 = new_data.map do |h|
-      {name: h[:location], kindergarten: {h[:timeframe] => h[:data]}}
-    end
+  def format_data_to_hash(file)
+    deleted = delete_dataformat(file)
+    formatted = format_hash_per_line(deleted)
+    grouped = group_by_name(formatted)
+    merge_to_final_hashes(grouped)
+  end
 
-    grouped = new2.group_by do |hash|
-      hash[:name]
-    end
-
-    merged = grouped.map do |location, entries|
+  def merge_to_final_hashes(grouped_data)
+    grouped_data .map do |location, entries|
       {name: location, kindergarten_participation: merged_entries(entries)}
     end
-
-    # make an enrollment for each of those pieces of data
-    # and add it to @enrollments
   end
 
   def merged_entries(entries)
     entries.map do |e|
-      e[:kindergarten]
+      e[:kindergarten_participation]
     end.reduce(:merge)
   end
 
