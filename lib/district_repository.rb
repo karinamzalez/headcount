@@ -1,5 +1,6 @@
 require 'csv'
 require './lib/district'
+require 'pry'
 
 class DistrictRepository
   attr_accessor :districts
@@ -9,8 +10,45 @@ class DistrictRepository
   end
 
   def find_by_name(name)
-      districts.find { |d| d.name == name }
+    districts.find { |d| d.name == name }
   end
+
+  def load_data(data)
+    kindergarten_file = data[:enrollment][:kindergarten]
+    raw_csv_data = CSV.open(kindergarten_file,
+    headers: true, header_converters: :symbol).map(&:to_h)
+    # binding.pry
+    grouped = raw_csv_data.group_by do |hash|
+      hash[:location]
+    end
+
+    district_names = grouped.keys
+
+    district_names.each do |name|
+      d = District.new({name: name})
+      @districts << d
+    end
+    @districts
+  end
+
+
+
+
+    #group the raw data by key[:location]
+    #then grab the name of the district from that data
+    #then add that to the district object
+  #   formatted = raw_csv_data.each do |hash|
+  #     name = hash[:location]
+  #     d = District.new({name: name})
+  #     @districts << d
+  #   end
+  #   @districts
+  #   binding.pry
+  # end
+
+  # def group_by_name
+  #
+  # end
 
 
 end
