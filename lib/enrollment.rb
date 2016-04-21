@@ -1,5 +1,6 @@
 class Enrollment
   attr_reader :name
+
   def initialize(data)
     @name = data[:name]
     @kindergarten_participation_by_year = data[:kindergarten_participation]
