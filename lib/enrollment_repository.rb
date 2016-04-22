@@ -1,6 +1,7 @@
 require 'simplecov'
 SimpleCov.start
 
+require './lib/enrollment'
 require "csv"
 require 'pry'
 require './lib/parser'

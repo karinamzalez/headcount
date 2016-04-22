@@ -23,4 +23,6 @@ class DistrictTest < Minitest::Test
 
     assert_equal "ACADEMY 20", d.name
   end
+
+  # def test_it_can_access_enrollment
 end
