@@ -1,6 +1,7 @@
 require 'simplecov'
 SimpleCov.start
 
+require './lib/enrollment'
 require "csv"
 require 'pry'
 require './lib/parser'
@@ -27,9 +28,7 @@ class EnrollmentRepository
   end
 
   def format_data_to_hash(file)
-    deleted = delete_dataformat(file)
-    formatted = format_hash_per_line(deleted)
-    grouped = group_by_name(formatted)
+    grouped = group_by_name(file)
     merge_to_final_hashes(grouped)
   end
 

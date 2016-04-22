@@ -49,4 +49,34 @@ class DistrictRepositoryTest < Minitest::Test
       })
     assert_equal 4, @dr.districts.count
   end
+
+  def test_it_makes_enrollnment_repo_w_enrollment_objects
+    @dr.load_data({
+      :enrollment => {
+        :kindergarten => "./test/data/kindergarten.csv"
+      }
+      })
+    assert_equal EnrollmentRepository, @dr.enrollment_repo.class
+    assert_equal Enrollment, @dr.enrollment_repo.enrollments.first.class
+  end
+
+  def test_it_can_find_enrollment_data_for_a_given_year
+    @dr.load_data({
+      :enrollment => {
+        :kindergarten => "./test/data/kindergarten.csv"
+      }
+      })
+      district = @dr.find_by_name("ACADEMY 20")
+
+      assert_equal 0.436, district.enrollment.kindergarten_participation_in_year("2010")
+  end
+
+  def test_it_accesses_array_of_enrollment_objects
+    @dr.load_data({
+      :enrollment => {
+        :kindergarten => "./test/data/kindergarten.csv"
+      }
+      })
+      assert_equal Enrollment, @dr.access_enrollments[0].class
+    end
 end

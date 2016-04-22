@@ -41,9 +41,7 @@ include Parser
       {name: "ADAMS COUNTY 14", kindergarten_participation: {"2007" => "0.30643"}},
       {name: "ADAMS COUNTY 14", kindergarten_participation: {"2006" => "0.29331"}}]
 
-      cleaned_data = delete_dataformat('./test/data/parser_data.csv')
-
-      assert_equal data, format_hash_per_line(cleaned_data)
+      assert_equal data, format_hash_per_line('./test/data/parser_data.csv')
   end
 
   def test_it_can_group_lines_by_district_name
@@ -55,10 +53,7 @@ include Parser
                           {:name=>"ADAMS COUNTY 14", :kindergarten_participation=>{"2006"=>"0.29331"}}]}
 
 
-      cleaned_data = delete_dataformat('./test/data/parser_data.csv')
-      formatted_data = format_hash_per_line(cleaned_data)
-
-      assert_equal data, group_by_name(formatted_data)
+      assert_equal data, group_by_name('./test/data/parser_data.csv')
    end
 
 end
