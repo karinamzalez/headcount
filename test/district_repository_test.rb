@@ -70,4 +70,13 @@ class DistrictRepositoryTest < Minitest::Test
 
       assert_equal 0.436, district.enrollment.kindergarten_participation_in_year("2010")
   end
+
+  def test_it_accesses_array_of_enrollment_objects
+    @dr.load_data({
+      :enrollment => {
+        :kindergarten => "./test/data/kindergarten.csv"
+      }
+      })
+      assert_equal Enrollment, @dr.access_enrollments[0].class
+    end
 end
