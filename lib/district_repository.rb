@@ -1,6 +1,5 @@
 require 'csv'
 require './lib/district'
-require 'pry'
 require './lib/enrollment_repository'
 require './lib/parser'
 
@@ -19,15 +18,19 @@ class DistrictRepository
     districts.find { |d| d.name == name }
   end
 
-  def load_data(data)
+  def load_kindergarten_data(data)
     kindergarten_file = data[:enrollment][:kindergarten]
-    grouped = group_by_name(kindergarten_file)
-    grouped.keys.each do |name|
+    grouped_district_data = group_by_name(kindergarten_file)
+    make_districts_by_name(grouped_district_data)
+    enrollment_repo.load_data(data)
+    access_enrollments
+  end
+
+  def make_districts_by_name(grouped_district_data)
+    grouped_district_data.keys.each do |name|
       d = District.new({name: name})
       @districts << d
     end
-    enrollment_repo.load_data(data)
-    access_enrollments
   end
 
   def access_enrollments

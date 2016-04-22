@@ -3,7 +3,6 @@ SimpleCov.start
 
 require './lib/enrollment'
 require "csv"
-require 'pry'
 require './lib/parser'
 
 
@@ -33,7 +32,7 @@ class EnrollmentRepository
   end
 
   def merge_to_final_hashes(grouped_data)
-    grouped_data .map do |location, entries|
+    grouped_data.map do |location, entries|
       {name: location, kindergarten_participation: merged_entries(entries)}
     end
   end
