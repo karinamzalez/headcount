@@ -45,6 +45,14 @@ class EnrollmentTest < Minitest::Test
     assert_equal nil, @enrollment.kindergarten_participation_in_year(2008)
   end
 
+  def test_it_can_find_graduation_rates_by_year
+
+  end
+
+  def test_it_can_find_graduation_rates_in_a_given_year
+
+  end
+
 
   #edge cases: case insensitive?
   #numbers come in as strings intead of ints?

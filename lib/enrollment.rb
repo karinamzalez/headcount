@@ -21,4 +21,6 @@ class Enrollment
     year.to_s
     kindergarten_participation_by_year[year]
   end
+
+  
 end

@@ -36,4 +36,8 @@ class EnrollmentRepositoryTest < Minitest::Test
     assert_equal 4, @er.enrollments.count
   end
 
+  def test_it_can_load_different_data
+
+  end
+
 end
