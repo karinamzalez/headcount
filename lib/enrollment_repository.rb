@@ -1,13 +1,10 @@
-require 'simplecov'
-SimpleCov.start
-
-require './lib/enrollment'
+require_relative '../lib/enrollment'
 require "csv"
-require './lib/parser'
+require_relative '../lib/parser_kindergarten'
 
 
 class EnrollmentRepository
-  include Parser
+  include ParserKindergarten
   attr_reader :enrollments
 
   def initialize

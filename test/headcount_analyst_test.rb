@@ -3,8 +3,8 @@ SimpleCov.start
 
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/headcount_analyst'
-require './lib/district_repository'
+require_relative '../lib/headcount_analyst'
+require_relative '../lib/district_repository'
 
 class HeadcountAnalystTest < Minitest::Test
 

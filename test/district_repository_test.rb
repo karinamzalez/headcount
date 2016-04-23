@@ -3,7 +3,7 @@ SimpleCov.start
 
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/district_repository'
+require_relative '../lib/district_repository'
 
 class DistrictRepositoryTest < Minitest::Test
 
@@ -93,7 +93,7 @@ class DistrictRepositoryTest < Minitest::Test
         ]
       }
       @dr.make_districts_by_name(grouped_district_data)
-      
+
       assert_equal "COLORADO", @dr.districts[0].name
   end
 end

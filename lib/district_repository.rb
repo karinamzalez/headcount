@@ -1,10 +1,10 @@
 require 'csv'
 require_relative '../lib/district'
-require './lib/enrollment_repository'
-require './lib/parser'
+require_relative '../lib/enrollment_repository'
+require_relative '../lib/parser_kindergarten'
 
 class DistrictRepository
-  include Parser
+  include ParserKindergarten
 
   attr_accessor :districts
   attr_reader :enrollment_repo
