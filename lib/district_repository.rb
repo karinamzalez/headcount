@@ -1,5 +1,5 @@
 require 'csv'
-require './lib/district'
+require_relative '../lib/district'
 require './lib/enrollment_repository'
 require './lib/parser'
 
