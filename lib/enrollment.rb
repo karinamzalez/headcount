@@ -1,3 +1,4 @@
+
 class Enrollment
   attr_reader :name,
               :data
@@ -9,7 +10,7 @@ class Enrollment
 
   def truncate_percents(participation_data)
     participation_data.map do |date, percent|
-      [date, ("%.3f" % percent.to_s[0..4]).to_f]
+      [date.to_i, ("%.3f" % percent.to_s[0..4]).to_f]
     end.to_h
   end
 
@@ -18,9 +19,16 @@ class Enrollment
   end
 
   def kindergarten_participation_in_year(year)
-    year.to_s
-    kindergarten_participation_by_year[year]
+    kindergarten_participation_by_year[year.to_i]
   end
 
-  
+  def graduation_rate_by_year
+    truncate_percents(data[:high_school_graduation])
+  end
+
+  def graduation_rate_in_year(year)
+    graduation_rate_by_year[year.to_i]
+  end
+
+
 end
