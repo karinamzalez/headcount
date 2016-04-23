@@ -19,7 +19,7 @@ include Parser
           {:location=>"ADAMS COUNTY 14", :timeframe=>"2007", :dataformat=>"Percent", :data=>"0.30643"},
           {:location=>"ADAMS COUNTY 14", :timeframe=>"2006", :dataformat=>"Percent", :data=>"0.29331"}]
 
-    assert_equal data, get_raw_data('./test/data/parser_data.csv')
+    assert_equal data, get_raw_data('./test/data/parser_kinder_data.csv')
   end
 
   def test_it_can_delete_unneeded_columns
@@ -30,7 +30,7 @@ include Parser
           {:location=>"ADAMS COUNTY 14", :timeframe=>"2007", :data=>"0.30643"},
           {:location=>"ADAMS COUNTY 14", :timeframe=>"2006", :data=>"0.29331"}]
 
-      assert_equal data, delete_dataformat('./test/data/parser_data.csv')
+      assert_equal data, delete_dataformat('./test/data/parser_kinder_data.csv')
   end
 
   def test_it_can_format_each_line_into_a_hash
@@ -41,7 +41,7 @@ include Parser
       {name: "ADAMS COUNTY 14", kindergarten_participation: {"2007" => "0.30643"}},
       {name: "ADAMS COUNTY 14", kindergarten_participation: {"2006" => "0.29331"}}]
 
-      assert_equal data, format_hash_per_line('./test/data/parser_data.csv')
+      assert_equal data, format_hash_per_line('./test/data/parser_kinder_data.csv')
   end
 
   def test_it_can_group_lines_by_district_name
@@ -53,7 +53,7 @@ include Parser
                           {:name=>"ADAMS COUNTY 14", :kindergarten_participation=>{"2006"=>"0.29331"}}]}
 
 
-      assert_equal data, group_by_name('./test/data/parser_data.csv')
+      assert_equal data, group_by_name('./test/data/parser_kinder_data.csv')
   end
 
 end

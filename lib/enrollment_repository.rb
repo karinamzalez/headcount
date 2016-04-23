@@ -20,11 +20,17 @@ class EnrollmentRepository
 
   def load_data(data)
     kindergarten_file = data[:enrollment][:kindergarten]
-    formatted_hashes = format_data_to_hash(kindergarten_file)
+    formatted_hashes1 = format_data_to_hash(kindergarten_file)
+    graduation_file = data[:enrollment][:high_school_graduation]
+    formatted_hashes2 = format_data_to_hash(graduation_file)
+    formatted_hashes = formatted_hashes1.merge(formatted_hashes2)
+
     formatted_hashes.each do |hash|
       @enrollments << Enrollment.new(hash)
     end
   end
+
+
 
   def format_data_to_hash(file)
     grouped = group_by_name(file)

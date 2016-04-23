@@ -30,10 +30,12 @@ class EnrollmentRepositoryTest < Minitest::Test
   def test_it_can_load_data_from_a_csv
     @er.load_data({
       :enrollment => {
-        :kindergarten => "./test/data/kindergarten.csv"
+        :kindergarten => "./test/data/kindergarten.csv",
+        :high_school_graduation => "./test/data/parser_high_school_data.csv"
       }
     })
     assert_equal 4, @er.enrollments.count
+    # require "pry"; binding.pry
   end
 
   def test_it_can_load_different_data
