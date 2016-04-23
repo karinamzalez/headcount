@@ -42,7 +42,7 @@ class DistrictRepositoryTest < Minitest::Test
   end
 
   def test_it_can_take_in_data_from_a_csv
-    @dr.load_data({
+    @dr.load_kindergarten_data({
       :enrollment => {
         :kindergarten => "./test/data/kindergarten.csv"
       }
@@ -51,7 +51,7 @@ class DistrictRepositoryTest < Minitest::Test
   end
 
   def test_it_makes_enrollnment_repo_w_enrollment_objects
-    @dr.load_data({
+    @dr.load_kindergarten_data({
       :enrollment => {
         :kindergarten => "./test/data/kindergarten.csv"
       }
@@ -60,8 +60,17 @@ class DistrictRepositoryTest < Minitest::Test
     assert_equal Enrollment, @dr.enrollment_repo.enrollments.first.class
   end
 
+  def test_it_accesses_array_of_enrollment_objects
+    @dr.load_kindergarten_data({
+      :enrollment => {
+        :kindergarten => "./test/data/kindergarten.csv"
+      }
+      })
+      assert_equal Enrollment, @dr.access_enrollments[0].class
+  end
+
   def test_it_can_find_enrollment_data_for_a_given_year
-    @dr.load_data({
+    @dr.load_kindergarten_data({
       :enrollment => {
         :kindergarten => "./test/data/kindergarten.csv"
       }
@@ -71,12 +80,20 @@ class DistrictRepositoryTest < Minitest::Test
       assert_equal 0.436, district.enrollment.kindergarten_participation_in_year("2010")
   end
 
-  def test_it_accesses_array_of_enrollment_objects
-    @dr.load_data({
-      :enrollment => {
-        :kindergarten => "./test/data/kindergarten.csv"
+  def test_it_can_make_districts_by_name
+      grouped_district_data =
+      {
+        "Colorado"=> [
+          {
+            :name=>"Colorado",
+            :kindergarten_participation=> {
+              "2007"=>"0.39465"
+            }
+          }
+        ]
       }
-      })
-      assert_equal Enrollment, @dr.access_enrollments[0].class
-    end
+      @dr.make_districts_by_name(grouped_district_data)
+      
+      assert_equal "COLORADO", @dr.districts[0].name
+  end
 end

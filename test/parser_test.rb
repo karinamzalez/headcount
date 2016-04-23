@@ -54,6 +54,6 @@ include Parser
 
 
       assert_equal data, group_by_name('./test/data/parser_data.csv')
-   end
+  end
 
 end
