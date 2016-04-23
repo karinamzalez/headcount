@@ -12,12 +12,20 @@ module Parser
     end
   end
 
-  def format_hash_per_line(file)
+  def format_hash_per_line_kindergarten(file)
     cleaned_data = delete_dataformat(file)
     cleaned_data.map do |h|
       {name: h[:location], kindergarten_participation: {h[:timeframe] => h[:data]}}
     end
   end
+
+  def format_hash_per_line_high_school(file)
+    cleaned_data = delete_dataformat(file)
+    cleaned_data.map do |h|
+      {name: h[:location], high_school_graduation: {h[:timeframe] => h[:data]}}
+    end
+  end
+
 
   def group_by_name(file)
     formatted_data = format_hash_per_line(file)
