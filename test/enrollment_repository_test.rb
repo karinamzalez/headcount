@@ -28,7 +28,6 @@ class EnrollmentRepositoryTest < Minitest::Test
   end
 
   def test_it_can_load_kinder_data_from_a_csv
-    skip
     @er.load_data(
     {
       :enrollment =>
@@ -36,7 +35,8 @@ class EnrollmentRepositoryTest < Minitest::Test
         :kindergarten => "./test/data/kindergarten.csv",
       }
     })
-    assert_equal 2, @er.enrollments.count
+    # require "pry"; binding.pry
+    assert_equal 4, @er.enrollments.count
   end
 
   def test_it_can_load_graduation_and_kinder_data_from_a_csv
@@ -112,8 +112,5 @@ class EnrollmentRepositoryTest < Minitest::Test
     ]
 
    assert_equal data, @er.merge_to_final_kinder_hashes(grouped)
- end
-
-
-
+  end
 end

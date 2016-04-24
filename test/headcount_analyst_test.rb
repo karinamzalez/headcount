@@ -10,16 +10,20 @@ class HeadcountAnalystTest < Minitest::Test
 
   def setup
     @dr = DistrictRepository.new
-    @dr.load_data({
-      :enrollment => {
+    # require "pry"; binding.pry
+    @dr.load_data(
+    {
+      :enrollment =>
+      {
         :kindergarten => "./test/data/kindergarten.csv"
       }
-      })
+    })
     @ha = HeadcountAnalyst.new(@dr)
   end
 
   def test_it_can_find_average_enrollment_for_a_district
-    assert_equal 0.337, @ha.average_enrollment("ACADEMY 20")
+    average_enrollment = @ha.average_enrollment("ACADEMY 20")
+    assert_equal 0.337, average_enrollment
   end
 
   def test_it_can_find_kindergarten_participation_rate_variation

@@ -20,11 +20,11 @@ class EnrollmentRepository
 
   def load_data(data)
     formatted_hashes1 = format_file_to_hash_kindergarten(kindergarten_file(data))
-    formatted_hashes2 = format_file_to_hash_high_school(graduation_file(data))
 
-    if formatted_hashes2.nil?
+    if data[:high_school_graduation].nil?
       formatted_hashes = formatted_hashes1
     else
+      formatted_hashes2 =  format_file_to_hash_high_school(graduation_file(data))
       x = formatted_hashes1.concat(formatted_hashes2)
         almost_final_hash = x.group_by do |hash|
           hash[:name]
@@ -37,6 +37,7 @@ class EnrollmentRepository
     formatted_hashes.each do |hash|
       @enrollments << Enrollment.new(hash)
     end
+    # require "pry"; binding.pry
   end
 
   def kindergarten_file(data)
