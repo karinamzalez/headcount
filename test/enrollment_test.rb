@@ -56,4 +56,8 @@ class EnrollmentTest < Minitest::Test
     assert_equal 0.724, @enrollment3.graduation_rate_in_year(2010)
   end
 
+  def test_it_can_find_graduation_rates_in_year_as_string
+    assert_equal 0.724, @enrollment3.graduation_rate_in_year("2010")
+  end
+
 end

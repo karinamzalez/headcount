@@ -2,9 +2,11 @@ require 'csv'
 require_relative '../lib/district'
 require_relative '../lib/enrollment_repository'
 require_relative '../lib/parser_kindergarten'
+require_relative '../lib/parser_high_school'
 
 class DistrictRepository
   include ParserKindergarten
+  include ParserHighSchool
 
   attr_accessor :districts
   attr_reader :enrollment_repo
@@ -24,8 +26,8 @@ class DistrictRepository
   end
 
   def load_data(data)
-    grouped_district_data = group_by_name_kindergarten(kindergarten_file(data))
-
+    grouped_district_data = group_by_name_kindergarten(kindergarten_file(data))\
+    
     make_districts_by_name(grouped_district_data)
     enrollment_repo.load_data(data)
     access_enrollments
@@ -33,6 +35,10 @@ class DistrictRepository
 
   def kindergarten_file(data)
     data[:enrollment][:kindergarten]
+  end
+
+  def high_school_file(data)
+    data[:enrollment][:high_school_graduation]
   end
 
   def make_districts_by_name(grouped_district_data)

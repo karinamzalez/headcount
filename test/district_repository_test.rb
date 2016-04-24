@@ -43,7 +43,8 @@ class DistrictRepositoryTest < Minitest::Test
     {
       :enrollment =>
       {
-        :kindergarten => "./test/data/kindergarten.csv"
+        :kindergarten => "./test/data/kindergarten.csv",
+        :high_school_graduation => "./test/data/parser_high_school_data.csv"
       }
     })
     assert_equal 4, @dr.districts.count

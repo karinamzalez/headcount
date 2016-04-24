@@ -48,6 +48,7 @@ class EnrollmentRepositoryTest < Minitest::Test
       }
     })
     assert_equal 4, @er.enrollments.count
+    assert_equal 0.724, @er.enrollments[0].graduation_rate_in_year(2010)
   end
 
   def test_it_can_find_by_name_with_loaded_data
