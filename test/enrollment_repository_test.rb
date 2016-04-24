@@ -35,11 +35,10 @@ class EnrollmentRepositoryTest < Minitest::Test
       }
     })
     assert_equal 4, @er.enrollments.count
-    # require "pry"; binding.pry
   end
 
-  def test_it_can_load_different_data
-
-  end
+  # def test_it_can_load_different_data
+  #
+  # end
 
 end
