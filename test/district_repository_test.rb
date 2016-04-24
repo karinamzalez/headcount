@@ -3,7 +3,7 @@ SimpleCov.start
 
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/district_repository'
+require_relative '../lib/district_repository'
 
 class DistrictRepositoryTest < Minitest::Test
 
@@ -23,14 +23,12 @@ class DistrictRepositoryTest < Minitest::Test
   def test_it_can_create_district_instances
     d = District.new({:name => "ACADEMY 20"})
     @dr.districts = [d]
-
     assert_equal [d], @dr.districts
   end
 
   def test_it_can_find_a_district_by_name
     d = District.new({:name => "ACADEMY 20"})
     @dr.districts = [d]
-
     assert_equal d, @dr.find_by_name("ACADEMY 20")
   end
 
@@ -38,46 +36,52 @@ class DistrictRepositoryTest < Minitest::Test
     d = District.new({:name => "ACADEMY 20"})
 
     @dr.districts = [d]
-
   end
 
   def test_it_can_take_in_data_from_a_csv
-    @dr.load_kindergarten_data({
-      :enrollment => {
+    @dr.load_data(
+    {
+      :enrollment =>
+      {
         :kindergarten => "./test/data/kindergarten.csv"
       }
-      })
+    })
     assert_equal 4, @dr.districts.count
   end
 
   def test_it_makes_enrollnment_repo_w_enrollment_objects
-    @dr.load_kindergarten_data({
-      :enrollment => {
+    @dr.load_data(
+    {
+      :enrollment =>
+      {
         :kindergarten => "./test/data/kindergarten.csv"
       }
-      })
+    })
     assert_equal EnrollmentRepository, @dr.enrollment_repo.class
     assert_equal Enrollment, @dr.enrollment_repo.enrollments.first.class
   end
 
   def test_it_accesses_array_of_enrollment_objects
-    @dr.load_kindergarten_data({
-      :enrollment => {
+    @dr.load_data(
+    {
+      :enrollment =>
+      {
         :kindergarten => "./test/data/kindergarten.csv"
       }
-      })
+    })
       assert_equal Enrollment, @dr.access_enrollments[0].class
   end
 
   def test_it_can_find_enrollment_data_for_a_given_year
-    @dr.load_kindergarten_data({
-      :enrollment => {
+    @dr.load_data(
+    {
+      :enrollment =>
+      {
         :kindergarten => "./test/data/kindergarten.csv"
       }
-      })
+    })
       district = @dr.find_by_name("ACADEMY 20")
-
-      assert_equal 0.436, district.enrollment.kindergarten_participation_in_year("2010")
+      assert_equal 0.267, district.enrollment.kindergarten_participation_in_year("2005")
   end
 
   def test_it_can_make_districts_by_name
@@ -93,7 +97,17 @@ class DistrictRepositoryTest < Minitest::Test
         ]
       }
       @dr.make_districts_by_name(grouped_district_data)
-      
       assert_equal "COLORADO", @dr.districts[0].name
+  end
+
+  def test_it_can_find_all_matching_with_name_fragment
+    @dr.load_data(
+    {
+      :enrollment =>
+      {
+        :kindergarten => "./test/data/kindergarten.csv"
+      }
+    })
+    assert_equal 2, @dr.find_all_matching("ada").count
   end
 end

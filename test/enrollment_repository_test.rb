@@ -4,8 +4,8 @@ SimpleCov.start
 gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/enrollment_repository'
-require './lib/enrollment'
+require_relative '../lib/enrollment_repository'
+require_relative '../lib/enrollment'
 
 class EnrollmentRepositoryTest < Minitest::Test
 
@@ -35,11 +35,10 @@ class EnrollmentRepositoryTest < Minitest::Test
       }
     })
     assert_equal 4, @er.enrollments.count
-    # require "pry"; binding.pry
   end
 
-  def test_it_can_load_different_data
-
-  end
+  # def test_it_can_load_different_data
+  #
+  # end
 
 end

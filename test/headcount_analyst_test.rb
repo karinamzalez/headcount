@@ -3,14 +3,14 @@ SimpleCov.start
 
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/headcount_analyst'
-require './lib/district_repository'
+require_relative '../lib/headcount_analyst'
+require_relative '../lib/district_repository'
 
 class HeadcountAnalystTest < Minitest::Test
 
   def setup
     @dr = DistrictRepository.new
-    @dr.load_kindergarten_data({
+    @dr.load_data({
       :enrollment => {
         :kindergarten => "./test/data/kindergarten.csv"
       }
@@ -28,7 +28,7 @@ class HeadcountAnalystTest < Minitest::Test
   end
 
   def test_it_can_find_variation_trends
-    hash = {"2007" => 0.992, "2006" => 1.050, "2005" => 0.960}
+    hash = {2007 => 0.992, 2006 => 1.050, 2005 => 0.960}
     assert_equal hash, @ha.kindergarten_participation_rate_variation_trend('ACADEMY 20', :against => 'COLORADO')
   end
 

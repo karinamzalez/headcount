@@ -1,7 +1,7 @@
 require 'csv'
 require_relative '../lib/district'
-require './lib/enrollment_repository'
-require './lib/parser'
+require_relative '../lib/enrollment_repository'
+require_relative '../lib/parser'
 
 class DistrictRepository
   include Parser
@@ -18,9 +18,15 @@ class DistrictRepository
     districts.find { |d| d.name == name }
   end
 
-  def load_kindergarten_data(data)
+  def find_all_matching(name)
+    name = name.upcase
+    districts.find_all { |d| d.name.include?(name)}
+  end
+
+  def load_data(data)
     kindergarten_file = data[:enrollment][:kindergarten]
     grouped_district_data = group_by_name(kindergarten_file)
+
     make_districts_by_name(grouped_district_data)
     enrollment_repo.load_data(data)
     access_enrollments

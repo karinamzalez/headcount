@@ -4,7 +4,7 @@ SimpleCov.start
 gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/parser'
+require_relative '../lib/parser'
 require 'csv'
 
 class ParserTest < Minitest::Test

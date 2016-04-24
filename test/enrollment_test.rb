@@ -4,7 +4,7 @@ SimpleCov.start
 gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/enrollment'
+require_relative '../lib/enrollment'
 
 class EnrollmentTest < Minitest::Test
   #test_it_is_case_insensitive
