@@ -15,7 +15,7 @@ module Parser
   def format_hash_per_line(file)
     cleaned_data = delete_dataformat(file)
     cleaned_data.map do |h|
-      {name: h[:location], :kindergarten {h[:timeframe] => h[:data]}}
+      {name: h[:location], kindergarten_participation: {h[:timeframe] => h[:data]}}
     end
   end
 

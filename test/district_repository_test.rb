@@ -109,5 +109,5 @@ class DistrictRepositoryTest < Minitest::Test
       }
     })
     assert_equal 2, @dr.find_all_matching("ada").count
-    end
+  end
 end
