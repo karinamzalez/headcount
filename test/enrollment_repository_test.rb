@@ -35,7 +35,6 @@ class EnrollmentRepositoryTest < Minitest::Test
         :kindergarten => "./test/data/kindergarten.csv",
       }
     })
-    # require "pry"; binding.pry
     assert_equal 4, @er.enrollments.count
   end
 

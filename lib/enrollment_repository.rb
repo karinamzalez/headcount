@@ -37,7 +37,6 @@ class EnrollmentRepository
     formatted_hashes.each do |hash|
       @enrollments << Enrollment.new(hash)
     end
-    # require "pry"; binding.pry
   end
 
   def kindergarten_file(data)

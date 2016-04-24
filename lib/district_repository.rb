@@ -25,7 +25,6 @@ class DistrictRepository
 
   def load_data(data)
     grouped_district_data = group_by_name_kindergarten(kindergarten_file(data))
-    # require "pry"; binding.pry
 
     make_districts_by_name(grouped_district_data)
     enrollment_repo.load_data(data)

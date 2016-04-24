@@ -10,7 +10,6 @@ class HeadcountAnalystTest < Minitest::Test
 
   def setup
     @dr = DistrictRepository.new
-    # require "pry"; binding.pry
     @dr.load_data(
     {
       :enrollment =>

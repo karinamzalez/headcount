@@ -6,7 +6,6 @@ class HeadcountAnalyst
 
   def enrollment_data(district_name)
     district = @dr.find_by_name(district_name)
-    # require "pry"; binding.pry
     district.enrollment.kindergarten_participation_by_year
   end
 
