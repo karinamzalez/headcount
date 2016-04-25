@@ -37,28 +37,27 @@ class StatewideTest
   #3. if no error, check if year is valid
   #4. if all are valid, find @data[grade][subject][year]
 
-  def check_for_valid_subject(subject, grade, year)
-    if subjects.include?(subject)
-      proficient_by_grade(grade)[year][subject]
-    else
-      raise UnknownDataError
-    end
-  end
+  # def check_for_valid_subject(subject, grade, year)
+  #   if subjects.include?(subject)
+  #     proficient_by_grade(grade)[year][subject]
+  #   else
+  #     raise UnknownDataError
+  #   end
+  # end
   #checks if the subject is valid
 
 
 
   def proficient_for_subject_by_grade_in_year(subject, grade, year)
-    check_for_valid_subject(subject, grade, year)
-      # grade_data = proficient_by_grade(grade)
-      # if grade_data.keys.include?(year)
-      #   #execute a method that checks if the hash includes the subject
-      #   # if subjects.include?(subject)
-      #   #   grade_data[year][subject]
-      #   # else
-      #   #   raise UnknownDataError
-      #   # end
-      if
+    grade_data = proficient_by_grade(grade)
+      grade_data = proficient_by_grade(grade)
+      if grade_data.keys.include?(year)
+        if subjects.include?(subject)
+          grade_data[year][subject]
+        else
+          raise UnknownDataError
+        end
+      else
         raise UnknownDataError
       end
   end
