@@ -60,19 +60,45 @@ class StatewideTestTest < Minitest::Test
     @st.proficient_for_subject_by_grade_in_year(:math, 3, 2008)
   end
 
-  def test_it_raises_error_if_any_parameters_are_invalid
-    assert_raises(UnknownDataError) do
-      @st.proficient_for_subject_by_grade_in_year(:math, 5, 2008)
-    end
+  def test_it_raises_error_if_subject_is_invalid_for_grade_method
     assert_raises(UnknownDataError) do
       @st.proficient_for_subject_by_grade_in_year(:astrology, 3, 2008)
     end
+  end
+
+  def test_it_raises_error_if_grade_is_invalid_for_grade_method
     assert_raises(UnknownDataError) do
-      @st.proficient_for_subject_by_grade_in_year(:math, 3, 1910)
+      @st.proficient_for_subject_by_grade_in_year(:math, 5, 2008)
     end
   end
 
-  def method_name
-
+  def test_it_raises_error_if_year_is_invalid_for_grade_method
+    assert_raises(UnknownDataError) do
+      @st.proficient_for_subject_by_grade_in_year(:math, 3, 1910)
+    end  
   end
+
+  def test_it_can_find_proficiency_for_subject_race_year
+    assert_equal 0.818,
+    @st.proficient_for_subject_by_race_in_year(:math, :asian, 2012)
+  end
+
+  def test_it_raises_error_if_race_is_invalid_for_race_method
+    assert_raises(UnknownRaceError) do
+      @st.proficient_for_subject_by_race_in_year(:math, :guy, 2012)
+    end
+  end
+
+  def test_it_raises_error_if_subject_is_invalid_for_race_method
+    assert_raises(UnknownDataError) do
+      @st.proficient_for_subject_by_race_in_year(:astrology, :asian, 2012)
+    end
+  end
+
+  def test_it_raises_error_if_year_is_invalid_for_race_method
+    assert_raises(UnknownDataError) do
+      @st.proficient_for_subject_by_race_in_year(:math, :asian, 1910)
+    end
+  end
+
 end

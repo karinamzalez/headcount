@@ -3,21 +3,18 @@ class StatewideTest
               :data,
               :subjects,
               :grades
+              :races
 
   def initialize(data)
     @data = data
     @name = data[:name].upcase
     @subjects = [:math, :reading, :writing]
     @grades = [3, 8]
+    @races = [
+              :asian, :black, :pacific_islander, :hispanic,
+              :native_american, :two_or_more, :white
+             ]
   end
-
-  # def grade_to_data_key(grade)
-  #   if grade == 3
-  #     @data[:third_grade_proficiency]
-  #   elsif grade == 8
-  #     @data[:eigth_grade_proficiency]
-  #   end
-  # end
 
   def proficient_by_grade(grade)
     case grade
@@ -62,6 +59,19 @@ class StatewideTest
       else
         raise UnknownDataError
       end
+  end
+
+  def proficient_for_subject_by_race_in_year(subject, race, year)
+    race_data = proficient_by_race_or_ethnicity(race)
+    if race_data.keys.include?(year)
+      if subjects.include?(subject)
+        race_data[year][subject]
+      else
+        raise UnknownDataError
+      end
+    else
+      raise UnknownDataError
+    end
   end
 
 end
