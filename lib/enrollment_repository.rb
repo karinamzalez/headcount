@@ -13,7 +13,7 @@ class EnrollmentRepository
   end
 
   def find_by_name(name)
-    enrollments.find { |enrollment| enrollment.name == name }
+    enrollments.find { |enrollment| enrollment.name == name.upcase }
   end
 
   def load_data(data)
