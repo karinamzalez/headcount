@@ -4,7 +4,7 @@ SimpleCov.start
 gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
-require_relative '../lib/parser_kindergarten'
+require_relative '../lib/parser'
 require 'csv'
 
 class ParserTest < Minitest::Test
@@ -41,7 +41,7 @@ include ParserKindergarten
       {name: "ADAMS COUNTY 14", kindergarten_participation: {"2007" => "0.30643"}},
       {name: "ADAMS COUNTY 14", kindergarten_participation: {"2006" => "0.29331"}}]
 
-      assert_equal data, format_hash_per_line_kindergarten('./test/data/parser_kinder_data.csv')
+      assert_equal data, format_hash_per_line('./test/data/parser_kinder_data.csv', "kindergarten_participation")
   end
 
   def test_it_can_group_lines_by_district_name
@@ -53,7 +53,7 @@ include ParserKindergarten
                           {:name=>"ADAMS COUNTY 14", :kindergarten_participation=>{"2006"=>"0.29331"}}]}
 
 
-      assert_equal data, group_by_name_kindergarten('./test/data/parser_kinder_data.csv')
+      assert_equal data, group_by_name('./test/data/parser_kinder_data.csv', "kindergarten_participation")
   end
 
 end

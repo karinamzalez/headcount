@@ -1,4 +1,4 @@
-module ParserHighSchool
+module ParserKindergarten
 
   def get_raw_data(file)
     CSV.open(file, headers: true, header_converters: :symbol).map(&:to_h)
@@ -12,16 +12,16 @@ module ParserHighSchool
     end
   end
 
-  def format_hash_per_line_high_school(file)
+  def format_hash_per_line(file, name_of_grade)
     cleaned_data = delete_dataformat(file)
+
     cleaned_data.map do |h|
-      {name: h[:location], high_school_graduation: {h[:timeframe] => h[:data]}}
+      {name: h[:location], "#{name_of_grade}": {h[:timeframe] => h[:data]}}
     end
   end
 
-
-  def group_by_name_high_school(file)
-    formatted_data = format_hash_per_line_high_school(file)
+  def group_by_name(file, name_of_grade)
+    formatted_data = format_hash_per_line(file, name_of_grade)
     formatted_data.group_by do |hash|
       hash[:name]
     end

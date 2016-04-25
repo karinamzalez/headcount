@@ -1,12 +1,10 @@
 require_relative '../lib/enrollment'
 require "csv"
-require_relative '../lib/parser_kindergarten'
-require_relative '../lib/parser_high_school'
+require_relative '../lib/parser'
 
 
 class EnrollmentRepository
   include ParserKindergarten
-  include ParserHighSchool
 
   attr_reader :enrollments
 
@@ -46,12 +44,14 @@ class EnrollmentRepository
   end
 
   def format_file_to_hash_kindergarten(file)
-    grouped = group_by_name_kindergarten(file)
+    name_of_grade = "kindergarten_participation"
+    grouped = group_by_name(file, name_of_grade)
     merge_to_final_kinder_hashes(grouped)
   end
 
   def format_file_to_hash_high_school(file)
-    grouped = group_by_name_high_school(file)
+    name_of_grade = "high_school_graduation"
+    grouped = group_by_name(file, name_of_grade)
     merge_to_final_hs_hashes(grouped)
   end
 
