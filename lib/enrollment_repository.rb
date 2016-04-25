@@ -20,20 +20,18 @@ class EnrollmentRepository
 
   def load_data(data)
     formatted_hashes1 = format_file_to_hash_kindergarten(kindergarten_file(data))
-
     if data[:enrollment][:high_school_graduation].nil?
       formatted_hashes = formatted_hashes1
     else
       formatted_hashes2 =  format_file_to_hash_high_school(graduation_file(data))
       x = formatted_hashes1.concat(formatted_hashes2)
-        almost_final_hash = x.group_by do |hash|
-          hash[:name]
+      almost_final_hash = x.group_by do |hash|
+        hash[:name]
         end
         formatted_hashes = almost_final_hash.values.map do |array|
           array[0].merge(array[1])
         end
     end
-
     formatted_hashes.each do |hash|
       @enrollments << Enrollment.new(hash)
     end

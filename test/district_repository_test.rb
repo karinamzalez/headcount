@@ -6,7 +6,6 @@ require 'minitest/pride'
 require_relative '../lib/district_repository'
 
 class DistrictRepositoryTest < Minitest::Test
-
   def setup
     @dr = DistrictRepository.new
   end
@@ -88,12 +87,11 @@ class DistrictRepositoryTest < Minitest::Test
   def test_it_can_make_districts_by_name
       grouped_district_data =
       {
-        "Colorado"=> [
+        "Colorado"=>
+        [
           {
             :name=>"Colorado",
-            :kindergarten_participation=> {
-              "2007"=>"0.39465"
-            }
+            :kindergarten_participation=> {"2007"=>"0.39465"}
           }
         ]
       }
@@ -102,13 +100,15 @@ class DistrictRepositoryTest < Minitest::Test
   end
 
   def test_it_can_find_all_matching_with_name_fragment
-    @dr.load_data(
-    {
-      :enrollment =>
+    data =
       {
-        :kindergarten => "./test/data/kindergarten.csv"
+        :enrollment =>
+        {
+          :kindergarten => "./test/data/kindergarten.csv"
+        }
       }
-    })
+    @dr.load_data(data)
+    assert_equal "./test/data/kindergarten.csv", @dr.kindergarten_file(data)
     assert_equal 2, @dr.find_all_matching("ada").count
   end
 end
