@@ -40,4 +40,13 @@ class HeadcountAnalystTest < Minitest::Test
     assert_equal 0.819, @ha.kindergarten_participation_against_high_school_graduation("ACADEMY 20")
   end
 
+  def test_it_can_determine_if_kindergarten_correlates_with_high_school_graduation
+    assert_equal true, @ha.kindergarten_participation_correlates_with_high_school_graduation(for: "ACADEMY 20")
+  end
+
+  def test_it_can_determine_if_kindergarten_correlates_with_high_school_graduation_statewide
+    assert_equal true, @ha.kindergarten_participation_correlates_with_high_school_graduation(for: "STATEWIDE")
+  end
+
+  
 end

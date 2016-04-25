@@ -57,9 +57,34 @@ class HeadcountAnalyst
   def kindergarten_participation_against_high_school_graduation(district)
     kindergarten_variation = kindergarten_participation_rate_variation(district, :against => "COLORADO")
     graduation_variation = high_school_graduation_rate_variation(district, :against => "COLORADO")
-    # require "pry"; binding.pry
     raw_variation = kindergarten_variation/graduation_variation
     raw_variation.to_s[0..4].to_f
+  end
+
+  def kindergarten_participation_correlates_with_high_school_graduation(comparison)
+    case comparison[:for] == "STATEWIDE"
+    when false
+      k_hs_variation = kindergarten_participation_against_high_school_graduation(comparison[:for])
+        if  k_hs_variation >= 0.6 && k_hs_variation <= 1.5
+          true
+        end
+    when true
+      correlation_across_districts
+    end
+  end
+
+  def correlation_across_districts
+    district_variants = @dr.districts.map do |district|
+      kindergarten_participation_against_high_school_graduation(district.name)
+    end
+    correlates = district_variants.count do |variant|
+      variant >= 0.6 && variant <= 1.5
+    end
+    if correlates/(district_variants.count).to_f > 0.7
+      true
+    else
+      false 
+    end
   end
 
 end
