@@ -14,7 +14,7 @@ class StatewideTestTest < Minitest::Test
        2008 => {:math => 0.857, :reading => 0.866, :writing => 0.671},
        2009 => {:math => 0.824, :reading => 0.862, :writing => 0.706}
       },
-      :asian_proficiency =>
+      :asian =>
       {
        2011 => {math: 0.816, reading: 0.897, writing: 0.826},
        2012 => {math: 0.818, reading: 0.893, writing: 0.808}
@@ -52,8 +52,8 @@ class StatewideTestTest < Minitest::Test
     end
   end
 
-  #deal with edge cases; no data provided so some lines
-  #but probably in statewide test repo class
+  # #deal with edge cases; no data provided so some lines
+  # #but probably in statewide test repo class
 
   def test_it_can_find_proficiency_percent_for_subject_grade_year
     assert_equal 0.857,
@@ -75,7 +75,7 @@ class StatewideTestTest < Minitest::Test
   def test_it_raises_error_if_year_is_invalid_for_grade_method
     assert_raises(UnknownDataError) do
       @st.proficient_for_subject_by_grade_in_year(:math, 3, 1910)
-    end  
+    end
   end
 
   def test_it_can_find_proficiency_for_subject_race_year

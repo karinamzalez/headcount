@@ -2,14 +2,14 @@ class StatewideTest
   attr_reader :name,
               :data,
               :subjects,
-              :grades
+              :grades,
               :races
 
   def initialize(data)
     @data = data
     @name = data[:name].upcase
     @subjects = [:math, :reading, :writing]
-    @grades = [3, 8]
+    @grades = {3 => :third_grade_proficiency, 8 => :eigth_grade_proficiency}
     @races = [
               :asian, :black, :pacific_islander, :hispanic,
               :native_american, :two_or_more, :white
@@ -17,46 +17,48 @@ class StatewideTest
   end
 
   def proficient_by_grade(grade)
-    case grade
-    when 3
-      @data[:third_grade_proficiency]
-    when 8
-      @data[:eigth_grade_proficiency]
+    if grades.has_key?(grade)
+      @data[grades[grade]]
     else
       raise UnknownDataError
     end
   end
 
   def proficient_by_race_or_ethnicity(race)
-    case race
-    when :asian
-      @data[:asian_proficiency]
-    when :black
-      @data[:black_proficiency]
-    when :pacific_islander
-      @data[:pacific_islander_proficiency]
-    when :hispanic
-      @data[:hispanic_proficiency]
-    when :native_american
-      @data[:native_american_proficiency]
-    when :two_or_more
-      @data[:two_or_more_proficiency]
-    when :white
-      @data[:white_proficiency]
+    if races.include?(race)
+      @data[race]
     else
       raise UnknownRaceError
     end
   end
 
+  #1. call proficient_by_grade method which checks if grade is valid
+  #2. if no error, check if subject is valid
+  #3. if no error, check if year is valid
+  #4. if all are valid, find @data[grade][subject][year]
+
+  def check_for_valid_subject(subject, grade, year)
+    if subjects.include?(subject)
+      proficient_by_grade(grade)[year][subject]
+    else
+      raise UnknownDataError
+    end
+  end
+  #checks if the subject is valid
+
+
+
   def proficient_for_subject_by_grade_in_year(subject, grade, year)
-      grade_data = proficient_by_grade(grade)
-      if grade_data.keys.include?(year)
-        if subjects.include?(subject)
-          grade_data[year][subject]
-        else
-          raise UnknownDataError
-        end
-      else
+    check_for_valid_subject(subject, grade, year)
+      # grade_data = proficient_by_grade(grade)
+      # if grade_data.keys.include?(year)
+      #   #execute a method that checks if the hash includes the subject
+      #   # if subjects.include?(subject)
+      #   #   grade_data[year][subject]
+      #   # else
+      #   #   raise UnknownDataError
+      #   # end
+      if
         raise UnknownDataError
       end
   end
