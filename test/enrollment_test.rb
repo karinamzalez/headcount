@@ -7,9 +7,6 @@ require 'minitest/pride'
 require_relative '../lib/enrollment'
 
 class EnrollmentTest < Minitest::Test
-  #test_it_is_case_insensitive
-  #test_it_truncates_data_upon_initialize
-  #edge case: decimals that end in zero are getting end zero cut off
 
   def setup
 
@@ -49,7 +46,6 @@ class EnrollmentTest < Minitest::Test
   end
 
   def test_it_can_find_graduation_rates_by_year
-    # skip
     data = { 2010 => 0.724,
       2011 => 0.739,
       2012 => 0.753 }
@@ -57,11 +53,11 @@ class EnrollmentTest < Minitest::Test
   end
 
   def test_it_can_find_graduation_rates_in_a_given_year
-    # skip
     assert_equal 0.724, @enrollment3.graduation_rate_in_year(2010)
   end
 
+  def test_it_can_find_graduation_rates_in_year_as_string
+    assert_equal 0.724, @enrollment3.graduation_rate_in_year("2010")
+  end
 
-  #edge cases: case insensitive?
-  #numbers come in as strings intead of ints?
 end

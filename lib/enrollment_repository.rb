@@ -21,7 +21,7 @@ class EnrollmentRepository
   def load_data(data)
     formatted_hashes1 = format_file_to_hash_kindergarten(kindergarten_file(data))
 
-    if data[:high_school_graduation].nil?
+    if data[:enrollment][:high_school_graduation].nil?
       formatted_hashes = formatted_hashes1
     else
       formatted_hashes2 =  format_file_to_hash_high_school(graduation_file(data))
@@ -37,7 +37,6 @@ class EnrollmentRepository
     formatted_hashes.each do |hash|
       @enrollments << Enrollment.new(hash)
     end
-    # require "pry"; binding.pry
   end
 
   def kindergarten_file(data)

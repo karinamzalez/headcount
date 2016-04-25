@@ -10,7 +10,7 @@ class Enrollment
 
   def truncate_percents(participation_data)
     participation_data.map do |date, percent|
-      [date.to_i, ("%.3f" % percent.to_s[0..4]).to_f]
+      [date.to_i, (percent.to_s[0..4]).to_f]
     end.to_h
   end
 
