@@ -26,14 +26,13 @@ class StatewideTestTest < Minitest::Test
    assert_equal data, @st.proficient_by_grade(3)
   end
 
-  # def test_it_raises_an_error_if_grade_unknown
-  #   assert_equal "UnknownDataError", @st.proficient_by_grade(5)
-  #   # assert_raises(UnknownDataError) do require "pry"; binding.pry
-  #   #   @st.proficient_by_grade(5)
-  #   # end
-  # end
+  def test_it_raises_an_error_if_grade_unknown
+    assert_raises(UnknownDataError) do 
+      @st.proficient_by_grade(5)
+    end
+  end
 
   def test_it_can_give_proficiency
-
+    skip
   end
 end

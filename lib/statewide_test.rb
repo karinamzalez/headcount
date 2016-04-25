@@ -14,11 +14,11 @@ class StatewideTest
     when 8
       @data[:eigth_grade]
     else
-      raise "UnknownDataError"
-      # begin
-      #   raise UnknownDataError
-      # end
+      raise UnknownDataError
     end
   end
 
+end
+
+class UnknownDataError < Exception
 end
