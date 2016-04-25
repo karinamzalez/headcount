@@ -62,18 +62,29 @@ class HeadcountAnalyst
   end
 
   def kindergarten_participation_correlates_with_high_school_graduation(comparison)
-    case comparison[:for] == "STATEWIDE"
-    when false
-      k_hs_variation = kindergarten_participation_against_high_school_graduation(comparison[:for])
-        if  k_hs_variation >= 0.6 && k_hs_variation <= 1.5
-          true
-        end
-    when true
-      correlation_across_districts
+    #COLORADO should not be included in correlation across all districts method
+    case comparison.keys
+    when [:for]
+      if comparison[:for] == "STATEWIDE"
+        correlation_across_all_districts
+      else
+        correlation_for_one_district(comparison)
+      end
+    when [:across]
+      correlation_across_some_districts(comparison)
     end
   end
 
-  def correlation_across_districts
+  def correlation_for_one_district(comparison)
+    k_hs_variation = kindergarten_participation_against_high_school_graduation(comparison[:for])
+    if  k_hs_variation >= 0.6 && k_hs_variation <= 1.5
+      true
+    else
+      false
+    end
+  end
+
+  def correlation_across_all_districts
     district_variants = @dr.districts.map do |district|
       kindergarten_participation_against_high_school_graduation(district.name)
     end
@@ -83,7 +94,21 @@ class HeadcountAnalyst
     if correlates/(district_variants.count).to_f > 0.7
       true
     else
-      false 
+      false
+    end
+  end
+
+  def correlation_across_some_districts(comparison)
+    district_variants = comparison[:across].map do |district|
+      kindergarten_participation_against_high_school_graduation(district)
+    end
+    correlates = district_variants.count do |variant|
+      variant >= 0.6 && variant <= 1.5
+    end
+    if correlates/(district_variants.count).to_f > 0.7
+      true
+    else
+      false
     end
   end
 

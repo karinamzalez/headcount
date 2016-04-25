@@ -47,6 +47,11 @@ class HeadcountAnalystTest < Minitest::Test
   def test_it_can_determine_if_kindergarten_correlates_with_high_school_graduation_statewide
     assert_equal true, @ha.kindergarten_participation_correlates_with_high_school_graduation(for: "STATEWIDE")
   end
-
   
+
+  def test_it_can_calculate_correlation_across_a_subset_of_districts
+    assert_equal true, @ha.kindergarten_participation_correlates_with_high_school_graduation(across: ['ACADEMY 20','ADAMS COUNTY 14'])
+  end
+
+
 end
