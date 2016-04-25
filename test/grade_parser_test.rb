@@ -129,31 +129,31 @@ include ParserGrade
           :name=>"Colorado", :third_grade_proficiency=>{"2008"=>{"Writing"=>"0.501"}}
         }
       ],
-       "ACADEMY 20"=>
-       [
-         {
-           :name=>"ACADEMY 20", :third_grade_proficiency=>{"2008"=>{"Math"=>"0.857"}}
-          },
-          {
-            :name=>"ACADEMY 20", :third_grade_proficiency=>{"2008"=>{"Reading"=>"0.866"}}
-          },
-          {
-            :name=>"ACADEMY 20", :third_grade_proficiency=>{"2008"=>{"Writing"=>"0.671"}}
-          }
-        ],
-         "ADAMS COUNTY 14"=>
-         [
-           {
-             :name=>"ADAMS COUNTY 14", :third_grade_proficiency=>{"2008"=>{"Math"=>"0.56"}}
-            },
-            {
-              :name=>"ADAMS COUNTY 14", :third_grade_proficiency=>{"2008"=>{"Reading"=>"0.523"}}
-            },
-            {
-              :name=>"ADAMS COUNTY 14", :third_grade_proficiency=>{"2008"=>{"Writing"=>"0.426"}}
-            }
-          ]
+     "ACADEMY 20"=>
+     [
+       {
+         :name=>"ACADEMY 20", :third_grade_proficiency=>{"2008"=>{"Math"=>"0.857"}}
+        },
+        {
+          :name=>"ACADEMY 20", :third_grade_proficiency=>{"2008"=>{"Reading"=>"0.866"}}
+        },
+        {
+          :name=>"ACADEMY 20", :third_grade_proficiency=>{"2008"=>{"Writing"=>"0.671"}}
         }
+      ],
+     "ADAMS COUNTY 14"=>
+     [
+       {
+         :name=>"ADAMS COUNTY 14", :third_grade_proficiency=>{"2008"=>{"Math"=>"0.56"}}
+        },
+        {
+          :name=>"ADAMS COUNTY 14", :third_grade_proficiency=>{"2008"=>{"Reading"=>"0.523"}}
+        },
+        {
+          :name=>"ADAMS COUNTY 14", :third_grade_proficiency=>{"2008"=>{"Writing"=>"0.426"}}
+        }
+      ]
+    }
     assert_equal data, group_by_name('./test/data/3rd_grade.csv', "third_grade_proficiency")
   end
 
