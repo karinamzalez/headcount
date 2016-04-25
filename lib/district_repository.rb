@@ -27,7 +27,7 @@ class DistrictRepository
 
   def load_data(data)
     grouped_district_data = group_by_name_kindergarten(kindergarten_file(data))\
-    
+
     make_districts_by_name(grouped_district_data)
     enrollment_repo.load_data(data)
     access_enrollments
@@ -35,10 +35,6 @@ class DistrictRepository
 
   def kindergarten_file(data)
     data[:enrollment][:kindergarten]
-  end
-
-  def high_school_file(data)
-    data[:enrollment][:high_school_graduation]
   end
 
   def make_districts_by_name(grouped_district_data)
