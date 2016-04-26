@@ -42,47 +42,20 @@ module ParserSubjectProficiency
     end
   end
 
-  def merged_all_students_per_district(file, subject)
-    grouped_d = group_by_district_name(file, subject)
-    @all_students = []
-    grouped_d.values.map do |array|
-      not_merged = []
-       races.each do |x|
-         not_merged << array.select { |race| race.keys.include?(x) }
+  def deep_merge(h1, h2)
+    h1.merge(h2) do |key, value1, value2|
+      if value1.class == Hash && value2.class == Hash
+        value1.merge(value2)
+      else
+        value1
       end
-      not_merged = not_merged.reject { |l| l == [] }
-      flat = not_merged.flatten
-    #   @counter = 0
-    #   until @counter == 3
-    #     flat.each do |hash|
-    #     hash1 = hash[:all_students]
-    #     hash1.merge(hash[:all_students])
-    #     @counter += 1
-    #    end
-    #    require "pry"; binding.pry
-    #  end
-      merged = flat[0][:all_students].merge(flat[1][:all_students])
-      no_duplicates = not_merged.map { |hash| hash.reduce(:merge) }
-      no_duplicates[0][:all_students] = merged
-      @all_students << not_merged[0]
     end
   end
 
-  def merged_all_asian_per_district(file, subject)
-    grouped_d = group_by_district_name(file, subject)
-    @asian = []
-    grouped_d.values.map do |array|
-      not_merged = []
-       races.each do |x|
-         not_merged << array.select { |race| race.keys.include?(x) }
-      end
-      not_merged = not_merged.reject { |l| l == [] }
-      flat = not_merged.flatten
-      merged = flat[0][:all_students].merge(flat[1][:all_students])
-      not_merged = not_merged.map { |hash| hash.reduce(:merge) }
-      not_merged[0][:all_students] = merged
-      @asian << not_merged[0]
+  def iteratively_apply_deep_merge(array)
+    array.reduce({}) do |hash, row|
+      deep_merge(hash, row)
     end
-    @asian
   end
+
 end
