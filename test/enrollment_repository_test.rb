@@ -23,6 +23,12 @@ class EnrollmentRepositoryTest < Minitest::Test
     assert_equal "ACADEMY 20", @er.find_by_name("ACADEMY 20").name
   end
 
+  def test_it_is_case_insensitive
+    e = Enrollment.new({:name => "ACADEMY 20"})
+    @er.enrollments << e
+    assert_equal "ACADEMY 20", @er.find_by_name("Academy 20").name
+  end
+
   def test_it_returns_nil_if_no_enrollment_object_exists
     assert_equal nil, @er.find_by_name("hello")
   end
@@ -121,5 +127,9 @@ class EnrollmentRepositoryTest < Minitest::Test
     ]
 
    assert_equal data, @er.merge_to_final_kinder_hashes(grouped)
+  end
+  
+  def test_it_can_access_statewide_tests
+
   end
 end

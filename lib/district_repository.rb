@@ -47,4 +47,8 @@ class DistrictRepository
       district.enrollment = enrollment_repo.find_by_name(district.name)
     end
   end
+
+  def access_statewide_tests
+
+  end
 end

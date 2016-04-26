@@ -1,4 +1,4 @@
-module ParserKindergarten
+module ParserEnrollment
 
   def get_raw_data(file)
     CSV.open(file, headers: true, header_converters: :symbol).map(&:to_h)
