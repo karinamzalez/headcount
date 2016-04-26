@@ -1,10 +1,10 @@
 require_relative '../lib/enrollment'
 require "csv"
-require_relative '../lib/parser'
+require_relative '../lib/parser_enrollment'
 
 
 class EnrollmentRepository
-  include ParserKindergarten
+  include ParserEnrollment
 
   attr_reader :enrollments
 
@@ -43,21 +43,22 @@ class EnrollmentRepository
     data[:enrollment][:high_school_graduation]
   end
 
-  def format_file_to_hash_kindergarten(file)
-    name_of_grade = "kindergarten_participation"
-    grouped = group_by_name(file, name_of_grade)
+  def format_file_to_hash_kindergarten(kindergarten_file)
+    grouped = group_by_name(kindergarten_file, "kindergarten_participation")
     merge_to_final_kinder_hashes(grouped)
   end
 
-  def format_file_to_hash_high_school(file)
-    name_of_grade = "high_school_graduation"
-    grouped = group_by_name(file, name_of_grade)
+  def format_file_to_hash_high_school(graduation_file)
+    grouped = group_by_name(graduation_file, "high_school_graduation")
     merge_to_final_hs_hashes(grouped)
   end
 
   def merge_to_final_kinder_hashes(grouped_data)
     grouped_data.map do |location, entries|
-      {name: location, kindergarten_participation: merged_kinder_entries(entries)}
+      {
+        name: location,
+        kindergarten_participation: merged_kinder_entries(entries)
+      }
     end
   end
 
