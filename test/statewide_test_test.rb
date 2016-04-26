@@ -18,7 +18,7 @@ class StatewideTestTest < Minitest::Test
       {
        2011 => {math: 0.816, reading: 0.897, writing: 0.826},
        2012 => {math: 0.818, reading: 0.893, writing: 0.808}
-      }
+     },
     })
   end
 
