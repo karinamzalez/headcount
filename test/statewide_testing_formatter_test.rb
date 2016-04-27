@@ -1,7 +1,6 @@
 require 'simplecov'
 SimpleCov.start
 
-gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
 require_relative '../lib/statewide_testing_formatter'
@@ -134,46 +133,6 @@ class StatewideTestingFormatterTest < Minitest::Test
 
   end
 
-  def test_it_can_group_by_district_name
-    skip
-    output =
-    [
-      {
-        "ADAMS COUNTY 14" =>
-        {
-
-        }
-      },
-      {
-
-      }
-    ]
-  end
-
-  def test_it_can_merge_multiple_levels_of_hashes
-    skip
-    output =
-    [
-      {
-        :name=>"ADAMS COUNTY 14",
-        :all_students=>
-        {
-          "2011"=>{:math=>"0.32", :reading => "0.44", :writing=> "0.3172" },
-          "2012"=>{:math=>"0.28737", :reading => "0.42674", :writing => "0.27973"}
-        },
-        :asian=>
-        {
-          "2011"=>{:math=>"N/A", :reading => "LNE", :writing=> "LNE"}
-        },
-        :black=>
-        {
-          "2011"=>{:math=>"0.1961", :reading => "0.3333", :writing=> "0.2255"}
-        }
-      },
-    ]
-    assert_equal output, merge_multiple_levels(@data)[0]
-  end
-
   def test_it_can_return_formatted_hashes_per_district_per_race
     output =
     [
@@ -210,7 +169,5 @@ class StatewideTestingFormatterTest < Minitest::Test
     ]
     assert_equal output, formatted_hashes_per_district_2(@data)
   end
-
-
 
 end

@@ -34,7 +34,7 @@ module ParserGrade
   def deep_merge_levels(h1, h2)
     h1.merge(h2) do |key, value1, value2|
       if value1.class == Hash && value2.class == Hash
-        value1.merge(value2) do |key, v1, v2|
+        value1.merge(value2) do |k, v1, v2|
           if v1.class == Hash && v2.class == Hash
             v1.merge(v2)
           else

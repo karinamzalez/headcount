@@ -1,11 +1,10 @@
 require 'simplecov'
 SimpleCov.start
 
-gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
 require_relative '../lib/parser_subject_proficiency'
-require_relative '../test/parser_outputs_module'
+require_relative '../test/data/parser_outputs_module'
 require 'csv'
 
 class ParserGradeTest < Minitest::Test

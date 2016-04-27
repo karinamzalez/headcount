@@ -1,7 +1,6 @@
 require 'simplecov'
 SimpleCov.start
 
-gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
 require_relative '../lib/parser_grade'
@@ -189,7 +188,7 @@ include ParserGrade
     assert_equal expected, deep_merge_levels(h1, h3)
   end
 
-  def test_it_can_return_formatted_hashes_per_district
+  def test_it_can_return_formatted_hashes_per_district_grade
     output =
     [
       {

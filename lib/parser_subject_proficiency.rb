@@ -62,7 +62,6 @@ module ParserSubjectProficiency
   def formatted_hashes_per_district(file,subject)
     grouped_data = group_by_district_name(file, subject)
     grouped_data.map do |ditrict_name, rows|
-      require "pry"; binding.pry
       iteratively_apply_deep_merge(rows)
     end
   end
