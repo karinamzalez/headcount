@@ -20,7 +20,7 @@ module ParserGrade
       {
         name: h[:location], "#{name_of_grade}":
         {
-          h[:timeframe].to_i => {:"#{h[:score]}".downcase => h[:data][0..4].to_f}
+          h[:timeframe].to_i => {:"#{h[:score]}".downcase => h[:data].to_f}
         }
       }
     end

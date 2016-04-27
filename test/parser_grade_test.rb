@@ -8,8 +8,8 @@ require_relative '../test/data/parser_grade_test_module'
 require 'csv'
 
 class ParserGradeTest < Minitest::Test
-include ParserGrade
-include GradeTestOutputs
+  include ParserGrade
+  include GradeTestOutputs
 
   def test_it_can_get_the_raw_data_from_a_csv
     assert_equal grade_raw_data_output, get_raw_data('./test/data/3rd_grade.csv')
