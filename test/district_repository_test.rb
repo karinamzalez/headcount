@@ -4,6 +4,7 @@ SimpleCov.start
 require 'minitest/autorun'
 require 'minitest/pride'
 require_relative '../lib/district_repository'
+require 'csv'
 
 class DistrictRepositoryTest < Minitest::Test
   def setup
@@ -110,5 +111,22 @@ class DistrictRepositoryTest < Minitest::Test
     @dr.load_data(data)
     assert_equal "./test/data/kindergarten.csv", @dr.kindergarten_file(data)
     assert_equal 2, @dr.find_all_matching("ada").count
+  end
+
+  def test_it_can_acces_array_of_statewide_test_objects
+    # require "pry"; binding.pry
+    @dr.load_data(
+      {
+        :enrollment =>
+          {
+            :kindergarten => "./test/data/kindergarten.csv"
+          },
+        :statewide_testing =>
+          {
+            :third_grade=> "./test/data/3rd_grade.csv"
+          }
+      }
+    )
+    assert_equal StatewideTest, @dr.access_statewide_tests[0].class
   end
 end
