@@ -1,4 +1,5 @@
 module ParserSubjectProficiency
+
   def races
     [
       :all_students, :asian, :black, :pacific_islander,

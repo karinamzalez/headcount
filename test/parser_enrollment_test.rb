@@ -1,14 +1,13 @@
 require 'simplecov'
 SimpleCov.start
 
-gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
-require_relative '../lib/parser'
+require_relative '../lib/parser_enrollment'
 require 'csv'
 
 class ParserTest < Minitest::Test
-include ParserKindergarten
+include ParserEnrollment
 
   def test_it_can_get_the_raw_data_from_a_csv
 

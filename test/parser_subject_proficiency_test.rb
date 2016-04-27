@@ -1,11 +1,10 @@
 require 'simplecov'
 SimpleCov.start
 
-gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
 require_relative '../lib/parser_subject_proficiency'
-require_relative '../test/parser_outputs_module'
+require_relative '../test/data/parser_outputs_module'
 require 'csv'
 
 class ParserGradeTest < Minitest::Test
@@ -59,13 +58,29 @@ include ParserOutputs
     assert_equal expected, computed
   end
 
-  def test_it_iteratively_merges_hashes
-  input = [{:name=>"Colorado", :all_students=>{"2011"=>{:math=>"0.5573"}}},
-   {:name=>"Colorado", :asian=>{"2011"=>{:math=>"0.7094"}}},
-   {:name=>"Colorado", :black=>{"2011"=>{:math=>"0.3333"}}},
-   {:name=>"Colorado", :all_students=>{"2012"=>{:math=>"0.558"}}}]
-  output = {:name=>"Colorado", :all_students=>{"2011"=>{:math=>"0.5573"}, "2012"=>{:math=>"0.558"}}, :asian=>{"2011"=>{:math=>"0.7094"}}, :black=>{"2011"=>{:math=>"0.3333"}}}
-
+  def test_it_iteratively_does_the_do
+    input =
+      [
+        {
+          :name=>"Colorado", :all_students=>{"2011"=>{"math"=>"0.5573"}}
+        },
+       {
+         :name=>"Colorado", :asian=>{"2011"=>{"math"=>"0.7094"}}
+       },
+       {
+         :name=>"Colorado", :black=>{"2011"=>{"math"=>"0.3333"}}
+       },
+       {
+         :name=>"Colorado", :all_students=>{"2012"=>{"math"=>"0.558"}}
+       }
+      ]
+    output =
+      {
+        :name=>"Colorado",
+        :all_students=>{"2011"=>{"math"=>"0.5573"}, "2012"=>{"math"=>"0.558"}},
+        :asian=>{"2011"=>{"math"=>"0.7094"}},
+        :black=>{"2011"=>{"math"=>"0.3333"}}
+      }
     assert_equal output, iteratively_apply_deep_merge(input)
   end
 

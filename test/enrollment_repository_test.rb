@@ -1,7 +1,6 @@
 require 'simplecov'
 SimpleCov.start
 
-gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
 require_relative '../lib/enrollment_repository'
@@ -128,7 +127,7 @@ class EnrollmentRepositoryTest < Minitest::Test
 
    assert_equal data, @er.merge_to_final_kinder_hashes(grouped)
   end
-  
+
   def test_it_can_access_statewide_tests
 
   end
