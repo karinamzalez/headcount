@@ -9,6 +9,22 @@ require 'csv'
 class DistrictRepositoryTest < Minitest::Test
   def setup
     @dr = DistrictRepository.new
+    @data_full =
+    {
+      :enrollment =>
+        {
+          :kindergarten => "./test/data/kindergarten.csv",
+          :high_school_graduation => "./test/data/parser_high_school_data.csv"
+        },
+      :statewide_testing =>
+        {
+          :third_grade=> "./test/data/3rd_grade.csv",
+          :eighth_grade=> "./test/data/8th_grade.csv",
+          :math => "./test/data/test_prof_math.csv",
+          :reading => "./test/data/test_proficiency_reading.csv",
+          :writing => "./test/data/test_proficiency_writing.csv"
+        }
+    }
   end
 
   def test_it_exists
@@ -114,23 +130,13 @@ class DistrictRepositoryTest < Minitest::Test
   end
 
   def test_it_can_acces_array_of_statewide_test_objects
-    # require "pry"; binding.pry
-    @dr.load_data(
-      {
-        :enrollment =>
-          {
-            :kindergarten => "./test/data/kindergarten.csv"
-          },
-        :statewide_testing =>
-          {
-            :third_grade=> "./test/data/3rd_grade.csv",
-            :eighth_grade=> "./test/data/8th_grade.csv",
-            :math => "./test/data/test_prof_math.csv",
-            :reading => "./test/data/test_proficiency_reading.csv",
-            :writing => "./test/data/test_proficiency_writing.csv"
-          }
-      }
-    )
+    @dr.load_data(@data_full)
     assert_equal StatewideTest, @dr.access_statewide_tests[0].class
+  end
+
+  def test_it_can_load_enrollments_and_statewide_tests_at_once
+    @dr.load_data(@data_full)
+    assert_equal StatewideTest, @dr.access_statewide_tests[0].class
+    assert_equal Enrollment, @dr.access_enrollments[0].class
   end
 end

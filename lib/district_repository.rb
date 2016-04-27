@@ -29,12 +29,14 @@ class DistrictRepository
   def load_data(data)
     grouped_district_data = group_by_name(kindergarten_file(data), "kindergarten_participation")
     make_districts_by_name(grouped_district_data)
-    if data.keys.include?(:statewide_testing)
-      statewide_test_repo.load_data(data)
-      access_statewide_tests
-    else   data.keys.include?(:enrollment)
-      enrollment_repo.load_data(data)
-      access_enrollments
+    data.map do |hash|
+      if hash.include?(:statewide_testing)
+        statewide_test_repo.load_data(data)
+        access_statewide_tests
+      else hash.include?(:enrollment)
+        enrollment_repo.load_data(data)
+       access_enrollments
+      end
     end
   end
 
