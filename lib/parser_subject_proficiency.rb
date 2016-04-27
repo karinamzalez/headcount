@@ -36,6 +36,14 @@ module ParserSubjectProficiency
     end
   end
 
+  # def clean_data(percent_data)
+  #   if percent_data == percent_data.to_f.to_s
+  #     percent_data.to_f
+  #   else
+  #     percent_data
+  #   end
+  # end
+
   def group_by_district_name(file, subject)
     formatted_data = format_subject_hash_per_line(file, subject)
     formatted_data.group_by do |hash|

@@ -96,4 +96,9 @@ include GradeTestOutputs
     assert_equal output, iteratively_apply_deep_merge_levels(input)
   end
 
+  def test_it_can_clean_the_data
+    assert_equal "N/A", clean_data("N/A")
+    assert_equal 0.123, clean_data("0.123")
+  end
+
 end

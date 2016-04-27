@@ -49,7 +49,7 @@ class StatewideTestTest < Minitest::Test
   end
 
   def test_it_raises_an_error_if_race_unknown
-    assert_raises(UnknownRaceError) do
+    assert_raises(UnknownDataError) do
       @st.proficient_by_race_or_ethnicity(:something)
     end
   end
@@ -86,7 +86,7 @@ class StatewideTestTest < Minitest::Test
   end
 
   def test_it_raises_error_if_race_is_invalid_for_race_method
-    assert_raises(UnknownRaceError) do
+    assert_raises(UnknownDataError) do
       @st.proficient_for_subject_by_race_in_year(:math, :guy, 2012)
     end
   end
