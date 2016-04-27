@@ -1,4 +1,3 @@
-
 class Enrollment
   attr_reader :name,
               :data
@@ -29,6 +28,5 @@ class Enrollment
   def graduation_rate_in_year(year)
     graduation_rate_by_year[year.to_i]
   end
-
 
 end
