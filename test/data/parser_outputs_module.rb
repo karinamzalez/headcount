@@ -283,139 +283,139 @@ module ParserOutputs
   def format_subject_hash_per_line_output
     [
       {
-        :name=>"Colorado", :all_students=>{"2011"=>{:math=>"0.5573"}}
+        :name=>"Colorado", :all_students=>{2011=>{:math=>0.557}}
       },
       {
-        :name=>"Colorado", :asian=>{"2011"=>{:math=>"0.7094"}}
+        :name=>"Colorado", :asian=>{2011=>{:math=>0.709}}
       },
       {
-        :name=>"Colorado", :black=>{"2011"=>{:math=>"0.3333"}}
+        :name=>"Colorado", :black=>{2011=>{:math=>0.333}}
       },
       {
-        :name=>"Colorado", :all_students=>{"2012"=>{:math=>"0.558"}}
+        :name=>"Colorado", :all_students=>{2012=>{:math=>0.558}}
       },
       {
-        :name=>"Colorado", :asian=>{"2012"=>{:math=>"0.7192"}}
+        :name=>"Colorado", :asian=>{2012=>{:math=>0.719}}
       },
       {
-        :name=>"Colorado", :black=>{"2012"=>{:math=>"0.3359"}}
+        :name=>"Colorado", :black=>{2012=>{:math=>0.335}}
       },
       {
-        :name=>"Colorado", :all_students=>{"2013"=>{:math=>"0.5668"}}
+        :name=>"Colorado", :all_students=>{2013=>{:math=>0.566}}
       },
       {
-        :name=>"Colorado", :asian=>{"2013"=>{:math=>"0.7323"}}
+        :name=>"Colorado", :asian=>{2013=>{:math=>0.732}}
       },
       {
-        :name=>"Colorado", :black=>{"2013"=>{:math=>"0.3549"}}
+        :name=>"Colorado", :black=>{2013=>{:math=>0.354}}
       },
       {
-        :name=>"ACADEMY 20", :all_students=>{"2011"=>{:math=>"0.68"}}
+        :name=>"ACADEMY 20", :all_students=>{2011=>{:math=>0.68}}
       },
       {
-        :name=>"ACADEMY 20", :asian=>{"2011"=>{:math=>"0.8169"}}
+        :name=>"ACADEMY 20", :asian=>{2011=>{:math=>0.816}}
       },
       {
-        :name=>"ACADEMY 20", :black=>{"2011"=>{:math=>"0.4246"}}
+        :name=>"ACADEMY 20", :black=>{2011=>{:math=>0.424}}
       },
       {
-        :name=>"ACADEMY 20", :all_students=>{"2012"=>{:math=>"0.6894"}}
+        :name=>"ACADEMY 20", :all_students=>{2012=>{:math=>0.689}}
       },
       {
-        :name=>"ACADEMY 20", :asian=>{"2012"=>{:math=>"0.8182"}}
+        :name=>"ACADEMY 20", :asian=>{2012=>{:math=>0.818}}
       },
       {
-        :name=>"ACADEMY 20", :black=>{"2012"=>{:math=>"0.4248"}}
+        :name=>"ACADEMY 20", :black=>{2012=>{:math=>0.424}}
       },
       {
-        :name=>"ACADEMY 20", :all_students=>{"2013"=>{:math=>"0.69683"}}
+        :name=>"ACADEMY 20", :all_students=>{2013=>{:math=>0.696}}
       },
       {
-        :name=>"ACADEMY 20", :asian=>{"2013"=>{:math=>"0.8053"}}
+        :name=>"ACADEMY 20", :asian=>{2013=>{:math=>0.805}}
       },
       {
-        :name=>"ACADEMY 20", :black=>{"2013"=>{:math=>"0.4404"}}
+        :name=>"ACADEMY 20", :black=>{2013=>{:math=>0.44}}
       },
       {
-        :name=>"ADAMS COUNTY 14", :all_students=>{"2011"=>{:math=>"0.32"}}
+        :name=>"ADAMS COUNTY 14", :all_students=>{2011=>{:math=>0.32}}
       },
       {
-        :name=>"ADAMS COUNTY 14", :asian=>{"2011"=>{:math=>"N/A"}}
+        :name=>"ADAMS COUNTY 14", :asian=>{2011=>{:math=>0.0}}
       },
       {
-        :name=>"ADAMS COUNTY 14", :black=>{"2011"=>{:math=>"0.1961"}}
+        :name=>"ADAMS COUNTY 14", :black=>{2011=>{:math=>0.196}}
       },
       {
-        :name=>"ADAMS COUNTY 14", :all_students=>{"2012"=>{:math=>"0.28737"}}
+        :name=>"ADAMS COUNTY 14", :all_students=>{2012=>{:math=>0.287}}
       },
       {
-        :name=>"ADAMS COUNTY 14", :asian=>{"2012"=>{:math=>"0"}}
+        :name=>"ADAMS COUNTY 14", :asian=>{2012=>{:math=>0.0}}
       },
       {
-        :name=>"ADAMS COUNTY 14", :black=>{"2012"=>{:math=>"0.2252"}}
+        :name=>"ADAMS COUNTY 14", :black=>{2012=>{:math=>0.225}}
       },
       {
-        :name=>"ADAMS COUNTY 14", :all_students=>{"2013"=>{:math=>"0.31066"}}
+        :name=>"ADAMS COUNTY 14", :all_students=>{2013=>{:math=>0.31}}
       },
       {
-        :name=>"ADAMS COUNTY 14", :asian=>{"2013"=>{:math=>"LNE"}}
+        :name=>"ADAMS COUNTY 14", :asian=>{2013=>{:math=>0.0}}
       },
       {
-        :name=>"ADAMS COUNTY 14", :black=>{"2013"=>{:math=>"0.2897"}}
+        :name=>"ADAMS COUNTY 14", :black=>{2013=>{:math=>0.289}}
       },
       {
-        :name=>"ADAMS-ARAPAHOE 28J", :all_students=>{"2011"=>{:math=>"0.38"}}
+        :name=>"ADAMS-ARAPAHOE 28J", :all_students=>{2011=>{:math=>0.38}}
       },
       {
-        :name=>"ADAMS-ARAPAHOE 28J", :asian=>{"2011"=>{:math=>"0.4817"}}
+        :name=>"ADAMS-ARAPAHOE 28J", :asian=>{2011=>{:math=>0.481}}
       },
       {
-        :name=>"ADAMS-ARAPAHOE 28J", :black=>{"2011"=>{:math=>"0.291"}}
+        :name=>"ADAMS-ARAPAHOE 28J", :black=>{2011=>{:math=>0.291}}
       },
       {
-        :name=>"ADAMS-ARAPAHOE 28J", :all_students=>{"2012"=>{:math=>"0.37735"}}
+        :name=>"ADAMS-ARAPAHOE 28J", :all_students=>{2012=>{:math=>0.377}}
       },
       {
-        :name=>"ADAMS-ARAPAHOE 28J", :asian=>{"2012"=>{:math=>"0.4859"}}
+        :name=>"ADAMS-ARAPAHOE 28J", :asian=>{2012=>{:math=>0.485}}
       },
       {
-        :name=>"ADAMS-ARAPAHOE 28J", :black=>{"2012"=>{:math=>"0.2916"}}
+        :name=>"ADAMS-ARAPAHOE 28J", :black=>{2012=>{:math=>0.291}}
       },
       {
-        :name=>"ADAMS-ARAPAHOE 28J", :all_students=>{"2013"=>{:math=>"0.3733"}}
+        :name=>"ADAMS-ARAPAHOE 28J", :all_students=>{2013=>{:math=>0.373}}
       },
       {
-        :name=>"ADAMS-ARAPAHOE 28J", :asian=>{"2013"=>{:math=>"0.4809"}}
+        :name=>"ADAMS-ARAPAHOE 28J", :asian=>{2013=>{:math=>0.48}}
       },
       {
-        :name=>"ADAMS-ARAPAHOE 28J", :black=>{"2013"=>{:math=>"0.3023"}}
+        :name=>"ADAMS-ARAPAHOE 28J", :black=>{2013=>{:math=>0.302}}
       },
       {
-        :name=>"AGATE 300", :all_students=>{"2011"=>{:math=>"N/A"}}
+        :name=>"AGATE 300", :all_students=>{2011=>{:math=>0.0}}
       },
       {
-        :name=>"AGATE 300", :asian=>{"2011"=>{:math=>"N/A"}}
+        :name=>"AGATE 300", :asian=>{2011=>{:math=>0.0}}
       },
       {
-        :name=>"AGATE 300", :black=>{"2011"=>{:math=>"N/A"}}
+        :name=>"AGATE 300", :black=>{2011=>{:math=>0.0}}
       },
       {
-        :name=>"AGATE 300", :all_students=>{"2012"=>{:math=>"LNE"}}
+        :name=>"AGATE 300", :all_students=>{2012=>{:math=>0.0}}
       },
       {
-        :name=>"AGATE 300", :asian=>{"2012"=>{:math=>"LNE"}}
+        :name=>"AGATE 300", :asian=>{2012=>{:math=>0.0}}
       },
       {
-        :name=>"AGATE 300", :black=>{"2012"=>{:math=>"LNE"}}
+        :name=>"AGATE 300", :black=>{2012=>{:math=>0.0}}
       },
       {
-        :name=>"AGATE 300", :all_students=>{"2013"=>{:math=>"LNE"}}
+        :name=>"AGATE 300", :all_students=>{2013=>{:math=>0.0}}
       },
       {
-        :name=>"AGATE 300", :asian=>{"2013"=>{:math=>"LNE"}}
+        :name=>"AGATE 300", :asian=>{2013=>{:math=>0.0}}
       },
       {
-        :name=>"AGATE 300", :black=>{"2013"=>{:math=>"LNE"}}
+        :name=>"AGATE 300", :black=>{2013=>{:math=>0.0}}
       }
     ]
   end
@@ -424,148 +424,153 @@ module ParserOutputs
     {
       "Colorado"=>
       [
+
         {
-          :name=>"Colorado", :all_students=>{"2011"=>{:math=>"0.5573"}}
+          :name=>"Colorado", :all_students=>{2011=>{:math=>0.557}}
         },
         {
-          :name=>"Colorado", :asian=>{"2011"=>{:math=>"0.7094"}}
+          :name=>"Colorado", :asian=>{2011=>{:math=>0.709}}
         },
         {
-          :name=>"Colorado", :black=>{"2011"=>{:math=>"0.3333"}}
+          :name=>"Colorado", :black=>{2011=>{:math=>0.333}}
         },
         {
-          :name=>"Colorado", :all_students=>{"2012"=>{:math=>"0.558"}}
+          :name=>"Colorado", :all_students=>{2012=>{:math=>0.558}}
         },
         {
-          :name=>"Colorado", :asian=>{"2012"=>{:math=>"0.7192"}}
+          :name=>"Colorado", :asian=>{2012=>{:math=>0.719}}
         },
         {
-          :name=>"Colorado", :black=>{"2012"=>{:math=>"0.3359"}}
+          :name=>"Colorado", :black=>{2012=>{:math=>0.335}}
         },
         {
-          :name=>"Colorado", :all_students=>{"2013"=>{:math=>"0.5668"}}
+          :name=>"Colorado", :all_students=>{2013=>{:math=>0.566}}
         },
         {
-          :name=>"Colorado", :asian=>{"2013"=>{:math=>"0.7323"}}
+          :name=>"Colorado", :asian=>{2013=>{:math=>0.732}}
         },
         {
-          :name=>"Colorado", :black=>{"2013"=>{:math=>"0.3549"}}}
+          :name=>"Colorado", :black=>{2013=>{:math=>0.354}}
+        }
       ],
-       "ACADEMY 20"=>
+      "ACADEMY 20"=>
       [
         {
-          :name=>"ACADEMY 20", :all_students=>{"2011"=>{:math=>"0.68"}}
+          :name=>"ACADEMY 20", :all_students=>{2011=>{:math=>0.68}}
         },
         {
-          :name=>"ACADEMY 20", :asian=>{"2011"=>{:math=>"0.8169"}}
+          :name=>"ACADEMY 20", :asian=>{2011=>{:math=>0.816}}
         },
         {
-          :name=>"ACADEMY 20", :black=>{"2011"=>{:math=>"0.4246"}}
+          :name=>"ACADEMY 20", :black=>{2011=>{:math=>0.424}}
         },
         {
-          :name=>"ACADEMY 20", :all_students=>{"2012"=>{:math=>"0.6894"}}
+          :name=>"ACADEMY 20", :all_students=>{2012=>{:math=>0.689}}
         },
         {
-          :name=>"ACADEMY 20", :asian=>{"2012"=>{:math=>"0.8182"}}
+          :name=>"ACADEMY 20", :asian=>{2012=>{:math=>0.818}}
         },
         {
-          :name=>"ACADEMY 20", :black=>{"2012"=>{:math=>"0.4248"}}
+          :name=>"ACADEMY 20", :black=>{2012=>{:math=>0.424}}
         },
         {
-          :name=>"ACADEMY 20", :all_students=>{"2013"=>{:math=>"0.69683"}}
+          :name=>"ACADEMY 20", :all_students=>{2013=>{:math=>0.696}}
         },
         {
-          :name=>"ACADEMY 20", :asian=>{"2013"=>{:math=>"0.8053"}}
+          :name=>"ACADEMY 20", :asian=>{2013=>{:math=>0.805}}
         },
         {
-          :name=>"ACADEMY 20", :black=>{"2013"=>{:math=>"0.4404"}}}
+          :name=>"ACADEMY 20", :black=>{2013=>{:math=>0.44}}
+        }
       ],
-       "ADAMS COUNTY 14"=>
+      "ADAMS COUNTY 14"=>
       [
         {
-          :name=>"ADAMS COUNTY 14", :all_students=>{"2011"=>{:math=>"0.32"}}
+          :name=>"ADAMS COUNTY 14", :all_students=>{2011=>{:math=>0.32}}
         },
         {
-          :name=>"ADAMS COUNTY 14", :asian=>{"2011"=>{:math=>"N/A"}}
+          :name=>"ADAMS COUNTY 14", :asian=>{2011=>{:math=>0.0}}
         },
         {
-          :name=>"ADAMS COUNTY 14", :black=>{"2011"=>{:math=>"0.1961"}}
+          :name=>"ADAMS COUNTY 14", :black=>{2011=>{:math=>0.196}}
         },
         {
-          :name=>"ADAMS COUNTY 14", :all_students=>{"2012"=>{:math=>"0.28737"}}
+          :name=>"ADAMS COUNTY 14", :all_students=>{2012=>{:math=>0.287}}
         },
         {
-          :name=>"ADAMS COUNTY 14", :asian=>{"2012"=>{:math=>"0"}}
+          :name=>"ADAMS COUNTY 14", :asian=>{2012=>{:math=>0.0}}
         },
         {
-          :name=>"ADAMS COUNTY 14", :black=>{"2012"=>{:math=>"0.2252"}}
+          :name=>"ADAMS COUNTY 14", :black=>{2012=>{:math=>0.225}}
         },
         {
-          :name=>"ADAMS COUNTY 14", :all_students=>{"2013"=>{:math=>"0.31066"}}
+          :name=>"ADAMS COUNTY 14", :all_students=>{2013=>{:math=>0.31}}
         },
         {
-          :name=>"ADAMS COUNTY 14", :asian=>{"2013"=>{:math=>"LNE"}}
+          :name=>"ADAMS COUNTY 14", :asian=>{2013=>{:math=>0.0}}
         },
         {
-          :name=>"ADAMS COUNTY 14", :black=>{"2013"=>{:math=>"0.2897"}}}
+          :name=>"ADAMS COUNTY 14", :black=>{2013=>{:math=>0.289}}
+        }
       ],
-       "ADAMS-ARAPAHOE 28J"=>
+      "ADAMS-ARAPAHOE 28J"=>
       [
         {
-          :name=>"ADAMS-ARAPAHOE 28J", :all_students=>{"2011"=>{:math=>"0.38"}}
+          :name=>"ADAMS-ARAPAHOE 28J", :all_students=>{2011=>{:math=>0.38}}
         },
         {
-          :name=>"ADAMS-ARAPAHOE 28J", :asian=>{"2011"=>{:math=>"0.4817"}}
+          :name=>"ADAMS-ARAPAHOE 28J", :asian=>{2011=>{:math=>0.481}}
         },
         {
-          :name=>"ADAMS-ARAPAHOE 28J", :black=>{"2011"=>{:math=>"0.291"}}
+          :name=>"ADAMS-ARAPAHOE 28J", :black=>{2011=>{:math=>0.291}}
         },
         {
-          :name=>"ADAMS-ARAPAHOE 28J", :all_students=>{"2012"=>{:math=>"0.37735"}}
+          :name=>"ADAMS-ARAPAHOE 28J", :all_students=>{2012=>{:math=>0.377}}
         },
         {
-          :name=>"ADAMS-ARAPAHOE 28J", :asian=>{"2012"=>{:math=>"0.4859"}}
+          :name=>"ADAMS-ARAPAHOE 28J", :asian=>{2012=>{:math=>0.485}}
         },
         {
-          :name=>"ADAMS-ARAPAHOE 28J", :black=>{"2012"=>{:math=>"0.2916"}}
+          :name=>"ADAMS-ARAPAHOE 28J", :black=>{2012=>{:math=>0.291}}
         },
         {
-          :name=>"ADAMS-ARAPAHOE 28J", :all_students=>{"2013"=>{:math=>"0.3733"}}
+          :name=>"ADAMS-ARAPAHOE 28J", :all_students=>{2013=>{:math=>0.373}}
         },
         {
-          :name=>"ADAMS-ARAPAHOE 28J", :asian=>{"2013"=>{:math=>"0.4809"}}
+          :name=>"ADAMS-ARAPAHOE 28J", :asian=>{2013=>{:math=>0.48}}
         },
         {
-          :name=>"ADAMS-ARAPAHOE 28J", :black=>{"2013"=>{:math=>"0.3023"}}}
+          :name=>"ADAMS-ARAPAHOE 28J", :black=>{2013=>{:math=>0.302}}
+        }
       ],
-       "AGATE 300"=>
+      "AGATE 300"=>
       [
         {
-          :name=>"AGATE 300", :all_students=>{"2011"=>{:math=>"N/A"}}
+          :name=>"AGATE 300", :all_students=>{2011=>{:math=>0.0}}
         },
         {
-          :name=>"AGATE 300", :asian=>{"2011"=>{:math=>"N/A"}}
+          :name=>"AGATE 300", :asian=>{2011=>{:math=>0.0}}
         },
         {
-          :name=>"AGATE 300", :black=>{"2011"=>{:math=>"N/A"}}
+          :name=>"AGATE 300", :black=>{2011=>{:math=>0.0}}
         },
         {
-          :name=>"AGATE 300", :all_students=>{"2012"=>{:math=>"LNE"}}
+          :name=>"AGATE 300", :all_students=>{2012=>{:math=>0.0}}
         },
         {
-          :name=>"AGATE 300", :asian=>{"2012"=>{:math=>"LNE"}}
+          :name=>"AGATE 300", :asian=>{2012=>{:math=>0.0}}
         },
         {
-          :name=>"AGATE 300", :black=>{"2012"=>{:math=>"LNE"}}
+          :name=>"AGATE 300", :black=>{2012=>{:math=>0.0}}
         },
         {
-          :name=>"AGATE 300", :all_students=>{"2013"=>{:math=>"LNE"}}
+          :name=>"AGATE 300", :all_students=>{2013=>{:math=>0.0}}
         },
         {
-          :name=>"AGATE 300", :asian=>{"2013"=>{:math=>"LNE"}}
+          :name=>"AGATE 300", :asian=>{2013=>{:math=>0.0}}
         },
         {
-          :name=>"AGATE 300", :black=>{"2013"=>{:math=>"LNE"}}
+          :name=>"AGATE 300", :black=>{2013=>{:math=>0.0}}
         }
       ]
     }

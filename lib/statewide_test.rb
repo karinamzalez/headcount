@@ -9,7 +9,7 @@ class StatewideTest
     @data = data
     @name = data[:name].upcase
     @subjects = [:math, :reading, :writing]
-    @grades = {3 => :third_grade_proficiency, 8 => :eigth_grade_proficiency}
+    @grades = {3 => :third_grade_proficiency, 8 => :eighth_grade_proficiency}
     @races = [
               :asian, :black, :pacific_islander, :hispanic,
               :native_american, :two_or_more, :white
@@ -49,8 +49,9 @@ class StatewideTest
 
 
   def proficient_for_subject_by_grade_in_year(subject, grade, year)
+    # require "pry"; binding.pry
     grade_data = proficient_by_grade(grade)
-      grade_data = proficient_by_grade(grade)
+      # grade_data = proficient_by_grade(grade)
       if grade_data.keys.include?(year)
         if subjects.include?(subject)
           grade_data[year][subject]

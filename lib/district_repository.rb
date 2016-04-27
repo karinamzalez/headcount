@@ -2,15 +2,18 @@ require 'csv'
 require_relative '../lib/district'
 require_relative '../lib/enrollment_repository'
 require_relative '../lib/parser_enrollment'
+require_relative '../lib/statewide_test_repository'
 
 class DistrictRepository
   include ParserEnrollment
 
   attr_accessor :districts
-  attr_reader :enrollment_repo
+  attr_reader :enrollment_repo,
+              :statewide_test_repo
 
   def initialize
     @enrollment_repo = EnrollmentRepository.new
+    @statewide_test_repo = StatewideTestRepository.new
     @districts = []
   end
 
@@ -24,11 +27,17 @@ class DistrictRepository
   end
 
   def load_data(data)
-    grouped_district_data = group_by_name(kindergarten_file(data), "kindergarten_participation")\
-
+    grouped_district_data = group_by_name(kindergarten_file(data), "kindergarten_participation")
     make_districts_by_name(grouped_district_data)
-    enrollment_repo.load_data(data)
-    access_enrollments
+    data.map do |hash|
+      if hash.include?(:statewide_testing)
+        statewide_test_repo.load_data(data)
+        access_statewide_tests
+      else hash.include?(:enrollment)
+        enrollment_repo.load_data(data)
+       access_enrollments
+      end
+    end
   end
 
   def kindergarten_file(data)
@@ -49,6 +58,9 @@ class DistrictRepository
   end
 
   def access_statewide_tests
-
+    districts.map do |district|
+      district.statewide_test = statewide_test_repo.find_by_name(district.name)
+    end
   end
+
 end

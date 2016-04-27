@@ -86,21 +86,20 @@ include ParserOutputs
 
   def test_it_can_return_formatted_hashes_per_district
     output =
-    [
-     {
-       :name=>"ADAMS COUNTY 14",
-       :all_students=>{"2011"=>{:math=>"0.32"}, "2012"=>{:math=>"0.28737"}},
-       :asian=>{"2011"=>{:math=>"N/A"}},
-       :black=>{"2011"=>{:math=>"0.1961"}}
-     },
-     {
-       :name=>"ADAMS-ARAPAHOE 28J",
-       :all_students=>{"2011"=>{:math=>"0.38"}, "2012"=>{:math=>"0.37735"}},
-       :asian=>{"2011"=>{:math=>"0.4817"}},
-       :black=>{"2011"=>{:math=>"0.291"}}
-     }
-    ]
-
+      [
+        {
+          :name=>"ADAMS COUNTY 14",
+          :all_students=>{2011=>{:math=>0.32}, 2012=>{:math=>0.287}},
+          :asian=>{2011=>{:math=>0.0}},
+          :black=>{2011=>{:math=>0.196}}
+        }, 
+        {
+          :name=>"ADAMS-ARAPAHOE 28J",
+          :all_students=>{2011=>{:math=>0.38}, 2012=>{:math=>0.377}},
+          :asian=>{2011=>{:math=>0.481}},
+          :black=>{2011=>{:math=>0.291}}
+        }
+      ]
     assert_equal output, formatted_hashes_per_district('./test/data/test_prof_math_short.csv', :math)
   end
 end

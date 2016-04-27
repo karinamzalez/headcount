@@ -54,7 +54,7 @@ class StatewideTestTest < Minitest::Test
     end
   end
 
-  # #deal with edge cases; no data provided so some lines
+  # #deal with edge cases; no data provided for some lines
   # #but probably in statewide test repo class
 
   def test_it_can_find_proficiency_percent_for_subject_grade_year

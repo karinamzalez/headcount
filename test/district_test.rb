@@ -4,8 +4,14 @@ SimpleCov.start
 require 'minitest/autorun'
 require 'minitest/pride'
 require_relative '../lib/district'
+require_relative '../lib/statewide_test'
+require_relative '../lib/enrollment'
 
 class DistrictTest < Minitest::Test
+
+  def setup
+    @d = District.new({:name => "ACADEMY 20"})
+  end
 
   def test_it_exists
     d = District.new({:name => "potato"})
@@ -13,15 +19,11 @@ class DistrictTest < Minitest::Test
   end
 
   def test_it_receives_argument
-    d = District.new({:name => "ACADEMY 20"})
-
-    assert_equal "ACADEMY 20", d.name
+    assert_equal "ACADEMY 20", @d.name
   end
 
   def test_it_is_case_insensitive
-    d = District.new({:name => "Academy 20"})
-
-    assert_equal "ACADEMY 20", d.name
+    assert_equal "ACADEMY 20", @d.name
   end
 
 end
