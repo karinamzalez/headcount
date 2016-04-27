@@ -55,7 +55,6 @@ include GradeTestOutputs
     }
     expected =
       {:name=>"Colorado", :third_grade_proficiency=>{2008=>{"Math"=>"0.697", "Reading"=>"0.703", "Writing"=>"0.703"}}}
-
     assert_equal expected, deep_merge_levels(h1, h3)
   end
 
@@ -94,7 +93,6 @@ include GradeTestOutputs
      }
     ]
     output = {:name=>"Colorado", :third_grade_proficiency=>{"2008"=>{"Math"=>"0.697", "Reading"=>"0.703", "Writing"=>"0.501"}}}
-
     assert_equal output, iteratively_apply_deep_merge_levels(input)
   end
 

@@ -40,7 +40,6 @@ class HeadcountAnalyst
     variants = district1_percents.zip(district2_percents).map do |percents|
       percents.inject(:/).to_s[0..4].to_f
     end
-
     district1_years.zip(variants).to_h
   end
 
