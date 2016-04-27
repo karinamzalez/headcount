@@ -30,7 +30,7 @@ module ParserSubjectProficiency
       {
         name: h[:location], "#{x}":
         {
-          h[:timeframe] => {:"#{subject}" => h[:data]}
+          h[:timeframe].to_i => {:"#{subject}" => h[:data][0..4].to_f}
         }
       }
     end
