@@ -139,4 +139,14 @@ class DistrictRepositoryTest < Minitest::Test
     assert_equal StatewideTest, @dr.access_statewide_tests[0].class
     assert_equal Enrollment, @dr.access_enrollments[0].class
   end
+
+  def test_districts_can_access_enrollment_obejcts
+    @dr.load_data(@data_full)
+    assert_equal Enrollment, @dr.districts[0].enrollment.class
+  end
+
+  def test_districts_can_access_statewide_test_objects
+    @dr.load_data(@data_full)
+    assert_equal StatewideTest, @dr.districts[0].statewide_test.class
+  end
 end
