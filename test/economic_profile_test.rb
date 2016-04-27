@@ -15,7 +15,7 @@ class EconomicProfileTest < Minitest::Test
         :median_household_income =>
           {[2005, 2009] => 50000, [2008, 2014] => 60000},
         :children_in_poverty =>
-          {2012 => 0.1845},
+          {2012 => 0.184},
         :free_or_reduced_price_lunch =>
           {2014 => {:percentage => 0.023, :total => 100}},
         :title_i =>
@@ -57,8 +57,44 @@ class EconomicProfileTest < Minitest::Test
     assert_equal 55000, @ep.median_household_income_average
   end
 
-#edge case: data is DNE; what will this do to the average?
+  def test_it_can_give_percent_of_children_in_poverty_for_a_given_year
+    assert_equal 0.184, @ep.children_in_poverty_in_year(2012)
+  end
 
+  def test_it_raises_error_if_not_a_valid_poverty_year
+    assert_raises(UnknownDataError) do
+      @ep.children_in_poverty_in_year(1910)
+    end
+  end
 
+  def test_it_can_find_reduced_lunch_percentage_for_a_given_year
+    assert_equal 0.023, @ep.free_or_reduced_price_lunch_percentage_in_year(2014)
+  end
+
+  def test_it_raises_error_if_invalid_lunch_year
+    assert_raises(UnknownDataError) do
+      @ep.free_or_reduced_price_lunch_percentage_in_year(1910)
+    end
+  end
+
+  def test_it_can_give_the_reduced_lunch_number_for_a_given_year
+    assert_equal 100, @ep.free_or_reduced_price_lunch_number_in_year(2014)
+  end
+
+  def test_it_raises_an_error_if_given_invalid_lunch_number_year
+    assert_raises(UnknownDataError) do
+      @ep.free_or_reduced_price_lunch_number_in_year(1910)
+    end
+  end
+
+  def test_it_can_give_title_i_data_for_a_given_year
+    assert_equal 0.543, @ep.title_i_in_year(2015)
+  end
+
+  def test_it_raises_error_if_given_invaluid_title_i_year
+    assert_raises(UnknownDataError) do
+      @ep.title_i_in_year(1910)
+    end
+  end
 
 end

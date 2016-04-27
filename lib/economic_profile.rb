@@ -2,13 +2,15 @@ class EconomicProfile
   attr_reader :name,
               :data,
               :years,
-              :incomes
+              :incomes,
+              :lunch_years
 
   def initialize(data)
     @data = data
     @name = data[:name].upcase
     @years = data[:median_household_income].keys
     @incomes = data[:median_household_income].values
+    @lunch_years = data[:free_or_reduced_price_lunch]
   end
 
   def median_household_income_in_year(year)
@@ -23,12 +25,10 @@ class EconomicProfile
 
   def get_income_associated_with_year(year)
     years.map do |array|
-      key1 = array
       range = (array[0]..array[1])
       if range.include?(year)
-        @data[:median_household_income][key1]
+        @data[:median_household_income][array]
       end
-
     end.compact
   end
 
@@ -38,7 +38,39 @@ class EconomicProfile
   end
 
   def median_household_income_average
-    incomes.reduce(:+)/incomes.count 
+    incomes.reduce(:+)/incomes.count
+  end
+
+  def children_in_poverty_in_year(year)
+    if @data[:children_in_poverty].keys.include?(year)
+      @data[:children_in_poverty][year]
+    else
+      raise UnknownDataError
+    end
+  end
+
+  def free_or_reduced_price_lunch_percentage_in_year(year)
+    if lunch_years.keys.include?(year)
+      @data[:free_or_reduced_price_lunch][year][:percentage]
+    else
+      raise UnknownDataError
+    end
+  end
+
+  def free_or_reduced_price_lunch_number_in_year(year)
+    if lunch_years.keys.include?(year)
+      @data[:free_or_reduced_price_lunch][year][:total]
+    else
+      raise UnknownDataError
+    end
+  end
+
+  def title_i_in_year(year)
+    if @data[:title_i].keys.include?(year)
+      @data[:title_i][year]
+    else
+      raise UnknownDataError
+    end
   end
 
 end
