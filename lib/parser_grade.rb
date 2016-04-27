@@ -1,3 +1,5 @@
+require 'csv'
+
 module ParserGrade
 
   def get_raw_data(file)

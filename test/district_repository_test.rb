@@ -123,7 +123,11 @@ class DistrictRepositoryTest < Minitest::Test
           },
         :statewide_testing =>
           {
-            :third_grade=> "./test/data/3rd_grade.csv"
+            :third_grade=> "./test/data/3rd_grade.csv",
+            :eighth_grade=> "./test/data/8th_grade.csv",
+            :math => "./test/data/test_prof_math.csv",
+            :reading => "./test/data/test_proficiency_reading.csv",
+            :writing => "./test/data/test_proficiency_writing.csv"
           }
       }
     )
