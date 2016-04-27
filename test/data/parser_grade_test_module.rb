@@ -1,6 +1,6 @@
 module GradeTestOutputs
 
-def grade_raw_data_output
+  def grade_raw_data_output
     [
       {
         :location=>"ADAMS COUNTY 14", :score=>"Math", :timeframe=>"2008", :dataformat=>"Percent", :data=>"0.56"

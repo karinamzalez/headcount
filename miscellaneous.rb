@@ -32,3 +32,18 @@ flat = jk.flatten
 good = flat[0][:all_students].merge(flat[1][:all_students])
 
  # flat[0] = flat[0].to_a[1][:all_students].merge(flat[1].to_a[1][1])
+
+
+
+
+
+
+data.map do |hash|
+  if hash.keys.include?(:statewide_testing)
+    statewide_test_repo.load_data(data)
+    access_statewide_tests
+  else hash.keys.include?(:enrollment)
+    enrollment_repo.load_data(data)
+   access_enrollments
+  end
+end

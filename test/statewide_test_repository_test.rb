@@ -51,6 +51,6 @@ class StatewideTestRepositoryTest < Minitest::Test
 
       assert_equal 0.818 ,
       test_object.proficient_for_subject_by_race_in_year(:math, :asian, 2012)
-    end
+  end
 
 end
