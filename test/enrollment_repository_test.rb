@@ -124,7 +124,6 @@ class EnrollmentRepositoryTest < Minitest::Test
         }
       }
     ]
-
    assert_equal data, @er.merge_to_final_kinder_hashes(grouped)
   end
 

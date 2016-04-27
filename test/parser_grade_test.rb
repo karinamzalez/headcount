@@ -40,7 +40,6 @@ include ParserGrade
         :location=>"ADAMS COUNTY 14", :score=>"Writing", :timeframe=>"2008", :dataformat=>"Percent", :data=>"0.426"
       }
     ]
-
     assert_equal data, get_raw_data('./test/data/3rd_grade.csv')
   end
 
@@ -75,7 +74,6 @@ include ParserGrade
         :location=>"ADAMS COUNTY 14", :score=>"Writing", :timeframe=>"2008", :data=>"0.426"
       }
     ]
-
     assert_equal data, delete_dataformat('./test/data/3rd_grade.csv')
   end
 
@@ -184,7 +182,6 @@ include ParserGrade
     }
     expected =
       {:name=>"Colorado", :third_grade_proficiency=>{2008=>{"Math"=>"0.697", "Reading"=>"0.703", "Writing"=>"0.703"}}}
-
     assert_equal expected, deep_merge_levels(h1, h3)
   end
 
@@ -218,7 +215,6 @@ include ParserGrade
      }
     ]
     output = {:name=>"Colorado", :third_grade_proficiency=>{"2008"=>{"Math"=>"0.697", "Reading"=>"0.703", "Writing"=>"0.501"}}}
-
     assert_equal output, iteratively_apply_deep_merge_levels(input)
   end
 
