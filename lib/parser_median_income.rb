@@ -14,11 +14,14 @@ module ParserMedianIncome
     end
   end
 
-  def format_hash_per_line(file, name_of_grade)
+  def format_hash_per_line(file)
     cleaned_data = delete_dataformat(file)
     cleaned_data.map do |h|
       {
-        name: h[:location], 
+        name: h[:location], median_household_income:
+        {
+          h[:timeframe].to_a => h[:data]
+        }
       }
 
   end

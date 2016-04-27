@@ -92,7 +92,14 @@ class ParserGradeTest < Minitest::Test
        :name=>"Colorado", :third_grade_proficiency=>{"2008"=>{"Writing"=>"0.501"}}
      }
     ]
-    output = {:name=>"Colorado", :third_grade_proficiency=>{"2008"=>{"Math"=>"0.697", "Reading"=>"0.703", "Writing"=>"0.501"}}}
+    output =
+    {
+      :name=>"Colorado", :third_grade_proficiency=>
+      {
+        "2008"=>
+        {"Math"=>"0.697", "Reading"=>"0.703", "Writing"=>"0.501"}
+      }
+    }
     assert_equal output, iteratively_apply_deep_merge_levels(input)
   end
 

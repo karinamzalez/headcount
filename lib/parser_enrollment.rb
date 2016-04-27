@@ -16,7 +16,7 @@ module ParserEnrollment
     cleaned_data = delete_dataformat(file)
     cleaned_data.map do |h|
       {
-        name: h[:location], "#{name_of_grade}": {h[:timeframe] => h[:data]}
+        name: h[:location], "#{name_of_grade}": {h[:timeframe].to_i => h[:data][0..4].to_f}
       }
     end
   end

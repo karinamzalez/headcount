@@ -32,7 +32,6 @@ include ParserEnrollment
         :location=>"ADAMS COUNTY 14", :timeframe=>"2006", :dataformat=>"Percent", :data=>"0.29331"
       }
     ]
-
     assert_equal data, get_raw_data('./test/data/parser_kinder_data.csv')
   end
 
@@ -58,68 +57,80 @@ include ParserEnrollment
         :location=>"ADAMS COUNTY 14", :timeframe=>"2006", :data=>"0.29331"
       }
     ]
-
       assert_equal data, delete_dataformat('./test/data/parser_kinder_data.csv')
   end
 
   def test_it_can_format_each_line_into_a_hash
     data =
-    [
-      {
-        name: "Colorado", kindergarten_participation: {"2007" => "0.39465"}
-      },
-      {
-        name: "Colorado", kindergarten_participation: {"2006" => "0.33677"}
-      },
-      {
-        name: "ACADEMY 20", kindergarten_participation: {"2007" => "0.39159"}
-      },
-      {
-        name: "ACADEMY 20", kindergarten_participation: {"2006" => "0.35364"}
-      },
-      {
-        name: "ADAMS COUNTY 14", kindergarten_participation: {"2007" => "0.30643"}
-      },
-      {
-        name: "ADAMS COUNTY 14", kindergarten_participation: {"2006" => "0.29331"}
-      }
-    ]
-
+      [
+        {
+          :name=>"Colorado",
+          :kindergarten_participation=>{2007=>0.394}
+        },
+        {
+          :name=>"Colorado",
+          :kindergarten_participation=>{2006=>0.336}
+        },
+        {
+          :name=>"ACADEMY 20",
+          :kindergarten_participation=>{2007=>0.391}
+        },
+        {
+          :name=>"ACADEMY 20",
+          :kindergarten_participation=>{2006=>0.353}
+        },
+        {
+          :name=>"ADAMS COUNTY 14",
+          :kindergarten_participation=>{2007=>0.306}
+        },
+        {
+          :name=>"ADAMS COUNTY 14",
+          :kindergarten_participation=>{2006=>0.293}
+        }
+      ]
       assert_equal data, format_hash_per_line('./test/data/parser_kinder_data.csv', "kindergarten_participation")
   end
 
   def test_it_can_group_lines_by_district_name
     data =
-    {
-      "Colorado"=>
-      [
-        {
-          :name=>"Colorado", :kindergarten_participation=>{"2007"=>"0.39465"}
-        },
-        {
-          :name=>"Colorado", :kindergarten_participation=>{"2006"=>"0.33677"}
-        }
-      ],
-      "ACADEMY 20"=>
-      [
-        {
-          :name=>"ACADEMY 20", :kindergarten_participation=>{"2007"=>"0.39159"}
-        },
-        {
-          :name=>"ACADEMY 20", :kindergarten_participation=>{"2006"=>"0.35364"}
-        }
-      ],
-      "ADAMS COUNTY 14"=>
-      [
-        {
-          :name=>"ADAMS COUNTY 14", :kindergarten_participation=>{"2007"=>"0.30643"}
-        },
-        {
-          :name=>"ADAMS COUNTY 14", :kindergarten_participation=>{"2006"=>"0.29331"}
-        }
-      ]
-    }
+      {
+        "Colorado"=>
+        [
 
+          {
+            :name=>"Colorado",
+            :kindergarten_participation=>{2007=>0.394}
+          }, 
+          {
+            :name=>"Colorado",
+            :kindergarten_participation=>{2006=>0.336}
+          }
+        ],
+        "ACADEMY 20"=>
+        [
+
+          {
+            :name=>"ACADEMY 20",
+            :kindergarten_participation=>{2007=>0.391}
+          },
+          {
+            :name=>"ACADEMY 20",
+            :kindergarten_participation=>{2006=>0.353}
+          }
+        ],
+        "ADAMS COUNTY 14"=>
+        [
+
+          {
+            :name=>"ADAMS COUNTY 14",
+            :kindergarten_participation=>{2007=>0.306}
+          },
+          {
+            :name=>"ADAMS COUNTY 14",
+            :kindergarten_participation=>{2006=>0.293}
+          }
+        ]
+      }
       assert_equal data, group_by_name('./test/data/parser_kinder_data.csv', "kindergarten_participation")
   end
 

@@ -17,7 +17,6 @@ module ParserGrade
   def format_hash_per_line(file, name_of_grade)
     cleaned_data = delete_dataformat(file)
     cleaned_data.map do |h|
-      # require "pry"; binding.pry
       {
         name: h[:location], "#{name_of_grade}":
         {
