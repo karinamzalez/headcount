@@ -28,7 +28,7 @@ class StatewideTest
     if races.include?(race)
       @data[race]
     else
-      raise UnknownRaceError
+      raise UnknownDataError
     end
   end
 
@@ -49,9 +49,7 @@ class StatewideTest
 
 
   def proficient_for_subject_by_grade_in_year(subject, grade, year)
-    # require "pry"; binding.pry
     grade_data = proficient_by_grade(grade)
-      # grade_data = proficient_by_grade(grade)
       if grade_data.keys.include?(year)
         if subjects.include?(subject)
           grade_data[year][subject]
