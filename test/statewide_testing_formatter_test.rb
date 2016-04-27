@@ -51,268 +51,242 @@ class StatewideTestingFormatterTest < Minitest::Test
     output =
       [
         {
-          :name=>"ADAMS COUNTY 14", :third_grade_proficiency=>
+          :name=>"ADAMS COUNTY 14",
+          :third_grade_proficiency=>
           {
-            "2008"=>{:math=>"0.56", :reading=>"0.523", :writing=>"0.426"},
-            "2009"=>{:math=>"0.54", :reading=>"0.562", :writing=>"0.479"}
+            2008=>{:math=>0.56, :reading=>0.523, :writing=>0.426},
+            2009=>{:math=>0.54, :reading=>0.562, :writing=>0.479}
           }
         },
         {
-          :name=>"ADAMS-ARAPAHOE 28J", :third_grade_proficiency=>
+          :name=>"ADAMS-ARAPAHOE 28J",
+          :third_grade_proficiency=>
           {
-            "2008"=>{:math=>"0.473", :reading=>"0.466", :writing=>"0.339"},
-            "2009"=>{:math=>"0.456", :reading=>"0.483", :writing=>"0.359"}
+            2008=>{:math=>0.473, :reading=>0.466, :writing=>0.339},
+            2009=>{:math=>0.456, :reading=>0.483, :writing=>0.359}
           }
         },
         {
-          :name=>"ADAMS COUNTY 14", :eighth_grade_proficiency=>
+          :name=>"ADAMS COUNTY 14",
+          :eighth_grade_proficiency=>
           {
-            "2008"=>{:math=>"0.22", :reading=>"0.426", :writing=>"0.444"}, "2009"=>{:math=>"0.3", :reading=>"0.398", :writing=>"0.471"}
+            2008=>{:math=>0.22, :reading=>0.426, :writing=>0.444},
+            2009=>{:math=>0.3, :reading=>0.398, :writing=>0.471}
           }
         },
         {
-          :name=>"ADAMS-ARAPAHOE 28J", :eighth_grade_proficiency=>
+          :name=>"ADAMS-ARAPAHOE 28J",
+          :eighth_grade_proficiency=>
           {
-            "2008"=>{:math=>"0.32", :reading=>"0.456", :writing=>"0.265"}, "2009"=>{:math=>"0.338", :reading=>"0.437", :writing=>"0.302"}
+            2008=>{:math=>0.32, :reading=>0.456, :writing=>0.265},
+            2009=>{:math=>0.338, :reading=>0.437, :writing=>0.302}
           }
         }
       ]
-
     assert_equal output, get_final_formatted_hashes_per_grade(@data)
   end
 
   def test_it_can_get_formatted_hashes_for_each_subject
-    output  =
+    output =
+    [
+      {
+        :name=>"ADAMS COUNTY 14",
+        :all_students=>{2011=>{:math=>0.32}, 2012=>{:math=>0.287}},
+        :asian=>{2011=>{:math=>0.0}},
+        :black=>{2011=>{:math=>0.196}}
+      },
+      {
+        :name=>"ADAMS-ARAPAHOE 28J",
+        :all_students=>{2011=>{:math=>0.38}, 2012=>{:math=>0.377}},
+        :asian=>{2011=>{:math=>0.481}},
+        :black=>{2011=>{:math=>0.291}}
+      },
+      {
+        :name=>"ADAMS COUNTY 14",
+        :all_students=>{2011=>{:reading=>0.44}, 2012=>{:reading=>0.426}},
+        :asian=>{2011=>{:reading=>0.0}},
+        :black=>{2011=>{:reading=>0.333}}
+      },
+      {
+        :name=>"ADAMS-ARAPAHOE 28J",
+        :all_students=>{2011=>{:reading=>0.47}, 2012=>{:reading=>0.482}},
+        :asian=>{2011=>{:reading=>0.508}},
+        :black=>{2011=>{:reading=>0.413}}
+      },
+      {
+        :name=>"ADAMS COUNTY 14",
+        :all_students=>{2011=>{:writing=>0.317}, 2012=>{:writing=>0.279}},
+        :asian=>{2011=>{:writing=>0.0}},
+        :black=>{2011=>{:writing=>0.225}}
+      },
+      {
+        :name=>"ADAMS-ARAPAHOE 28J",
+        :all_students=>{2011=>{:writing=>0.342}, 2012=>{:writing=>0.355}},
+        :asian=>{2011=>{:writing=>0.437}},
+        :black=>{2011=>{:writing=>0.301}}
+      }
+    ]
+    assert_equal output, get_final_formatted_hashes_per_subject(@data)
+  end
+
+  def test_it_can_return_formatted_hashes_per_district_per_race
+    output =
       [
         {
           :name=>"ADAMS COUNTY 14",
           :all_students=>
           {
-            "2011"=>{:math=>"0.32"}, "2012"=>{:math=>"0.28737"}
+            2011=>{:math=>0.32, :reading=>0.44, :writing=>0.317},
+            2012=>{:math=>0.287, :reading=>0.426, :writing=>0.279}
           },
-          :asian=>
-          {
-            "2011"=>{:math=>"N/A"}
-          },
-          :black=>
-          {
-            "2011"=>{:math=>"0.1961"}
-          }
+          :asian=>{2011=>{:math=>0.0, :reading=>0.0, :writing=>0.0}},
+          :black=>{2011=>{:math=>0.196, :reading=>0.333, :writing=>0.225}}
         },
         {
           :name=>"ADAMS-ARAPAHOE 28J",
           :all_students=>
           {
-            "2011"=>{:math=>"0.38"}, "2012"=>{:math=>"0.37735"}
+            2011=>{:math=>0.38, :reading=>0.47, :writing=>0.342},
+            2012=>{:math=>0.377, :reading=>0.482, :writing=>0.355}
           },
-          :asian=>
-          {
-            "2011"=>{:math=>"0.4817"}
-          },
-          :black=>
-          {
-            "2011"=>{:math=>"0.291"}
-          }
-        },
-        {
-          :name=>"ADAMS COUNTY 14",
-          :all_students=>
-          {
-            "2011"=>{:reading=>"0.44"}, "2012"=>{:reading=>"0.42674"}},
-          :asian=>
-          {
-            "2011"=>{:reading=>"LNE"}
-          },
-          :black=>
-          {
-            "2011"=>{:reading=>"0.3333"}
-          }
-        },
-        {
-          :name=>"ADAMS-ARAPAHOE 28J",
-          :all_students=>
-          {
-            "2011"=>{:reading=>"0.47"}, "2012"=>{:reading=>"0.48299"}
-          },
-          :asian=>
-          {
-            "2011"=>{:reading=>"0.5089"}
-          },
-          :black=>
-          {
-            "2011"=>{:reading=>"0.4135"}
-          }
-        },
-        {
-        :name=>"ADAMS COUNTY 14",
-        :all_students=>
-          {
-            "2011"=>{:writing=>"0.3172"}, "2012"=>{:writing=>"0.27973"}
-          },
-        :asian=>
-          {
-            "2011"=>{:writing=>"LNE"}
-          },
-        :black=>
-          {
-            "2011"=>{:writing=>"0.2255"}
-          }
-        },
-        {
-          :name=>"ADAMS-ARAPAHOE 28J",
-          :all_students=>
-          {
-            "2011"=>{:writing=>"0.3429"}, "2012"=>{:writing=>"0.35533"}
-          },
-          :asian=>
-          {
-            "2011"=>{:writing=>"0.4379"}},
-          :black=>
-          {
-            "2011"=>{:writing=>"0.3013"}}
+          :asian=>{2011=>{:math=>0.481, :reading=>0.508, :writing=>0.437}},
+          :black=>{2011=>{:math=>0.291, :reading=>0.413, :writing=>0.301}}
         }
       ]
-
-    assert_equal output, get_final_formatted_hashes_per_subject(@data)
-
-  end
-
-  def test_it_can_return_formatted_hashes_per_district_per_race
-    output =
-    [
-      {:name=>"ADAMS COUNTY 14",
-        :all_students=>
-        {
-          "2011"=>{:math=>"0.32", :reading=>"0.44", :writing=>"0.3172"},
-         "2012"=>{:math=>"0.28737", :reading=>"0.42674", :writing=>"0.27973"}
-        },
-        :asian=>
-        {
-          "2011"=>{:math=>"N/A", :reading=>"LNE", :writing=>"LNE"}
-        },
-        :black=>
-        {
-          "2011"=>{:math=>"0.1961", :reading=>"0.3333", :writing=>"0.2255"}
-        }
-      },
-      {:name=>"ADAMS-ARAPAHOE 28J",
-        :all_students=>
-        {
-          "2011"=>{:math=>"0.38", :reading=>"0.47", :writing=>"0.3429"},
-          "2012"=>{:math=>"0.37735", :reading=>"0.48299", :writing=>"0.35533"}
-        },
-        :asian=>
-        {
-          "2011"=>{:math=>"0.4817", :reading=>"0.5089", :writing=>"0.4379"}
-        },
-        :black=>
-        {
-          "2011"=>{:math=>"0.291", :reading=>"0.4135", :writing=>"0.3013"}
-        }
-      }
-    ]
     assert_equal output, formatted_hashes_per_district_2(@data)
   end
 
   def test_it_can_group_grade_data_by_district
     output =
-    {
-      "ADAMS COUNTY 14"=>
-      [
-        {
-          :name=>"ADAMS COUNTY 14",
-          :third_grade_proficiency=>
+      {
+        "ADAMS COUNTY 14"=>
+        [
           {
-            "2008"=>{:math=>"0.56", :reading=>"0.523", :writing=>"0.426"},
-            "2009"=>{:math=>"0.54", :reading=>"0.562", :writing=>"0.479"}
-          }
-        },
-        {
-          :name=>"ADAMS COUNTY 14",
-          :eighth_grade_proficiency=>
+            :name=>"ADAMS COUNTY 14",
+            :third_grade_proficiency=>
+            {
+              2008=>{:math=>0.56, :reading=>0.523, :writing=>0.426},
+              2009=>{:math=>0.54, :reading=>0.562, :writing=>0.479}
+            }
+          },
           {
-            "2008"=>{:math=>"0.22", :reading=>"0.426", :writing=>"0.444"},
-            "2009"=>{:math=>"0.3", :reading=>"0.398", :writing=>"0.471"}
+            :name=>"ADAMS COUNTY 14",
+            :eighth_grade_proficiency=>
+            {
+              2008=>{:math=>0.22, :reading=>0.426, :writing=>0.444},
+              2009=>{:math=>0.3, :reading=>0.398, :writing=>0.471}
+            }
           }
-        }
-      ],
-      "ADAMS-ARAPAHOE 28J"=>
-      [
-        {
-          :name=>"ADAMS-ARAPAHOE 28J",
-          :third_grade_proficiency=>
+        ],
+        "ADAMS-ARAPAHOE 28J"=>
+        [
           {
-            "2008"=>{:math=>"0.473", :reading=>"0.466", :writing=>"0.339"},
-            "2009"=>{:math=>"0.456", :reading=>"0.483", :writing=>"0.359"}
-          }
-        },
-        {
-          :name=>"ADAMS-ARAPAHOE 28J",
-          :eighth_grade_proficiency=>
+            :name=>"ADAMS-ARAPAHOE 28J",
+            :third_grade_proficiency=>
+            {
+              2008=>{:math=>0.473, :reading=>0.466, :writing=>0.339},
+              2009=>{:math=>0.456, :reading=>0.483, :writing=>0.359}}
+            },
           {
-            "2008"=>{:math=>"0.32", :reading=>"0.456", :writing=>"0.265"},
-            "2009"=>{:math=>"0.338", :reading=>"0.437", :writing=>"0.302"}
+            :name=>"ADAMS-ARAPAHOE 28J",
+            :eighth_grade_proficiency=>
+            {
+              2008=>{:math=>0.32, :reading=>0.456, :writing=>0.265},
+              2009=>{:math=>0.338, :reading=>0.437, :writing=>0.302}
+            }
           }
-        }
-      ]
-    }
+        ]
+      }
     assert_equal output, group_grade_data_by_district(@data)
   end
 
   def test_it_can_merge_grade_data_per_district
     output =
-    [
-      {
-        :name=>"ADAMS COUNTY 14",
-        :third_grade_proficiency=>
+      [
         {
-          "2008"=>{:math=>"0.56", :reading=>"0.523", :writing=>"0.426"},
-          "2009"=>{:math=>"0.54", :reading=>"0.562", :writing=>"0.479"}
-        },
-        :eighth_grade_proficiency=>
+          :name=>"ADAMS COUNTY 14",
+          :third_grade_proficiency=>
+          {
+            2008=>{:math=>0.56, :reading=>0.523, :writing=>0.426},
+            2009=>{:math=>0.54, :reading=>0.562, :writing=>0.479}
+          },
+          :eighth_grade_proficiency=>
+          {
+            2008=>{:math=>0.22, :reading=>0.426, :writing=>0.444},
+            2009=>{:math=>0.3, :reading=>0.398, :writing=>0.471}}
+          },
         {
-          "2008"=>{:math=>"0.22", :reading=>"0.426", :writing=>"0.444"},
-          "2009"=>{:math=>"0.3", :reading=>"0.398", :writing=>"0.471"}
-        }
-      },
-      {
-        :name=>"ADAMS-ARAPAHOE 28J",
-        :third_grade_proficiency=>
-        {
-          "2008"=>{:math=>"0.473", :reading=>"0.466", :writing=>"0.339"},
-          "2009"=>{:math=>"0.456", :reading=>"0.483", :writing=>"0.359"}
-        },
-        :eighth_grade_proficiency=>
-        {
-          "2008"=>{:math=>"0.32", :reading=>"0.456", :writing=>"0.265"},
-          "2009"=>{:math=>"0.338", :reading=>"0.437", :writing=>"0.302"}
-        }
-      }
-    ]
-
-    assert_equal output, merge_grade_data(@data)
+          :name=>"ADAMS-ARAPAHOE 28J",
+          :third_grade_proficiency=>
+          {
+            2008=>{:math=>0.473, :reading=>0.466, :writing=>0.339},
+            2009=>{:math=>0.456, :reading=>0.483, :writing=>0.359}
+          },
+          :eighth_grade_proficiency=>
+          {
+            2008=>{:math=>0.32, :reading=>0.456, :writing=>0.265},
+            2009=>{:math=>0.338, :reading=>0.437, :writing=>0.302}}
+          }
+      ]
+      assert_equal output, merge_grade_data(@data)
   end
 
   def test_it_can_merge_to_final_hash_per_district_with_all_data
     output =
-    [
-      {
-        :name=>"ADAMS COUNTY 14",
-        :third_grade_proficiency=>{"2008"=>{:math=>"0.56", :reading=>"0.523", :writing=>"0.426"}, "2009"=>{:math=>"0.54", :reading=>"0.562", :writing=>"0.479"}},
-        :eighth_grade_proficiency=>{"2008"=>{:math=>"0.22", :reading=>"0.426", :writing=>"0.444"}, "2009"=>{:math=>"0.3", :reading=>"0.398", :writing=>"0.471"}},
-        :all_students=>{"2011"=>{:math=>"0.32", :reading=>"0.44", :writing=>"0.3172"}, "2012"=>{:math=>"0.28737", :reading=>"0.42674", :writing=>"0.27973"}},
-        :asian=>{"2011"=>{:math=>"N/A", :reading=>"LNE", :writing=>"LNE"}},
-        :black=>{"2011"=>{:math=>"0.1961", :reading=>"0.3333", :writing=>"0.2255"}}
-      },
-      {
-        :name=>"ADAMS-ARAPAHOE 28J",
-        :third_grade_proficiency=>{"2008"=>{:math=>"0.473", :reading=>"0.466", :writing=>"0.339"}, "2009"=>{:math=>"0.456", :reading=>"0.483", :writing=>"0.359"}},
-        :eighth_grade_proficiency=>{"2008"=>{:math=>"0.32", :reading=>"0.456", :writing=>"0.265"}, "2009"=>{:math=>"0.338", :reading=>"0.437", :writing=>"0.302"}},
-        :all_students=>{"2011"=>{:math=>"0.38", :reading=>"0.47", :writing=>"0.3429"}, "2012"=>{:math=>"0.37735", :reading=>"0.48299", :writing=>"0.35533"}},
-        :asian=>{"2011"=>{:math=>"0.4817", :reading=>"0.5089", :writing=>"0.4379"}},
-        :black=>{"2011"=>{:math=>"0.291", :reading=>"0.4135", :writing=>"0.3013"}}
-      }
-    ]
+      [
+        {
+          :name=>"ADAMS COUNTY 14",
+          :third_grade_proficiency=>
+          {
+            2008=>{:math=>0.56, :reading=>0.523, :writing=>0.426},
+            2009=>{:math=>0.54, :reading=>0.562, :writing=>0.479}
+          },
+          :eighth_grade_proficiency=>
+          {
+            2008=>{:math=>0.22, :reading=>0.426, :writing=>0.444},
+            2009=>{:math=>0.3, :reading=>0.398, :writing=>0.471}
+          },
+          :all_students=>
+          {
+            2011=>{:math=>0.32, :reading=>0.44, :writing=>0.317},
+            2012=>{:math=>0.287, :reading=>0.426, :writing=>0.279}
+          },
+          :asian=>
+          {
+            2011=>{:math=>0.0, :reading=>0.0, :writing=>0.0}
+          },
+          :black=>
+          {
+            2011=>{:math=>0.196, :reading=>0.333, :writing=>0.225}
+          }
+        },
+        {
+          :name=>"ADAMS-ARAPAHOE 28J",
+          :third_grade_proficiency=>
+          {
+            2008=>{:math=>0.473, :reading=>0.466, :writing=>0.339},
+            2009=>{:math=>0.456, :reading=>0.483, :writing=>0.359}
+          },
+          :eighth_grade_proficiency=>
+          {
+            2008=>{:math=>0.32, :reading=>0.456, :writing=>0.265},
+            2009=>{:math=>0.338, :reading=>0.437, :writing=>0.302}
+          },
+          :all_students=>
+          {
+            2011=>{:math=>0.38, :reading=>0.47, :writing=>0.342},
+            2012=>{:math=>0.377, :reading=>0.482, :writing=>0.355}
+          },
+          :asian=>
+          {
+            2011=>{:math=>0.481, :reading=>0.508, :writing=>0.437}
+          },
+          :black=>
+          {
+            2011=>{:math=>0.291, :reading=>0.413, :writing=>0.301}
+          }
+        }
+      ]
     assert_equal output, merge_all_data(@data)
   end
 
