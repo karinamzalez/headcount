@@ -27,7 +27,7 @@ include ParserOutputs
   def test_it_can_group_subject_lines_by_district_name
     assert_equal group_by_district_name_output, group_by_district_name('./test/data/test_prof_math.csv', "math")
   end
-  
+
   def test_it_deep_merges_two_name_race_hashes
     h1 = {name: "Colorado", asian: {2011 => {"math" => 0}}}
     h2 = {name: "Colorado", black: {2012 => {"math" => 0}}}
@@ -60,12 +60,28 @@ include ParserOutputs
   end
 
   def test_it_iteratively_does_the_do
-  input = [{:name=>"Colorado", :all_students=>{"2011"=>{"math"=>"0.5573"}}},
-   {:name=>"Colorado", :asian=>{"2011"=>{"math"=>"0.7094"}}},
-   {:name=>"Colorado", :black=>{"2011"=>{"math"=>"0.3333"}}},
-   {:name=>"Colorado", :all_students=>{"2012"=>{"math"=>"0.558"}}}]
-  output = {:name=>"Colorado", :all_students=>{"2011"=>{"math"=>"0.5573"}, "2012"=>{"math"=>"0.558"}}, :asian=>{"2011"=>{"math"=>"0.7094"}}, :black=>{"2011"=>{"math"=>"0.3333"}}}
-
+    input =
+      [
+        {
+          :name=>"Colorado", :all_students=>{"2011"=>{"math"=>"0.5573"}}
+        },
+       {
+         :name=>"Colorado", :asian=>{"2011"=>{"math"=>"0.7094"}}
+       },
+       {
+         :name=>"Colorado", :black=>{"2011"=>{"math"=>"0.3333"}}
+       },
+       {
+         :name=>"Colorado", :all_students=>{"2012"=>{"math"=>"0.558"}}
+       }
+      ]
+    output =
+      {
+        :name=>"Colorado",
+        :all_students=>{"2011"=>{"math"=>"0.5573"}, "2012"=>{"math"=>"0.558"}},
+        :asian=>{"2011"=>{"math"=>"0.7094"}},
+        :black=>{"2011"=>{"math"=>"0.3333"}}
+      }
     assert_equal output, iteratively_apply_deep_merge(input)
   end
 
@@ -85,7 +101,6 @@ include ParserOutputs
        :black=>{"2011"=>{"math"=>"0.291"}}
      }
     ]
-
     assert_equal output, formatted_hashes_per_district('./test/data/test_prof_math_short.csv', "math")
   end
 end

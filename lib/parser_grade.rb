@@ -31,4 +31,33 @@ module ParserGrade
     end
   end
 
+  def deep_merge_levels(h1, h2)
+    h1.merge(h2) do |key, value1, value2|
+      if value1.class == Hash && value2.class == Hash
+        value1.merge(value2) do |key, v1, v2|
+          if v1.class == Hash && v2.class == Hash
+            v1.merge(v2)
+          else
+            v1
+          end
+        end
+      else
+        value1
+      end
+    end
+  end
+
+  def iteratively_apply_deep_merge_levels(array)
+    array.reduce({}) do |hash, row|
+      deep_merge_levels(hash, row)
+    end
+  end
+
+  def formatted_hashes_per_district_grade(file,subject)
+    grouped_data = group_by_name(file, subject)
+    grouped_data.map do |ditrict_name, rows|
+      iteratively_apply_deep_merge_levels(rows)
+    end
+  end
+
 end

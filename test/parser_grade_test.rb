@@ -4,7 +4,7 @@ SimpleCov.start
 gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
-require_relative '../lib/grade_parser'
+require_relative '../lib/parser_grade'
 require 'csv'
 
 class ParserGradeTest < Minitest::Test
@@ -155,6 +155,72 @@ include ParserGrade
       ]
     }
     assert_equal data, group_by_name('./test/data/3rd_grade.csv', "third_grade_proficiency")
+  end
+
+  def test_it_can_return_one_district_per_proficiency_info
+    h1 =
+      {
+        name: "Colorado", third_grade_proficiency: {2008=>{"Math"=>"0.697"}}
+      }
+    h2 =
+      {
+        name: "Colorado", third_grade_proficiency: {2008=>{"Reading"=>"0.703"}}
+      }
+      expected =
+      {
+        :name=>"Colorado",
+        :third_grade_proficiency=>
+        {2008=>{"Math"=>"0.697", "Reading"=>"0.703"}}
+      }
+      assert_equal expected, deep_merge_levels(h1, h2)
+    h1 =
+      {
+        :name=>"Colorado",
+        :third_grade_proficiency=>
+        {2008=>{"Math"=>"0.697", "Reading"=>"0.703"}}
+      }
+    h3 =
+    {
+      name: "Colorado", third_grade_proficiency: {2008=>{"Writing"=>"0.703"}}
+    }
+    expected =
+      {:name=>"Colorado", :third_grade_proficiency=>{2008=>{"Math"=>"0.697", "Reading"=>"0.703", "Writing"=>"0.703"}}}
+
+    assert_equal expected, deep_merge_levels(h1, h3)
+  end
+
+  def test_it_can_return_formatted_hashes_per_district
+    output =
+    [
+      {
+        :name=>"Colorado", :third_grade_proficiency=>{"2008"=>{"Math"=>"0.697", "Reading"=>"0.703", "Writing"=>"0.501"}}
+      },
+      {
+        :name=>"ACADEMY 20", :third_grade_proficiency=>{"2008"=>{"Math"=>"0.857", "Reading"=>"0.866", "Writing"=>"0.671"}}
+      },
+      {
+        :name=>"ADAMS COUNTY 14", :third_grade_proficiency=>{"2008"=>{"Math"=>"0.56", "Reading"=>"0.523", "Writing"=>"0.426"}}
+      }
+    ]
+    assert_equal output, formatted_hashes_per_district_grade('./test/data/3rd_grade.csv', "third_grade_proficiency")
+  end
+
+  def test_it_can_iteratively_apply_deep_merge_levels
+    input =
+    [
+      {
+        :name=>"Colorado", :third_grade_proficiency=>{"2008"=>{"Math"=>"0.697"}}
+      },
+     {
+       :name=>"Colorado", :third_grade_proficiency=>{"2008"=>{"Reading"=>"0.703"}}
+     },
+     {
+       :name=>"Colorado", :third_grade_proficiency=>{"2008"=>{"Writing"=>"0.501"}}
+     }
+    ]
+    output = {:name=>"Colorado", :third_grade_proficiency=>{"2008"=>{"Math"=>"0.697", "Reading"=>"0.703", "Writing"=>"0.501"}}}
+
+    assert_equal output, iteratively_apply_deep_merge_levels(input)
   end
 
 end
