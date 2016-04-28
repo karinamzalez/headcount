@@ -27,4 +27,5 @@ class StatewideTestRepository
       @statewide_tests << StatewideTest.new(hash)
     end
   end
+
 end
