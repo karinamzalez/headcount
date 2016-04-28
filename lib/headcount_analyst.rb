@@ -48,15 +48,14 @@ class HeadcountAnalyst
   def kindergarten_participation_rate_variation(district1, district2)
     avg_enroll_kinder1 = average_enrollment_kindergarten(district1)
     avg_enroll_kinder2 = average_enrollment_kindergarten(district2.values[0])
-    raw_variation = avg_enroll_kinder/avg_enroll_kinder2
+    raw_variation = avg_enroll_kinder1/avg_enroll_kinder2
     raw_variation.to_s[0..4].to_f
   end
 
   def high_school_graduation_rate_variation(district1, district2)
     avg_enroll_hs = average_enrollment_high_school(district1)
     avg_enroll_hs_d2 = average_enrollment_high_school(district2.values[0])
-    raw_variation =
-    avg_enroll_hs/avg_enroll_hs_d2
+    raw_variation = avg_enroll_hs/avg_enroll_hs_d2
     raw_variation.to_s[0..4].to_f
   end
 
