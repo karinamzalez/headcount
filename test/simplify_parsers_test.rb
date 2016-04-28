@@ -168,6 +168,4 @@ class SimplifyParsersTest < Minitest::Test
       './test/data/median_household_income.csv', "median_household_income")
     end
 
-
-
 end

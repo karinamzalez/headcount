@@ -94,7 +94,7 @@ class EnrollmentRepositoryTest < Minitest::Test
     formatted_hash =
       {
         :name=>"Colorado", :high_school_graduation=>{2010=>0.724, 2011=>0.739}
-      }  
+      }
     graduation_file = "./test/data/parser_high_school_data.csv"
     assert_equal formatted_hash, @er.format_file_to_hash_high_school(graduation_file)[0]
   end
@@ -127,7 +127,4 @@ class EnrollmentRepositoryTest < Minitest::Test
    assert_equal data, @er.merge_to_final_kinder_hashes(grouped)
   end
 
-  def test_it_can_access_statewide_tests
-
-  end
 end

@@ -8,7 +8,6 @@ require_relative '../lib/economic_profile'
 
 class EconomicProfileTest < Minitest::Test
 
-
   def setup
     data =
       {
@@ -22,14 +21,12 @@ class EconomicProfileTest < Minitest::Test
           {2015 => 0.543},
         :name => "ACADEMY 20"
       }
-
     @ep = EconomicProfile.new(data)
   end
 
   def test_it_can_give_its_name
     assert_equal "ACADEMY 20", @ep.name
   end
-
 
   def test_it_can_return_an_array_of_all_incomes_matching_year
     assert_equal [50000], @ep.get_income_associated_with_year(2005)
