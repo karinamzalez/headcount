@@ -38,8 +38,9 @@ $ cd headcount
 ```
 ​
 3 . Run the program
+Create a new file with a new instance of a district repository object and load it with data. Then create a new headcount analyst object and give the district repository as the parameter. Run any methods from belonging to the headcount analyst. See headcount_analyst.rb  and headcount_analyst_test.rb for details and examples. 
 ```
-$ ruby enigma.rb [input one] [input two]
+$ ruby <your_headcount_analyst_file.rb>
 ```
 ​
 4 . Run the tests
