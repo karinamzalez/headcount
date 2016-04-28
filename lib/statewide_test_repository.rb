@@ -26,7 +26,4 @@ class StatewideTestRepository
     end
   end
 
-  def format_math_file_to_hash(math_file)
-    group_by_ethnicity(math_file, "math")
-  end
 end

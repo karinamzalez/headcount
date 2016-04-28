@@ -127,7 +127,5 @@ class EnrollmentRepositoryTest < Minitest::Test
    assert_equal data, @er.merge_to_final_kinder_hashes(grouped)
   end
 
-  def test_it_can_access_statewide_tests
 
-  end
 end
