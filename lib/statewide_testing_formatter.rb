@@ -1,7 +1,4 @@
-require 'csv'
-
 module StatewideTestingFormatter
-
 
   def math_file(data)
     data[:statewide_testing][:math]

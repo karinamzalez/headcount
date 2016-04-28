@@ -5,13 +5,11 @@ require_relative '../lib/parser_subject_proficiency'
 require_relative '../lib/simplify_parsers_module'
 require_relative '../lib/statewide_testing_formatter'
 
-
 class StatewideTestRepository
   include ParserSubjectProficiency
   include ParserGrade
   include StatewideTestingFormatter
   include SimplifyParsers
-
   attr_reader :statewide_tests
 
   def initialize
