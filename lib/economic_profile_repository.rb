@@ -1,4 +1,3 @@
-
 require_relative '../lib/economic_profile_formatter'
 
 class EconomicProfileRepository
@@ -18,6 +17,5 @@ class EconomicProfileRepository
       @economic_profiles << EconomicProfile.new(hash)
     end
   end
-
 
 end

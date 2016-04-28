@@ -3,7 +3,6 @@ require "csv"
 require_relative '../lib/parser_enrollment'
 require_relative '../lib/simplify_parsers_module'
 
-
 class EnrollmentRepository
   include ParserEnrollment
   include SimplifyParsers

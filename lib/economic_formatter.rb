@@ -29,5 +29,4 @@ module EconomicFormatter
     group_by_district_name(file, name_of_hash).merge
   end
 
-
 end
