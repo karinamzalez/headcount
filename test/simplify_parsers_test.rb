@@ -6,6 +6,7 @@ require 'minitest/pride'
 require_relative '../lib/parser_grade'
 require_relative '../lib/parser_enrollment'
 require_relative '../lib/parser_subject_proficiency'
+require_relative '../lib/parser_median_income'
 require_relative '../lib/simplify_parsers_module'
 require_relative '../test/data/parser_outputs_module'
 require 'csv'
@@ -15,6 +16,7 @@ class SimplifyParsersTest < Minitest::Test
   include ParserGrade
   include ParserEnrollment
   include ParserSubjectProficiency
+  include ParserMedianIncome
   include ParserOutputs
 
   def test_it_can_get_raw_data_from_csv
@@ -73,6 +75,24 @@ class SimplifyParsersTest < Minitest::Test
             }
         ]
       assert_equal grade_output, formatted_hashes_per_district('./test/data/3rd_grade.csv', "third_grade_proficiency")
+      median_output =
+        [
+          {
+            :name=>"Colorado",
+            :median_household_income=>{[2005, 2009]=>56222, [2006, 2010]=>56456}},
+          {
+            :name=>"ACADEMY 20",
+            :median_household_income=>{[2005, 2009]=>85060, [2006, 2010]=>85450}},
+          {
+            :name=>"ADAMS COUNTY 14",
+            :median_household_income=>{[2005, 2009]=>41382, [2006, 2010]=>40740}},
+          {
+            :name=>"ADAMS-ARAPAHOE 28J",
+            :median_household_income=>{[2005, 2009]=>43893, [2006, 2010]=>44007}},
+          {
+            :name=>"AGATE 300",
+            :median_household_income=>{[2005, 2009]=>64167, [2006, 2010]=>64145}}]
+      assert_equal median_output, formatted_hashes_per_district('./test/data/median_household_income.csv', "median_household_income")
     end
 
 end
