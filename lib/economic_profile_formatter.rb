@@ -1,5 +1,6 @@
-module EconomicProfile
+module EconomicProfileFormatter
 
-  
+
+
 
 end
