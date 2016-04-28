@@ -9,8 +9,10 @@ class EconomicProfileRepository
     @economic_profiles.find { |profile| profile.name == name.upcase}
   end
 
-  def load_data
-    
+  def load_data(data)
+    merge_all_data(data).each do |hash|
+      @economic_profiles << EconomicProfile.new(hash)
+    end 
   end
 
 

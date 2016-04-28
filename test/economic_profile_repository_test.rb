@@ -43,9 +43,21 @@ class EconomicRepositoryTest < Minitest::Test
     assert_equal "ACADEMY 20", @epr.find_by_name("ACADEMY 20").name
   end
 
-  def test_it_can_find_by_name
+  def test_it_returns_nil_if_no_economic_profile_object_exists_with_given_name
+    @epr.economic_profiles << @ep
+    assert_equal nil, @epr.find_by_name("hello")
+  end
+
+  def test_it_can_find_by_name_case_insensitive
     @epr.economic_profiles << @ep
     assert_equal "ACADEMY 20", @epr.find_by_name("Academy 20").name
+  end
+
+  def test_it_can_load_data_via_csv
+    skip
+    @epr.load_data(@repo_data)
+    assert_equal "number", @er.enrollments.count
+    assert_equal 
   end
 
 

@@ -87,7 +87,8 @@ class EnrollmentRepositoryTest < Minitest::Test
       {"2007"=>"0.39465", "2006"=>"0.33677", "2005"=>"0.27807"}
     }
     kindergarten_file = "./test/data/kindergarten.csv"
-    assert_equal formatted_hash, @er.format_file_to_hash_kindergarten(kindergarten_file)[0]
+    assert_equal formatted_hash,
+    @er.format_file_to_hash_kindergarten(kindergarten_file)[0]
   end
 
   def test_it_can_format_file_to_hash_hs
@@ -96,7 +97,8 @@ class EnrollmentRepositoryTest < Minitest::Test
       :name=>"Colorado", :high_school_graduation=>{"2010"=>"0.724", "2011"=>"0.739"}
     }
     graduation_file = "./test/data/parser_high_school_data.csv"
-    assert_equal formatted_hash, @er.format_file_to_hash_high_school(graduation_file)[0]
+    assert_equal formatted_hash,
+    @er.format_file_to_hash_high_school(graduation_file)[0]
   end
 
   def test_it_can_merge_grouped_data
