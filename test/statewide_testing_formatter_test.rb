@@ -6,12 +6,16 @@ require 'minitest/pride'
 require_relative '../lib/statewide_testing_formatter'
 require_relative '../lib/parser_subject_proficiency'
 require_relative '../lib/parser_grade'
+require_relative '../lib/simplify_parsers_module'
+require_relative '../lib/parser_enrollment'
 require 'csv'
 
 class StatewideTestingFormatterTest < Minitest::Test
   include StatewideTestingFormatter
   include ParserSubjectProficiency
   include ParserGrade
+  include SimplifyParsers
+  include ParserEnrollment
 
   def setup
     @data =
@@ -26,7 +30,7 @@ class StatewideTestingFormatterTest < Minitest::Test
       }
     }
   end
-
+  
   def test_it_can_find_the_math_file
     assert_equal './test/data/test_prof_math_short.csv', math_file(@data)
   end

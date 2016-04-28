@@ -7,20 +7,8 @@ module ParserSubjectProficiency
     ]
   end
 
-  def get_the_raw_data(file)
-    CSV.open(file, headers: true, header_converters: :symbol).map(&:to_h)
-  end
-
-  def delete_dataformat_only(file)
-    raw_csv_data = get_the_raw_data(file)
-    raw_csv_data.map do |hash|
-      hash.delete(:dataformat)
-      hash
-    end
-  end
-
   def format_subject_hash_per_line(file, subject)
-    cleaned_data = delete_dataformat_only(file)
+    cleaned_data = delete_dataformat(file)
     cleaned_data.map do |h|
       if h[:race_ethnicity].include?("/")
         x = h[:race_ethnicity].downcase.split("/")[1].split(" ").join("_")
@@ -33,21 +21,6 @@ module ParserSubjectProficiency
           h[:timeframe].to_i => {:"#{subject}" => h[:data][0..4].to_f}
         }
       }
-    end
-  end
-
-  # def clean_data(percent_data)
-  #   if percent_data == percent_data.to_f.to_s
-  #     percent_data.to_f
-  #   else
-  #     percent_data
-  #   end
-  # end
-
-  def group_by_district_name(file, subject)
-    formatted_data = format_subject_hash_per_line(file, subject)
-    formatted_data.group_by do |hash|
-      hash[:name]
     end
   end
 
@@ -64,13 +37,6 @@ module ParserSubjectProficiency
   def iteratively_apply_deep_merge(array)
     array.reduce({}) do |hash, row|
       deep_merge(hash, row)
-    end
-  end
-
-  def formatted_hashes_per_district(file,subject)
-    grouped_data = group_by_district_name(file, subject)
-    grouped_data.map do |ditrict_name, rows|
-      iteratively_apply_deep_merge(rows)
     end
   end
 

@@ -20,10 +20,10 @@ module ParserMedianIncome
       {
         name: h[:location], median_household_income:
         {
-          h[:timeframe].to_a => h[:data]
+          h[:timeframe].to_a => h[:data].to_a
         }
       }
-
+    end
   end
 
 end

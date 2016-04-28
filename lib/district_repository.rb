@@ -3,9 +3,12 @@ require_relative '../lib/district'
 require_relative '../lib/enrollment_repository'
 require_relative '../lib/parser_enrollment'
 require_relative '../lib/statewide_test_repository'
+require_relative '../lib/simplify_parsers_module'
+
 
 class DistrictRepository
   include ParserEnrollment
+  include SimplifyParsers
 
   attr_accessor :districts
   attr_reader :enrollment_repo,
@@ -27,7 +30,7 @@ class DistrictRepository
   end
 
   def load_data(data)
-    grouped_district_data = group_by_name(kindergarten_file(data), "kindergarten_participation")
+    grouped_district_data = group_by_district_name(kindergarten_file(data), "kindergarten_participation")
     make_districts_by_name(grouped_district_data)
     data.map do |hash|
       if hash.include?(:statewide_testing)
