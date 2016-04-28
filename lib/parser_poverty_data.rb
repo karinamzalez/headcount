@@ -5,7 +5,8 @@ module ParserPovertyData
     l = lines.map do |h|
       if h.values.include?("Percent")
         {
-          name: h[:location], "#{name_of_hash}": {h[:timeframe].to_i => h[:data][0..4].to_f}
+          name: h[:location],
+          "#{name_of_hash}": {h[:timeframe].to_i => h[:data][0..4].to_f}
         }
       end
     end.compact
