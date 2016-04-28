@@ -32,9 +32,9 @@ module StatewideTestingFormatter
   end
 
   def get_final_formatted_hashes_per_subject(data)
-    math = formatted_hashes_per_district(math_file(data),:math)
-    reading = formatted_hashes_per_district(reading_file(data),:reading)
-    writing = formatted_hashes_per_district(writing_file(data),:writing)
+    math = formatted_hashes_per_district(math_file(data),"math")
+    reading = formatted_hashes_per_district(reading_file(data),"reading")
+    writing = formatted_hashes_per_district(writing_file(data),"writing")
     [math, reading, writing].flatten
   end
 

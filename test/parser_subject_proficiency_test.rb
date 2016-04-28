@@ -4,27 +4,17 @@ SimpleCov.start
 require 'minitest/autorun'
 require 'minitest/pride'
 require_relative '../lib/parser_subject_proficiency'
+require_relative '../lib/simplify_parsers_module'
 require_relative '../test/data/parser_outputs_module'
 require 'csv'
 
 class ParserGradeTest < Minitest::Test
 include ParserSubjectProficiency
 include ParserOutputs
-
-  def test_it_can_get_the_raw_subject_data_from_a_csv
-    assert_equal get_raw_data_output, get_the_raw_data('./test/data/test_prof_math.csv')
-  end
-
-  def test_it_can_delete_dataformat
-    assert_equal delete_dataformat_output, delete_dataformat_only('./test/data/test_prof_math.csv')
-  end
+include SimplifyParsers
 
   def test_it_can_format_each_subject_line_into_a_hash
     assert_equal format_subject_hash_per_line_output, format_subject_hash_per_line('./test/data/test_prof_math.csv', "math")
-  end
-
-  def test_it_can_group_subject_lines_by_district_name
-    assert_equal group_by_district_name_output, group_by_district_name('./test/data/test_prof_math.csv', "math")
   end
 
   def test_it_deep_merges_two_name_race_hashes
@@ -84,22 +74,4 @@ include ParserOutputs
     assert_equal output, iteratively_apply_deep_merge(input)
   end
 
-  def test_it_can_return_formatted_hashes_per_district
-    output =
-      [
-        {
-          :name=>"ADAMS COUNTY 14",
-          :all_students=>{2011=>{:math=>0.32}, 2012=>{:math=>0.287}},
-          :asian=>{2011=>{:math=>0.0}},
-          :black=>{2011=>{:math=>0.196}}
-        }, 
-        {
-          :name=>"ADAMS-ARAPAHOE 28J",
-          :all_students=>{2011=>{:math=>0.38}, 2012=>{:math=>0.377}},
-          :asian=>{2011=>{:math=>0.481}},
-          :black=>{2011=>{:math=>0.291}}
-        }
-      ]
-    assert_equal output, formatted_hashes_per_district('./test/data/test_prof_math_short.csv', :math)
-  end
 end

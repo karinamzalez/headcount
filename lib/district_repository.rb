@@ -3,9 +3,12 @@ require_relative '../lib/district'
 require_relative '../lib/enrollment_repository'
 require_relative '../lib/parser_enrollment'
 require_relative '../lib/statewide_test_repository'
+require_relative '../lib/simplify_parsers_module'
+
 
 class DistrictRepository
   include ParserEnrollment
+  include SimplifyParsers
 
   attr_accessor :districts
   attr_reader :enrollment_repo,
