@@ -24,8 +24,10 @@ module StatewideTestingFormatter
   end
 
   def get_final_formatted_hashes_per_grade(data)
-    third = formatted_hashes_per_district_grade(third_grade_file(data),:third_grade_proficiency)
-    eighth = formatted_hashes_per_district_grade(eighth_grade_file(data),:eighth_grade_proficiency)
+    third =
+    formatted_hashes_per_district_grade(third_grade_file(data),:third_grade_proficiency)
+    eighth =
+    formatted_hashes_per_district_grade(eighth_grade_file(data),:eighth_grade_proficiency)
     [third, eighth].flatten
   end
 
