@@ -1,30 +1,11 @@
 module ParserEnrollment
 
-  def get_raw_data(file)
-    CSV.open(file, headers: true, header_converters: :symbol).map(&:to_h)
-  end
-
-  def delete_dataformat(file)
-    raw_csv_data = get_raw_data(file)
-    raw_csv_data.map do |hash|
-      hash.delete(:dataformat)
-      hash
-    end
-  end
-
-  def format_hash_per_line(file, name_of_grade)
+  def format_hash_per_line(file, name_of_hash)
     cleaned_data = delete_dataformat(file)
     cleaned_data.map do |h|
       {
-        name: h[:location], "#{name_of_grade}": {h[:timeframe] => h[:data]}
+        name: h[:location], "#{name_of_hash}": {h[:timeframe].to_i => h[:data][0..4].to_f}
       }
-    end
-  end
-
-  def group_by_name(file, name_of_grade)
-    formatted_data = format_hash_per_line(file, name_of_grade)
-    formatted_data.group_by do |hash|
-      hash[:name]
     end
   end
 

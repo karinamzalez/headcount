@@ -1,3 +1,4 @@
+
 require_relative '../lib/economic_profile_formatter'
 
 class EconomicProfileRepository

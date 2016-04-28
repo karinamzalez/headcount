@@ -82,23 +82,21 @@ class EnrollmentRepositoryTest < Minitest::Test
 
   def test_it_can_format_file_to_hash_kinder
     formatted_hash =
-    {
-      :name=>"Colorado", :kindergarten_participation=>
-      {"2007"=>"0.39465", "2006"=>"0.33677", "2005"=>"0.27807"}
-    }
+      {
+        :name=>"Colorado",
+        :kindergarten_participation=>{2007=>0.394, 2006=>0.336, 2005=>0.278}
+      }
     kindergarten_file = "./test/data/kindergarten.csv"
-    assert_equal formatted_hash,
-    @er.format_file_to_hash_kindergarten(kindergarten_file)[0]
+    assert_equal formatted_hash, @er.format_file_to_hash_kindergarten(kindergarten_file)[0]
   end
 
   def test_it_can_format_file_to_hash_hs
     formatted_hash =
-    {
-      :name=>"Colorado", :high_school_graduation=>{"2010"=>"0.724", "2011"=>"0.739"}
-    }
+      {
+        :name=>"Colorado", :high_school_graduation=>{2010=>0.724, 2011=>0.739}
+      }  
     graduation_file = "./test/data/parser_high_school_data.csv"
-    assert_equal formatted_hash,
-    @er.format_file_to_hash_high_school(graduation_file)[0]
+    assert_equal formatted_hash, @er.format_file_to_hash_high_school(graduation_file)[0]
   end
 
   def test_it_can_merge_grouped_data
@@ -129,5 +127,7 @@ class EnrollmentRepositoryTest < Minitest::Test
    assert_equal data, @er.merge_to_final_kinder_hashes(grouped)
   end
 
+  def test_it_can_access_statewide_tests
 
+  end
 end

@@ -33,10 +33,8 @@ class HeadcountAnalyst
   end
 
   def kindergarten_participation_rate_variation_trend(district1, district2)
-    district1_percents =
-    participation_percents_for_district_kindergarten(district1)
-    district2_percents =
-    participation_percents_for_district_kindergarten(district2.values[0])
+    district1_percents = participation_percents_for_district_kindergarten(district1)
+    district2_percents = participation_percents_for_district_kindergarten(district2.values[0])
     district1_years = enrollment_data_kindergarten(district1).keys
 
     variants = district1_percents.zip(district2_percents).map do |percents|
@@ -46,22 +44,18 @@ class HeadcountAnalyst
   end
 
   def kindergarten_participation_rate_variation(district1, district2)
-    raw_variation =
-    average_enrollment_kindergarten(district1)/average_enrollment_kindergarten(district2.values[0])
+    raw_variation = average_enrollment_kindergarten(district1)/average_enrollment_kindergarten(district2.values[0])
     raw_variation.to_s[0..4].to_f
   end
 
   def high_school_graduation_rate_variation(district1, district2)
-    raw_variation =
-    average_enrollment_high_school(district1)/average_enrollment_high_school(district2.values[0])
+    raw_variation = average_enrollment_high_school(district1)/average_enrollment_high_school(district2.values[0])
     raw_variation.to_s[0..4].to_f
   end
 
   def kindergarten_participation_against_high_school_graduation(district)
-    kindergarten_variation =
-    kindergarten_participation_rate_variation(district, :against => "COLORADO")
-    graduation_variation =
-    high_school_graduation_rate_variation(district, :against => "COLORADO")
+    kindergarten_variation = kindergarten_participation_rate_variation(district, :against => "COLORADO")
+    graduation_variation = high_school_graduation_rate_variation(district, :against => "COLORADO")
     raw_variation = kindergarten_variation/graduation_variation
     raw_variation.to_s[0..4].to_f
   end
@@ -81,8 +75,7 @@ class HeadcountAnalyst
   end
 
   def correlation_for_one_district(comparison)
-    k_hs_variation =
-    kindergarten_participation_against_high_school_graduation(comparison[:for])
+    k_hs_variation = kindergarten_participation_against_high_school_graduation(comparison[:for])
     if  k_hs_variation >= 0.6 && k_hs_variation <= 1.5
       true
     else
