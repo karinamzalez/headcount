@@ -10,7 +10,7 @@ class EconomicProfileRepository
   end
 
   def load_data(data)
-    merge_all_data(data).each do |hash|
+    merge_all_economic_data(data).each do |hash|
       @economic_profiles << EconomicProfile.new(hash)
     end
   end
