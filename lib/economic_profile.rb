@@ -20,7 +20,6 @@ class EconomicProfile
     else
       raise UnknownDataError
     end
-
   end
 
   def get_income_associated_with_year(year)
@@ -74,7 +73,6 @@ class EconomicProfile
   end
 
 end
-
 
 class UnknownDataError < Exception
 end
