@@ -1,10 +1,12 @@
 require_relative '../lib/enrollment'
 require "csv"
 require_relative '../lib/parser_enrollment'
+require_relative '../lib/simplify_parsers_module'
 
 
 class EnrollmentRepository
   include ParserEnrollment
+  include SimplifyParsers
 
   attr_reader :enrollments
 
@@ -44,12 +46,12 @@ class EnrollmentRepository
   end
 
   def format_file_to_hash_kindergarten(kindergarten_file)
-    grouped = group_by_name(kindergarten_file, "kindergarten_participation")
+    grouped = group_by_district_name(kindergarten_file, "kindergarten_participation")
     merge_to_final_kinder_hashes(grouped)
   end
 
   def format_file_to_hash_high_school(graduation_file)
-    grouped = group_by_name(graduation_file, "high_school_graduation")
+    grouped = group_by_district_name(graduation_file, "high_school_graduation")
     merge_to_final_hs_hashes(grouped)
   end
 

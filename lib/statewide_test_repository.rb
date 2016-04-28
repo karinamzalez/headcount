@@ -2,6 +2,7 @@ require_relative '../lib/statewide_test'
 require "csv"
 require_relative '../lib/parser_grade'
 require_relative '../lib/parser_subject_proficiency'
+require_relative '../lib/simplify_parsers_module'
 require_relative '../lib/statewide_testing_formatter'
 
 
@@ -9,6 +10,7 @@ class StatewideTestRepository
   include ParserSubjectProficiency
   include ParserGrade
   include StatewideTestingFormatter
+  include SimplifyParsers
 
   attr_reader :statewide_tests
 
@@ -24,9 +26,5 @@ class StatewideTestRepository
     merge_all_data(data).each do |hash|
       @statewide_tests << StatewideTest.new(hash)
     end
-  end
-
-  def format_math_file_to_hash(math_file)
-    group_by_ethnicity(math_file, "math")
   end
 end
