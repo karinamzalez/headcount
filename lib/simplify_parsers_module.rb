@@ -34,6 +34,8 @@ module SimplifyParsers
       formatted_data = format_subject_hash_per_line(file, name_of_hash)
     when "writing"
       formatted_data = format_subject_hash_per_line(file, name_of_hash)
+    when "children_in_poverty"
+      formatted_data = format_poverty_hash_per_line(file, name_of_hash)
     else
       formatted_data = format_hash_per_line(file, name_of_hash)
     end
