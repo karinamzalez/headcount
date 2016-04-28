@@ -95,4 +95,6 @@ class SimplifyParsersTest < Minitest::Test
       assert_equal median_output, formatted_hashes_per_district('./test/data/median_household_income.csv', "median_household_income")
     end
 
+    
+
 end
