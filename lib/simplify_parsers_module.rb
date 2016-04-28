@@ -36,6 +36,8 @@ module SimplifyParsers
       formatted_data = format_subject_hash_per_line(file, name_of_hash)
     when "children_in_poverty"
       formatted_data = format_poverty_hash_per_line(file, name_of_hash)
+    when "median_household_income"
+      formatted_data = format_median_income_hash_per_line(file, name_of_hash)
     else
       formatted_data = format_hash_per_line(file, name_of_hash)
     end
@@ -57,6 +59,8 @@ module SimplifyParsers
       when "reading"
         iteration = iteratively_apply_deep_merge(rows)
       when "writing"
+        iteration = iteratively_apply_deep_merge(rows)
+      when "median_household_income"
         iteration = iteratively_apply_deep_merge(rows)
       end
     end
