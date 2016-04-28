@@ -38,6 +38,8 @@ module SimplifyParsers
       formatted_data = format_poverty_hash_per_line(file, name_of_hash)
     when "median_household_income"
       formatted_data = format_median_income_hash_per_line(file, name_of_hash)
+    when "free_or_reduced_price_lunch"
+      formatted_data = format_free_reduced_hash_per_line(file, name_of_hash)
     else
       formatted_data = format_hash_per_line(file, name_of_hash)
     end
