@@ -43,6 +43,8 @@ class SimplifyParsersTest < Minitest::Test
       assert_equal kinder_enrollment_group_by_district, group_by_district_name('./test/data/parser_kinder_data.csv', "kindergarten_participation")
     end
 
+    #do we need to check for each file?
+
     def test_it_formats_hashes_per_district_for_each_instance
       math_output =
         [

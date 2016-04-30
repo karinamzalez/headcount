@@ -55,17 +55,19 @@ module SimplifyParsers
     grouped_data.map do |ditrict_name, rows|
       case name_of_hash
       when "third_grade_proficiency"
-          iteration = iteratively_apply_deep_merge_levels(rows)
+          iteratively_apply_deep_merge_levels(rows)
       when "eighth_grade_proficiency"
-          iteration = iteratively_apply_deep_merge_levels(rows)
+          iteratively_apply_deep_merge_levels(rows)
       when "math"
-        iteration = iteratively_apply_deep_merge(rows)
+        iteratively_apply_deep_merge(rows)
       when "reading"
-        iteration = iteratively_apply_deep_merge(rows)
+        iteratively_apply_deep_merge(rows)
       when "writing"
-        iteration = iteratively_apply_deep_merge(rows)
+        iteratively_apply_deep_merge(rows)
       when "median_household_income"
-        iteration = iteratively_apply_deep_merge(rows)
+        iteratively_apply_deep_merge(rows)
+      when "children_in_poverty"
+        iteratively_apply_deep_merge(rows)
       end
     end
   end
