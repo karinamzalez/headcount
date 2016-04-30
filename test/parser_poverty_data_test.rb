@@ -21,4 +21,12 @@ class ParserPovertyDataTest < Minitest::Test
     format_poverty_hash_per_line('./test/data/poverty.csv', "children_in_poverty")
   end
 
+<<<<<<< HEAD
+=======
+  def test_it_can_merge_data_by_district_name
+    
+  end
+
+
+>>>>>>> e096db81c74e7c68fb964e5b374b3c663c23d2b7
 end

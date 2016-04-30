@@ -15,7 +15,9 @@ module SimplifyParsers
   end
 
   def clean_data(percent_data)
-    if percent_data == percent_data.to_f.to_s
+    if percent_data.to_i.to_s == percent_data
+      percent_data.to_i
+    elsif percent_data == percent_data.to_f.to_s
       percent_data.to_f
     else
       percent_data
@@ -53,18 +55,23 @@ module SimplifyParsers
     grouped_data.map do |ditrict_name, rows|
       case name_of_hash
       when "third_grade_proficiency"
-          iteration = iteratively_apply_deep_merge_levels(rows)
+          iteratively_apply_deep_merge_levels(rows)
       when "eighth_grade_proficiency"
-          iteration = iteratively_apply_deep_merge_levels(rows)
+          iteratively_apply_deep_merge_levels(rows)
       when "math"
-        iteration = iteratively_apply_deep_merge(rows)
+        iteratively_apply_deep_merge(rows)
       when "reading"
-        iteration = iteratively_apply_deep_merge(rows)
+        iteratively_apply_deep_merge(rows)
       when "writing"
-        iteration = iteratively_apply_deep_merge(rows)
+        iteratively_apply_deep_merge(rows)
       when "median_household_income"
-        iteration = iteratively_apply_deep_merge(rows)
+        iteratively_apply_deep_merge(rows)
+      when "children_in_poverty"
+        iteratively_apply_deep_merge(rows)
+      when "free_or_reduced_price_lunch"
+        iteratively_apply_deep_merge_levels(rows)
       end
+
     end
   end
 
