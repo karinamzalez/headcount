@@ -15,7 +15,9 @@ module SimplifyParsers
   end
 
   def clean_data(percent_data)
-    if percent_data == percent_data.to_f.to_s
+    if percent_data.to_i.to_s == percent_data
+      percent_data.to_i
+    elsif percent_data == percent_data.to_f.to_s
       percent_data.to_f
     else
       percent_data

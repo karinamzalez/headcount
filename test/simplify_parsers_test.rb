@@ -26,7 +26,7 @@ class SimplifyParsersTest < Minitest::Test
     get_raw_data('./test/data/3rd_grade.csv')
   end
 
-  def test_it_can_delete_dataformat
+  def test_it_can_delete_unneeded_data
     assert_equal grade_delete_ouput,
     delete_dataformat('./test/data/3rd_grade.csv')
   end
@@ -34,6 +34,7 @@ class SimplifyParsersTest < Minitest::Test
     def test_it_can_clean_the_data
       assert_equal "N/A", clean_data("N/A")
       assert_equal 0.123, clean_data("0.123")
+      assert_equal 1234, clean_data("1234")
     end
 
     def test_it_can_group_by_district_name_for_each_instance
