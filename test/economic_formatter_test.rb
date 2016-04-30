@@ -9,6 +9,7 @@ require_relative '../lib/simplify_parsers_module'
 require_relative '../lib/parser_enrollment'
 require_relative '../lib/parser_poverty_data'
 require_relative '../lib/parser_median_income'
+require_relative '../lib/parser_free_reduced'
 
 class EconomicFormatterTest < Minitest::Test
   include StatewideTestingFormatter
@@ -19,6 +20,7 @@ class EconomicFormatterTest < Minitest::Test
   include EconomicFormatter
   include ParserPovertyData
   include ParserMedianIncome
+  include ParserFreeReduced
 
   def setup
     @data =
@@ -62,7 +64,7 @@ class EconomicFormatterTest < Minitest::Test
       assert_equal data, merge_poverty_hashes(@data)
   end
 
-  def test_it_can_merge_the_median_income_dat_by_distrcit
+  def test_it_can_merge_the_median_income_data_by_distrcit
     data =
     [
       {:name=>"Colorado",
@@ -77,6 +79,25 @@ class EconomicFormatterTest < Minitest::Test
        :median_household_income=>{[2005, 2009]=>64167, [2006, 2010]=>64145}}
     ]
     assert_equal data, merge_income_hashes(@data)
+  end
+
+  def test_it_can_merge_the_lunch_data_by_district
+    data =
+    [
+      {:name=>"Colorado",
+       :free_or_reduced_price_lunch=>
+        {2012=>{:number=>297167, :percent=>0.344},
+         2014=>{:percent=>0.34346, :number=>305342}}},
+      {:name=>"ACADEMY 20",
+       :free_or_reduced_price_lunch=>
+        {2014=>{:number=>2156, :percent=>0.08772},
+        2012=>{:percent=>0.09027, :number=>2164}}},
+      {:name=>"ADAMS COUNTY 14",
+       :free_or_reduced_price_lunch=>
+       {2012=>{:number=>5486, :percent=>0.73147},
+       2014=>{:percent=>0.65322, :number=>4954}}}
+    ]
+    assert_equal data, merge_lunch_hashes(@data)
   end
 
   def test_it_can_merge_title_i_data_by_district

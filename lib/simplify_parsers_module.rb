@@ -68,7 +68,10 @@ module SimplifyParsers
         iteratively_apply_deep_merge(rows)
       when "children_in_poverty"
         iteratively_apply_deep_merge(rows)
+      when "free_or_reduced_price_lunch"
+        iteratively_apply_deep_merge_levels(rows)
       end
+
     end
   end
 

@@ -20,6 +20,10 @@ module EconomicFormatter
     formatted_hashes_per_district(income_file(data), "median_household_income")
   end
 
+  def merge_lunch_hashes(data)
+    formatted_hashes_per_district(lunch_file(data), "free_or_reduced_price_lunch")
+  end
+
   def merge_poverty_hashes(data)
     formatted_hashes_per_district(poverty_file(data), "children_in_poverty")
   end
@@ -29,9 +33,6 @@ module EconomicFormatter
   #   #not in simplify parsers mod yet
   # end
 
-  def merge_lunch_file
-
-  end
 
 
   def group_all_data(data)
