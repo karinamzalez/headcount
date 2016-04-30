@@ -28,19 +28,25 @@ module EconomicFormatter
     formatted_hashes_per_district(poverty_file(data), "children_in_poverty")
   end
 
-  # def merge_title_i_hashes(data)
-  #   formatted_hashes_per_district(title_i_file(data), "children_in_poverty")
-  #   #not in simplify parsers mod yet
-  # end
-
-
-
-  def group_all_data(data)
-
+  def merge_title_i_hashes(data)
+    formatted_hashes_per_district(title_i_file(data), "title_i")
   end
 
-  def merge_all_data
+  def group_all_data(data)
+    income = merge_income_hashes(data)
+    lunch = merge_lunch_hashes(data)
+    poverty = merge_poverty_hashes(data)
+    title_i = merge_title_i_hashes(data)
+    all_files = [income, lunch, poverty, title_i].flatten
+    all_files.group_by do |hash|
+      hash[:name]
+    end
+  end
 
+  def merge_all_data(data)
+    group_all_data(data).values.map do |hash|
+      hash.reduce(:merge)
+    end 
   end
 
 
