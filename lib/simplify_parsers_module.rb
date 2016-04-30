@@ -71,7 +71,6 @@ module SimplifyParsers
       when "free_or_reduced_price_lunch"
         iteratively_apply_deep_merge_levels(rows)
       end
-
     end
   end
 

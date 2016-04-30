@@ -39,11 +39,11 @@ class SimplifyParsersTest < Minitest::Test
 
     def test_it_can_group_by_district_name_for_each_instance
       assert_equal grade_group_lines_by_district, group_by_district_name('./test/data/3rd_grade.csv', "third_grade_proficiency")
+      assert_equal grade_group_lines_by_district_8th, group_by_district_name('./test/data/8th_grade.csv', "eighth_grade_proficiency")
       assert_equal math_subject_group_by_district,  group_by_district_name('./test/data/test_prof_math.csv', "math")
+      assert_equal reading_subject_group_by_district,  group_by_district_name('./test/data/test_prof_reading_short.csv', "reading")
       assert_equal kinder_enrollment_group_by_district, group_by_district_name('./test/data/parser_kinder_data.csv', "kindergarten_participation")
     end
-
-    #do we need to check for each file?
 
     def test_it_formats_hashes_per_district_for_each_instance
       math_output =
