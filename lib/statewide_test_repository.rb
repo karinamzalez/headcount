@@ -10,6 +10,7 @@ class StatewideTestRepository
   include ParserGrade
   include StatewideTestingFormatter
   include SimplifyParsers
+
   attr_reader :statewide_tests
 
   def initialize
