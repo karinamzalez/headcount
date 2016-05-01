@@ -49,5 +49,4 @@ module EconomicFormatter
     end
   end
 
-
 end

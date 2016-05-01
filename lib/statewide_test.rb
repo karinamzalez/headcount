@@ -32,22 +32,6 @@ class StatewideTest
     end
   end
 
-  #1. call proficient_by_grade method which checks if grade is valid
-  #2. if no error, check if subject is valid
-  #3. if no error, check if year is valid
-  #4. if all are valid, find @data[grade][subject][year]
-
-  # def check_for_valid_subject(subject, grade, year)
-  #   if subjects.include?(subject)
-  #     proficient_by_grade(grade)[year][subject]
-  #   else
-  #     raise UnknownDataError
-  #   end
-  # end
-  #checks if the subject is valid
-
-
-
   def proficient_for_subject_by_grade_in_year(subject, grade, year)
     grade_data = proficient_by_grade(grade)
       if grade_data.keys.include?(year)

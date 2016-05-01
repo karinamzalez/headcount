@@ -69,7 +69,6 @@ class HeadcountAnalyst
   end
 
   def kindergarten_participation_correlates_with_high_school_graduation(compare)
-    #COLORADO should not be included in correlation across all districts method
     case compare.keys
     when [:for]
       if compare[:for] == "STATEWIDE"

@@ -14,4 +14,5 @@ module ParserFreeReduced
       end
     end.compact
   end
+
 end

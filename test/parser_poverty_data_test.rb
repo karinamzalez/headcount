@@ -1,4 +1,3 @@
-gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
 require_relative '../lib/parser_poverty_data'
@@ -21,10 +20,5 @@ class ParserPovertyDataTest < Minitest::Test
     assert_equal data,
     format_poverty_hash_per_line('./test/data/poverty.csv', "children_in_poverty")
   end
-
-  def test_it_can_merge_data_by_district_name
-    
-  end
-
 
 end

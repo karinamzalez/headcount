@@ -576,6 +576,41 @@ module ParserOutputs
     }
   end
 
+  def reading_subject_group_by_district
+    {
+      "ADAMS COUNTY 14"=>
+      [
+        {
+          :name=>"ADAMS COUNTY 14", :all_students=>{2011=>{:reading=>0.44}}
+        },
+        {
+          :name=>"ADAMS COUNTY 14", :asian=>{2011=>{:reading=>0.0}}
+        },
+        {
+          :name=>"ADAMS COUNTY 14", :black=>{2011=>{:reading=>0.333}}
+        },
+        {
+          :name=>"ADAMS COUNTY 14", :all_students=>{2012=>{:reading=>0.426}}
+        }
+      ],
+      "ADAMS-ARAPAHOE 28J"=>
+      [
+        {
+          :name=>"ADAMS-ARAPAHOE 28J", :all_students=>{2011=>{:reading=>0.47}}
+        },
+        {
+          :name=>"ADAMS-ARAPAHOE 28J", :asian=>{2011=>{:reading=>0.508}}
+        }, 
+        {
+          :name=>"ADAMS-ARAPAHOE 28J", :black=>{2011=>{:reading=>0.413}}
+        },
+        {
+          :name=>"ADAMS-ARAPAHOE 28J", :all_students=>{2012=>{:reading=>0.482}}
+        }
+      ]
+    }
+  end
+
   def grade_raw_data_output
     [
       {
@@ -764,6 +799,65 @@ module ParserOutputs
         {
           :name=>"ADAMS-ARAPAHOE 28J",
           :third_grade_proficiency=>{2009=>{:writing=>0.359}}}
+      ]
+    }
+  end
+
+  def grade_group_lines_by_district_8th
+    {
+      "ADAMS COUNTY 14"=>
+      [
+        {
+          :name=>"ADAMS COUNTY 14",
+          :eighth_grade_proficiency=>{2008=>{:math=>0.22}}
+        },
+        {
+          :name=>"ADAMS COUNTY 14",
+          :eighth_grade_proficiency=>{2009=>{:math=>0.3}}
+        },
+        {
+          :name=>"ADAMS COUNTY 14",
+          :eighth_grade_proficiency=>{2008=>{:reading=>0.426}}
+        },
+        {
+          :name=>"ADAMS COUNTY 14",
+          :eighth_grade_proficiency=>{2009=>{:reading=>0.398}}
+        },
+        {
+          :name=>"ADAMS COUNTY 14",
+          :eighth_grade_proficiency=>{2008=>{:writing=>0.444}}
+        },
+        {
+          :name=>"ADAMS COUNTY 14",
+          :eighth_grade_proficiency=>{2009=>{:writing=>0.471}}
+        }
+      ],
+      "ADAMS-ARAPAHOE 28J"=>
+      [
+        {
+          :name=>"ADAMS-ARAPAHOE 28J",
+          :eighth_grade_proficiency=>{2008=>{:math=>0.32}}
+        },
+        {
+          :name=>"ADAMS-ARAPAHOE 28J",
+          :eighth_grade_proficiency=>{2009=>{:math=>0.338}}
+        },
+        {
+          :name=>"ADAMS-ARAPAHOE 28J",
+          :eighth_grade_proficiency=>{2008=>{:reading=>0.456}}
+        },
+        {
+          :name=>"ADAMS-ARAPAHOE 28J",
+          :eighth_grade_proficiency=>{2009=>{:reading=>0.437}}
+        },
+        {
+          :name=>"ADAMS-ARAPAHOE 28J",
+          :eighth_grade_proficiency=>{2008=>{:writing=>0.265}}
+        },
+        {
+          :name=>"ADAMS-ARAPAHOE 28J",
+          :eighth_grade_proficiency=>{2009=>{:writing=>0.302}}
+        }
       ]
     }
   end

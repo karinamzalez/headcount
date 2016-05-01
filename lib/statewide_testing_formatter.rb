@@ -1,7 +1,4 @@
-require 'csv'
-
 module StatewideTestingFormatter
-
 
   def math_file(data)
     data[:statewide_testing][:math]
@@ -94,7 +91,7 @@ module StatewideTestingFormatter
   end
 
   def merge_all_data(data)
-    group_all_data(data).values.map { | hash| hash.reduce(:merge) }
+    group_all_data(data).values.map { |hash| hash.reduce(:merge) }
   end
 
 end

@@ -24,15 +24,15 @@ class EconomicFormatterTest < Minitest::Test
 
   def setup
     @data =
-  {
-    :economic_profile =>
     {
-      :median_household_income => "./test/data/median_household_income.csv",
-      :children_in_poverty => "./test/data/poverty.csv",
-      :free_or_reduced_price_lunch => "./test/data/lunch.csv",
-      :title_i => "./test/data/title_i.csv"
+      :economic_profile =>
+      {
+        :median_household_income => "./test/data/median_household_income.csv",
+        :children_in_poverty => "./test/data/poverty.csv",
+        :free_or_reduced_price_lunch => "./test/data/lunch.csv",
+        :title_i => "./test/data/title_i.csv"
+      }
     }
-  }
   end
 
   def test_it_can_find_the_median_income_file
@@ -189,5 +189,4 @@ class EconomicFormatterTest < Minitest::Test
     ]
     assert_equal data, merge_all_economic_data(@data)
   end
-
 end

@@ -1,4 +1,3 @@
-
 require_relative '../lib/economic_formatter'
 require_relative '../lib/economic_formatter'
 require_relative '../lib/statewide_testing_formatter'
@@ -9,6 +8,7 @@ require_relative '../lib/parser_poverty_data'
 require_relative '../lib/parser_median_income'
 require_relative '../lib/parser_free_reduced'
 require_relative '../lib/parser_grade'
+
 
 class EconomicProfileRepository
   include EconomicFormatter
@@ -36,6 +36,5 @@ class EconomicProfileRepository
       @economic_profiles << EconomicProfile.new(hash)
     end
   end
-
 
 end
