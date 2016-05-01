@@ -1,16 +1,20 @@
 class EconomicProfile
-  attr_reader :name,
-              :data,
+  attr_reader :data,
               :years,
               :incomes,
               :lunch_years
 
   def initialize(data)
     @data = data
-    @name = data[:name].upcase
     @years = data[:median_household_income].keys
     @incomes = data[:median_household_income].values
     @lunch_years = data[:free_or_reduced_price_lunch]
+  end
+
+  def name
+    if data[:name] != nil
+      data[:name].upcase
+    end
   end
 
   def median_household_income_in_year(year)
@@ -50,7 +54,7 @@ class EconomicProfile
 
   def free_or_reduced_price_lunch_percentage_in_year(year)
     if lunch_years.keys.include?(year)
-      @data[:free_or_reduced_price_lunch][year][:percent]
+      @data[:free_or_reduced_price_lunch][year][:percentage]
     else
       raise UnknownDataError
     end

@@ -16,51 +16,51 @@ class ParserFreeReducedTest < Minitest::Test
       [
         {
           :name=>"Colorado",
-          :free_or_reduced_price_lunch=>{2012=>{:number=>297167}}
+          :free_or_reduced_price_lunch=>{2012=>{:total=>297167}}
         },
         {
           :name=>"Colorado",
-          :free_or_reduced_price_lunch=>{2012=>{:percent=>0.344}}
+          :free_or_reduced_price_lunch=>{2012=>{:percentage=>0.344}}
         },
         {
           :name=>"Colorado",
-          :free_or_reduced_price_lunch=>{2014=>{:percent=>0.34346}}
+          :free_or_reduced_price_lunch=>{2014=>{:percentage=>0.34346}}
         },
         {
           :name=>"Colorado",
-          :free_or_reduced_price_lunch=>{2014=>{:number=>305342}}
+          :free_or_reduced_price_lunch=>{2014=>{:total=>305342}}
         },
         {
           :name=>"ACADEMY 20",
-          :free_or_reduced_price_lunch=>{2014=>{:number=>2156}}
+          :free_or_reduced_price_lunch=>{2014=>{:total=>2156}}
         },
         {
           :name=>"ACADEMY 20",
-          :free_or_reduced_price_lunch=>{2014=>{:percent=>0.08772}}
+          :free_or_reduced_price_lunch=>{2014=>{:percentage=>0.08772}}
         },
         {
           :name=>"ACADEMY 20",
-          :free_or_reduced_price_lunch=>{2012=>{:percent=>0.09027}}
+          :free_or_reduced_price_lunch=>{2012=>{:percentage=>0.09027}}
         },
         {
           :name=>"ACADEMY 20",
-          :free_or_reduced_price_lunch=>{2012=>{:number=>2164}}
+          :free_or_reduced_price_lunch=>{2012=>{:total=>2164}}
         },
         {
           :name=>"ADAMS COUNTY 14",
-          :free_or_reduced_price_lunch=>{2012=>{:number=>5486}}
+          :free_or_reduced_price_lunch=>{2012=>{:total=>5486}}
         },
         {
           :name=>"ADAMS COUNTY 14",
-          :free_or_reduced_price_lunch=>{2012=>{:percent=>0.73147}}
+          :free_or_reduced_price_lunch=>{2012=>{:percentage=>0.73147}}
         },
         {
           :name=>"ADAMS COUNTY 14",
-          :free_or_reduced_price_lunch=>{2014=>{:percent=>0.65322}}
+          :free_or_reduced_price_lunch=>{2014=>{:percentage=>0.65322}}
         },
         {
           :name=>"ADAMS COUNTY 14",
-          :free_or_reduced_price_lunch=>{2014=>{:number=>4954}}
+          :free_or_reduced_price_lunch=>{2014=>{:total=>4954}}
         }
       ]
     assert_equal output, format_free_reduced_hash_per_line('./test/data/lunch.csv', "free_or_reduced_price_lunch")

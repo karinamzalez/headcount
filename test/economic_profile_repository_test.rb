@@ -1,4 +1,3 @@
-gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
 require_relative '../lib/economic_profile_repository'
@@ -36,7 +35,6 @@ class EconomicProfileRepositoryTest < Minitest::Test
           :title_i => "./test/data/title_i.csv"
         }
       }
-
       profile_data =
         {
           :median_household_income =>
@@ -49,7 +47,6 @@ class EconomicProfileRepositoryTest < Minitest::Test
             {2015 => 0.543},
           :name => "ACADEMY 20"
         }
-
       @ep = EconomicProfile.new(profile_data)
   end
 

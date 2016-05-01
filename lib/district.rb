@@ -2,7 +2,7 @@ class District
   attr_accessor :enrollment,
                 :statewide_test,
                 :economic_profile
-                
+
   attr_reader :name,
               :district_repository
 

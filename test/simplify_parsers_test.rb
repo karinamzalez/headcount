@@ -10,7 +10,6 @@ require_relative '../lib/parser_median_income'
 require_relative '../lib/simplify_parsers_module'
 require_relative '../test/data/parser_outputs_module'
 require_relative '../lib/parser_poverty_data'
-require 'csv'
 
 class SimplifyParsersTest < Minitest::Test
   include SimplifyParsers
@@ -111,24 +110,40 @@ class SimplifyParsersTest < Minitest::Test
     def test_it_can_group_poverty_data
       data =
       {
-       "ACADEMY 20"=>
-       [
-         {:name=>"ACADEMY 20",
-          :children_in_poverty=>{2007=>0.039}},
-         {:name=>"ACADEMY 20",
-          :children_in_poverty=>{2008=>0.044}}],
-       "ADAMS COUNTY 14"=>
-       [
-         {:name=>"ADAMS COUNTY 14",
-          :children_in_poverty=>{2007=>0.247}},
-         {:name=>"ADAMS COUNTY 14",
-          :children_in_poverty=>{2008=>0.225}}],
-       "ADAMS-ARAPAHOE 28J"=>
-       [
-         {:name=>"ADAMS-ARAPAHOE 28J",
-          :children_in_poverty=>{2007=>0.238}},
-         {:name=>"ADAMS-ARAPAHOE 28J",
-          :children_in_poverty=>{2008=>0.185}}]}
+        "ACADEMY 20"=>
+        [
+          {
+            :name=>"ACADEMY 20",
+            :children_in_poverty=>{2007=>0.039}
+          },
+          {
+            :name=>"ACADEMY 20",
+            :children_in_poverty=>{2008=>0.04404}
+          }
+        ],
+        "ADAMS COUNTY 14"=>
+        [
+          {
+            :name=>"ADAMS COUNTY 14",
+            :children_in_poverty=>{2007=>0.247}
+          },
+          {
+            :name=>"ADAMS COUNTY 14",
+            :children_in_poverty=>{2008=>0.22533}
+          }
+        ],
+        "ADAMS-ARAPAHOE 28J"=>
+        [
+          {
+            :name=>"ADAMS-ARAPAHOE 28J",
+            :children_in_poverty=>{2007=>0.238}
+          },
+          {
+            :name=>"ADAMS-ARAPAHOE 28J",
+            :children_in_poverty=>{2008=>0.18582}
+          }
+        ]
+      }
       assert_equal data,
       group_by_district_name('./test/data/poverty.csv', "children_in_poverty")
     end

@@ -21,7 +21,8 @@ module EconomicFormatter
   end
 
   def merge_lunch_hashes(data)
-    formatted_hashes_per_district(lunch_file(data), "free_or_reduced_price_lunch")
+    formatted_hashes_per_district(lunch_file(data),
+    "free_or_reduced_price_lunch")
   end
 
   def merge_poverty_hashes(data)

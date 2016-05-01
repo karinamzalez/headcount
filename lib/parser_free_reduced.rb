@@ -8,11 +8,19 @@ module ParserFreeReduced
             name: h[:location], "#{name_of_hash}":
             {
               h[:timeframe].to_i =>
-              {:"#{h[:dataformat]}".downcase => clean_data(h[:data])}
+              { :"#{dataformat(h)}" => clean_data(h[:data])}
             }
           }
       end
     end.compact
+  end
+
+  def dataformat(h)
+    if h[:dataformat].include?("Number")
+      "total"
+    else
+      "percentage"
+    end
   end
 
 end
