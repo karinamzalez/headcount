@@ -1,8 +1,8 @@
 
-require_relative '../lib/economic_profile_formatter'
+require_relative '../lib/economic_formatter'
 
 class EconomicProfileRepository
-  include EconomicProfileFormatter
+  include EconomicFormatter
   attr_reader :economic_profiles
 
   def initialize
