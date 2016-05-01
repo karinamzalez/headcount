@@ -80,10 +80,11 @@ class EconomicProfileRepositoryTest < Minitest::Test
   def test_it_can_access_information_from_econ_profile_objects
     @epr.load_data(@repo_data)
     ep = @epr.find_by_name("ACADEMY 20")
-    assert_equal , ep.median_household_income_in_year()
-    assert_equal , children_in_poverty_in_year()
-    assert_equal , free_or_reduced_price_lunch_percentage_in_year(year)
-    assert_equal
+    # assert_equal 85255, ep.median_household_income_in_year(2007)
+    # assert_equal 0.039, ep.children_in_poverty_in_year(2007)
+    assert_equal 0.09027, ep.free_or_reduced_price_lunch_percentage_in_year(2012)
+    # assert_equal 0.012, ep.title_i_in_year(2013)
+    #don't these need to be truncated?
   end
 
 end
