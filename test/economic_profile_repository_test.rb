@@ -4,20 +4,36 @@ require 'minitest/pride'
 require_relative '../lib/economic_profile_repository'
 require_relative '../lib/economic_profile'
 require_relative '../lib/economic_formatter'
+# require_relative '../lib/statewide_testing_formatter'
+require_relative '../lib/parser_subject_proficiency'
+require_relative '../lib/simplify_parsers_module'
+require_relative '../lib/parser_enrollment'
+require_relative '../lib/parser_poverty_data'
+require_relative '../lib/parser_median_income'
+require_relative '../lib/parser_free_reduced'
+require_relative '../lib/parser_grade'
 
 
 class EconomicProfileRepositoryTest < Minitest::Test
   include EconomicFormatter
+  include StatewideTestingFormatter
+  include ParserSubjectProficiency
+  include SimplifyParsers
+  include ParserEnrollment
+  include ParserPovertyData
+  include ParserMedianIncome
+  include ParserFreeReduced
+  include ParserGrade
 
   def setup
     @epr = EconomicProfileRepository.new
     @repo_data =
       {
         :economic_profile => {
-          :median_household_income => "./data/Median household income.csv",
-          :children_in_poverty => "./data/School-aged children in poverty.csv",
-          :free_or_reduced_price_lunch => "./data/Students qualifying for free or reduced price lunch.csv",
-          :title_i => "./data/Title I students.csv"
+          :median_household_income => "./test/data/median_household_income.csv",
+          :children_in_poverty => "./test/data/poverty.csv",
+          :free_or_reduced_price_lunch => "./test/data/lunch.csv",
+          :title_i => "./test/data/title_i.csv"
         }
       }
 
@@ -57,10 +73,12 @@ class EconomicProfileRepositoryTest < Minitest::Test
   end
 
   def test_it_can_load_data_via_csv
-    skip
     @epr.load_data(@repo_data)
-    assert_equal "number", @er.enrollments.count
-    assert_equal
+    assert_equal 5, @epr.economic_profiles.count
+  end
+
+  def test_it_can_access_information_from_econ_profile_objects
+    skip
   end
 
 end

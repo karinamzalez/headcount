@@ -32,7 +32,7 @@ module EconomicFormatter
     formatted_hashes_per_district(title_i_file(data), "title_i")
   end
 
-  def group_all_data(data)
+  def group_all_economic_data(data)
     income = merge_income_hashes(data)
     lunch = merge_lunch_hashes(data)
     poverty = merge_poverty_hashes(data)
@@ -43,10 +43,10 @@ module EconomicFormatter
     end
   end
 
-  def merge_all_data(data)
-    group_all_data(data).values.map do |hash|
+  def merge_all_economic_data(data)
+    group_all_economic_data(data).values.map do |hash|
       hash.reduce(:merge)
-    end 
+    end
   end
 
 
