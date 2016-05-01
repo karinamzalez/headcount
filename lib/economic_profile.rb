@@ -50,7 +50,7 @@ class EconomicProfile
 
   def free_or_reduced_price_lunch_percentage_in_year(year)
     if lunch_years.keys.include?(year)
-      @data[:free_or_reduced_price_lunch][year][:percentage]
+      @data[:free_or_reduced_price_lunch][year][:percent]
     else
       raise UnknownDataError
     end

@@ -17,7 +17,7 @@ class EconomicProfileTest < Minitest::Test
         :children_in_poverty =>
           {2012 => 0.184},
         :free_or_reduced_price_lunch =>
-          {2014 => {:percentage => 0.023, :total => 100}},
+          {2014 => {:percent => 0.023, :total => 100}},
         :title_i =>
           {2015 => 0.543},
         :name => "ACADEMY 20"
