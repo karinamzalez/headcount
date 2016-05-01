@@ -84,7 +84,6 @@ class EconomicProfileRepositoryTest < Minitest::Test
     assert_equal 0.039, ep.children_in_poverty_in_year(2007)
     assert_equal 0.09027, ep.free_or_reduced_price_lunch_percentage_in_year(2012)
     assert_equal 0.012, ep.title_i_in_year(2013)
-    #don't these need to be truncated?
   end
 
 end
