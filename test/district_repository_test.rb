@@ -23,6 +23,13 @@ class DistrictRepositoryTest < Minitest::Test
           :math => "./test/data/test_prof_math.csv",
           :reading => "./test/data/test_proficiency_reading.csv",
           :writing => "./test/data/test_proficiency_writing.csv"
+        },
+      :economic_profile =>
+        {
+          :median_household_income => "./test/data/median_household_income.csv",
+          :children_in_poverty => "./test/data/poverty.csv",
+          :free_or_reduced_price_lunch => "./test/data/lunch.csv",
+          :title_i => "./test/data/title_i.csv"
         }
     }
   end
@@ -140,7 +147,7 @@ class DistrictRepositoryTest < Minitest::Test
     assert_equal Enrollment, @dr.access_enrollments[0].class
   end
 
-  def test_districts_can_access_enrollment_obejcts
+  def test_districts_can_access_enrollment_objects
     @dr.load_data(@data_full)
     assert_equal Enrollment, @dr.districts[0].enrollment.class
   end
@@ -148,5 +155,17 @@ class DistrictRepositoryTest < Minitest::Test
   def test_districts_can_access_statewide_test_objects
     @dr.load_data(@data_full)
     assert_equal StatewideTest, @dr.districts[0].statewide_test.class
+  end
+
+  def test_districts_can_access_economic_profile_objects
+    @dr.load_data(@data_full)
+    assert_equal EconomicProfile, @dr.districts[0].economic_profile.class
+  end
+
+  def test_it_can_load_all_data_at_once
+    @dr.load_data(@data_full)
+    assert_equal Enrollment, @dr.districts[0].enrollment.class
+    assert_equal StatewideTest, @dr.districts[0].statewide_test.class
+    assert_equal EconomicProfile, @dr.districts[0].economic_profile.class
   end
 end

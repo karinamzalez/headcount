@@ -4,6 +4,8 @@ require_relative '../lib/enrollment_repository'
 require_relative '../lib/parser_enrollment'
 require_relative '../lib/statewide_test_repository'
 require_relative '../lib/simplify_parsers_module'
+require_relative '../lib/economic_profile_repository'
+require_relative '../lib/economic_profile'
 
 class DistrictRepository
   include ParserEnrollment
@@ -11,11 +13,13 @@ class DistrictRepository
 
   attr_accessor :districts
   attr_reader :enrollment_repo,
-              :statewide_test_repo
+              :statewide_test_repo,
+              :economic_profile_repo
 
   def initialize
     @enrollment_repo = EnrollmentRepository.new
     @statewide_test_repo = StatewideTestRepository.new
+    @economic_profile_repo = EconomicProfileRepository.new
     @districts = []
   end
 
@@ -36,6 +40,9 @@ class DistrictRepository
       if hash.include?(:statewide_testing)
         statewide_test_repo.load_data(data)
         access_statewide_tests
+      elsif hash.include?(:economic_profile)
+        economic_profile_repo.load_data(data)
+        access_economic_profiles
       else hash.include?(:enrollment)
         enrollment_repo.load_data(data)
        access_enrollments
@@ -63,6 +70,13 @@ class DistrictRepository
   def access_statewide_tests
     districts.map do |district|
       district.statewide_test = statewide_test_repo.find_by_name(district.name)
+    end
+  end
+
+  def access_economic_profiles
+    districts.map do |district|
+      district.economic_profile =
+      economic_profile_repo.find_by_name(district.name)
     end
   end
 
