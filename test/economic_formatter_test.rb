@@ -155,7 +155,7 @@ class EconomicFormatterTest < Minitest::Test
           :median_household_income=>{[2005, 2009]=>64167, [2006, 2010]=>64145}}
        ]
     }
-    assert_equal data, group_all_data(@data)
+    assert_equal data, group_all_economic_data(@data)
   end
 
   def test_it_can_format_to_final_economic_hashes
@@ -187,6 +187,6 @@ class EconomicFormatterTest < Minitest::Test
       {:name=>"AGATE 300",
        :median_household_income=>{[2005, 2009]=>64167, [2006, 2010]=>64145}}
     ]
-    assert_equal data, merge_all_data(@data)
+    assert_equal data, merge_all_economic_data(@data)
   end
 end
