@@ -58,19 +58,9 @@ module SimplifyParsers
           iteratively_apply_deep_merge_levels(rows)
       when "eighth_grade_proficiency"
           iteratively_apply_deep_merge_levels(rows)
-      when "math"
-        iteratively_apply_deep_merge(rows)
-      when "reading"
-        iteratively_apply_deep_merge(rows)
-      when "writing"
-        iteratively_apply_deep_merge(rows)
-      when "median_household_income"
-        iteratively_apply_deep_merge(rows)
-      when "children_in_poverty"
-        iteratively_apply_deep_merge(rows)
       when "free_or_reduced_price_lunch"
         iteratively_apply_deep_merge_levels(rows)
-      when "title_i"
+      else
         iteratively_apply_deep_merge(rows)
       end
     end

@@ -91,7 +91,7 @@ module StatewideTestingFormatter
   end
 
   def merge_all_data(data)
-    group_all_data(data).values.map { | hash| hash.reduce(:merge) }
+    group_all_data(data).values.map { |hash| hash.reduce(:merge) }
   end
 
 end
