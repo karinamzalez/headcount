@@ -4,7 +4,7 @@ require 'minitest/pride'
 require_relative '../lib/economic_profile_repository'
 require_relative '../lib/economic_profile'
 require_relative '../lib/economic_formatter'
-# require_relative '../lib/statewide_testing_formatter'
+require_relative '../lib/statewide_testing_formatter'
 require_relative '../lib/parser_subject_proficiency'
 require_relative '../lib/simplify_parsers_module'
 require_relative '../lib/parser_enrollment'
@@ -78,7 +78,12 @@ class EconomicProfileRepositoryTest < Minitest::Test
   end
 
   def test_it_can_access_information_from_econ_profile_objects
-    skip
+    @epr.load_data(@repo_data)
+    ep = @epr.find_by_name("ACADEMY 20")
+    assert_equal , ep.median_household_income_in_year()
+    assert_equal , children_in_poverty_in_year()
+    assert_equal , free_or_reduced_price_lunch_percentage_in_year(year)
+    assert_equal
   end
 
 end
