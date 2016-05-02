@@ -99,7 +99,7 @@ class HeadcountAnalystTest < Minitest::Test
   def test_it_can_find_percentage_growth_for_one_district
     @dr.load_data(@data)
     d = @dr.districts[0]
-    assert_equal -0.006,
+    assert_equal (-0.006),
     @ha.find_percentage_growth_for_one_district({grade: 3, subject: :math}, d)
   end
 
@@ -130,17 +130,12 @@ class HeadcountAnalystTest < Minitest::Test
     @ha.top_statewide_test_year_over_year_growth(grade: 3, top: 2, subject: :math)
   end
 
-  # def test_it_gives_an_error_if_asked_to_give_more_top_districts_than_exist
-  #   assert_equal "There are not enough districts to find the top 4.",
-  #   @ha.top_statewide_test_year_over_year_growth(grade: 3, top: 4, subject: :math)
-  # end
-
   def test_it_can_find_the_total_subject_proficiency_percent_for_first_year_of_one_district
     d = @dr.find_by_name("ACADEMY 20")
     assert_equal 0.798 ,
     @ha.get_total_subject_percent_for_first_year({grade: 3}, d)
   end
 
-  
+
 
 end

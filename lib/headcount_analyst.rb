@@ -125,9 +125,6 @@ class HeadcountAnalyst
     end
     if input.keys.include?(:top)
       ignore_statewide_data(all_data).max_by(input[:top]) {|pair| pair[1]}
-        # if input[:top] > all_data.count - 1
-        #   "There are not enough districts to find the top #{input[:top]}."
-        # end
     else
       ignore_statewide_data(all_data).max
     end
@@ -155,11 +152,11 @@ class HeadcountAnalyst
     truncate_percents(last-first)/(years[-1] - years[0])
   end
 
-  def find_percentage_growth_across_all_subjects(input, district)
-    data = district.statewide_test
-    years = district.statewide_test.proficient_by_grade(get_grade(input)).keys
-
-  end
+  # def find_percentage_growth_across_all_subjects(input, district)
+  #   data = district.statewide_test
+  #   years = district.statewide_test.proficient_by_grade(get_grade(input)).keys
+  #
+  # end
 
   def get_total_subject_percent_for_first_year(input, district)
     data = district.statewide_test
@@ -170,7 +167,7 @@ class HeadcountAnalyst
       :reading, get_grade(input), years[0])
     writing = data.proficient_for_subject_by_grade_in_year(
       :writing, get_grade(input), years[0])
-    (math + reading + writing) / 3  
+    (math + reading + writing) / 3
   end
 
   def get_grade(input)
