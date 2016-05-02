@@ -118,5 +118,49 @@ class HeadcountAnalyst
       false
     end
   end
-  
+
+  def top_statewide_test_year_over_year_growth(input)
+     all_data = @dr.districts.map do |district|
+      [district.name,find_percentage_growth_for_one_district(input, district)]
+    end
+    ignore_statewide_data(all_data).max
+  end
+
+  def ignore_statewide_data(all_data)
+    all_data.reject {|array| array[0] == "COLORADO"}
+  end
+
+  def truncate_percents(percent)
+    if percent.to_s[0] == "-"
+      percent.to_s[0..5].to_f
+    else
+      percent.to_s[0..4].to_f
+    end
+  end
+
+  def find_percentage_growth_for_one_district(input, district)
+    data = district.statewide_test
+    years = district.statewide_test.proficient_by_grade(get_grade(input)).keys
+    first = data.proficient_for_subject_by_grade_in_year(
+      get_subject(input), get_grade(input), years[0])
+    last = data.proficient_for_subject_by_grade_in_year(
+      get_subject(input), get_grade(input), years[-1])
+    truncate_percents(last-first)/(years[-1] - years[0])
+  end
+
+  def get_grade(input)
+    if !input[:grade].nil?
+      input[:grade]
+    else
+      raise InsufficientInformationError
+    end
+  end
+
+  def get_subject(input)
+    input[:subject]
+  end
+
+end
+
+class InsufficientInformationError < Exception
 end
