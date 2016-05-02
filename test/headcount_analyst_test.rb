@@ -109,4 +109,33 @@ class HeadcountAnalystTest < Minitest::Test
     @ha.top_statewide_test_year_over_year_growth(grade: 3, subject: :math)
   end
 
+  def test_it_can_find_the_top_3_districts_in_growth
+    @dr.load_data(@data)
+    data =
+    [
+      ["ADAMS-ARAPAHOE 28J", -0.016],
+      ["ADAMS COUNTY 14", -0.02],
+      ["ACADEMY 20", -0.033]
+    ]
+    assert_equal data,
+    @ha.top_statewide_test_year_over_year_growth(grade: 3, top: 3, subject: :math)
+  end
+
+  def test_it_can_find_a_different_number_of_top_districts
+    @dr.load_data(@data)
+    data =
+    [
+      ["ADAMS-ARAPAHOE 28J", -0.016],
+      ["ADAMS COUNTY 14", -0.02],
+    ]
+    assert_equal data,
+    @ha.top_statewide_test_year_over_year_growth(grade: 3, top: 2, subject: :math)
+  end
+
+  def test_it_gives_an_error_if_asked_to_give_more_top_districts_than_exist
+    @dr.load_data(@data)
+    assert_equal "There are not enough districts to find the top 4.",
+    @ha.top_statewide_test_year_over_year_growth(grade: 3, top: 4, subject: :math)
+  end
+
 end

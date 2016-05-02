@@ -123,7 +123,14 @@ class HeadcountAnalyst
      all_data = @dr.districts.map do |district|
       [district.name,find_percentage_growth_for_one_district(input, district)]
     end
-    ignore_statewide_data(all_data).max
+    if input.keys.include?(:top)
+      ignore_statewide_data(all_data).max_by(input[:top]) {|pair| pair[1]}
+        # if input[:top] > all_data.count - 1
+        #   "There are not enough districts to find the top #{input[:top]}."
+        # end
+    else
+      ignore_statewide_data(all_data).max
+    end
   end
 
   def ignore_statewide_data(all_data)
