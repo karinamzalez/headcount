@@ -118,5 +118,12 @@ class HeadcountAnalyst
       false
     end
   end
-  
+
+  def median_household_income_data_per_district
+    @dr.districts.map do |district|
+      v = district.economic_profile.data[:median_household_income].values
+      { district.name => v.inject(:+)/v.count }
+    end
+  end
+
 end
