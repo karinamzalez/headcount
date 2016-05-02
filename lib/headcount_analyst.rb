@@ -170,7 +170,7 @@ class HeadcountAnalyst
       :reading, get_grade(input), years[0])
     writing = data.proficient_for_subject_by_grade_in_year(
       :writing, get_grade(input), years[0])
-    math + reading + writing 
+    (math + reading + writing) / 3  
   end
 
   def get_grade(input)
