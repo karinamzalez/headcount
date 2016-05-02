@@ -155,6 +155,24 @@ class HeadcountAnalyst
     truncate_percents(last-first)/(years[-1] - years[0])
   end
 
+  def find_percentage_growth_across_all_subjects(input, district)
+    data = district.statewide_test
+    years = district.statewide_test.proficient_by_grade(get_grade(input)).keys
+
+  end
+
+  def get_total_subject_percent_for_first_year(input, district)
+    data = district.statewide_test
+    years = district.statewide_test.proficient_by_grade(get_grade(input)).keys
+    math = data.proficient_for_subject_by_grade_in_year(
+      :math, get_grade(input), years[0])
+    reading = data.proficient_for_subject_by_grade_in_year(
+      :reading, get_grade(input), years[0])
+    writing = data.proficient_for_subject_by_grade_in_year(
+      :writing, get_grade(input), years[0])
+    math + reading + writing 
+  end
+
   def get_grade(input)
     if !input[:grade].nil?
       input[:grade]

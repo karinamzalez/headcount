@@ -138,4 +138,8 @@ class HeadcountAnalystTest < Minitest::Test
     @ha.top_statewide_test_year_over_year_growth(grade: 3, top: 4, subject: :math)
   end
 
+  def test_it_can_find_the_total_subject_proficiency_percent_for_first_year_of_one_district
+
+  end
+
 end
