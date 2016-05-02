@@ -19,8 +19,8 @@ class HeadcountAnalystTest < Minitest::Test
         },
       :statewide_testing =>
         {
-          :third_grade=> "./data/3rd grade students scoring proficient or above on the CSAP_TCAP.csv",
-          :eighth_grade=> "./data/8th grade students scoring proficient or above on the CSAP_TCAP.csv",
+          :third_grade=> "./test/data/3rd_grade_scores.csv",
+          :eighth_grade=> "./test/data/8th_grade_scores.csv",
           :math => "./data/Average proficiency on the CSAP_TCAP by race_ethnicity_ Math.csv",
           :reading => "./data/Average proficiency on the CSAP_TCAP by race_ethnicity_ Reading.csv",
           :writing => "./data/Average proficiency on the CSAP_TCAP by race_ethnicity_ Writing.csv"
@@ -35,7 +35,7 @@ class HeadcountAnalystTest < Minitest::Test
     }
     @ha = HeadcountAnalyst.new(@dr)
   end
-  #
+
   # def test_it_can_find_average_enrollment_for_a_district
   #   average_enrollment = @ha.average_enrollment_kindergarten("ACADEMY 20")
   #   assert_equal 0.337, average_enrollment
@@ -67,20 +67,33 @@ class HeadcountAnalystTest < Minitest::Test
   #   assert_equal true, @ha.kindergarten_participation_correlates_with_high_school_graduation(across: ['ACADEMY 20','ADAMS COUNTY 14'])
   # end
 
-  # def test_it_can_get_the_grade
-  #   assert_equal 3, @ha.get_grade(grade: 3)
-  # end
-  #
-  # def test_you_must_provide_a_grade
-  #   assert_raises(InsufficientInformationError) do
-  #     @ha.get_grade(subject: :math)
-  #   end
-  # end
-  #
-  # def test_it_can_get_the_subject
-  #   assert_equal :math,
-  #   @ha.get_subject(subject: :math)
-  # end
+  def test_it_can_get_the_grade
+    assert_equal 3, @ha.get_grade(grade: 3)
+  end
+
+  def test_you_must_provide_a_grade
+    assert_raises(InsufficientInformationError) do
+      @ha.get_grade(subject: :math)
+    end
+  end
+
+  def test_it_can_get_the_subject
+    assert_equal :math,
+    @ha.get_subject(subject: :math)
+  end
+
+  def test_it_can_truncate_percents
+    assert_equal 0.123, @ha.truncate_percents(0.12345)
+  end
+
+  def test_it_does_not_include_statewide_data
+    data =
+    [
+      ["COLORADO", 0.123],
+      ["ACADEMY 20", 0.345]
+    ]
+    refute @ha.ignore_statewide_data(data).flatten.include?("COLORADO")
+  end
 
   def test_it_can_find_percentage_growth_for_one_district
     d = District.new({name: 'ACADEMY 20'})
@@ -89,10 +102,10 @@ class HeadcountAnalystTest < Minitest::Test
     @ha.find_percentage_growth_for_one_district({grade: 3, subject: :math}, d)
   end
 
+
   def test_it_can_find_a_single_leading_district_in_test_proficiency_growth
-    # skip
     @dr.load_data(@data)
-    assert_equal ['District Name', 0.123],
+    assert_equal ["ADAMS-ARAPAHOE 28J", -0.016],
     @ha.top_statewide_test_year_over_year_growth(grade: 3, subject: :math)
   end
 
