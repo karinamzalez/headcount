@@ -96,9 +96,9 @@ class HeadcountAnalystTest < Minitest::Test
   end
 
   def test_it_can_find_percentage_growth_for_one_district
-    d = District.new({name: 'ACADEMY 20'})
     @dr.load_data(@data)
-    assert_equal '',
+    d = @dr.districts[0]
+    assert_equal -0.006,
     @ha.find_percentage_growth_for_one_district({grade: 3, subject: :math}, d)
   end
 
