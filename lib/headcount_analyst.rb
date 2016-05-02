@@ -118,5 +118,5 @@ class HeadcountAnalyst
       false
     end
   end
-
+  
 end

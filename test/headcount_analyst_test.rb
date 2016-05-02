@@ -13,10 +13,25 @@ class HeadcountAnalystTest < Minitest::Test
     @dr.load_data(
     {
       :enrollment =>
-      {
-        :kindergarten => "./test/data/kindergarten.csv",
-        :high_school_graduation => "./test/data/parser_high_school_data.csv"
-      }
+        {
+          :kindergarten => "./test/data/kindergarten.csv",
+          :high_school_graduation => "./test/data/parser_high_school_data.csv"
+        },
+      :statewide_testing =>
+        {
+          :third_grade=> "./data/3rd grade students scoring proficient or above on the CSAP_TCAP.csv",
+          :eighth_grade=> "./data/8th grade students scoring proficient or above on the CSAP_TCAP.csv",
+          :math => "./data/Average proficiency on the CSAP_TCAP by race_ethnicity_ Math.csv",
+          :reading => "./data/Average proficiency on the CSAP_TCAP by race_ethnicity_ Reading.csv",
+          :writing => "./data/Average proficiency on the CSAP_TCAP by race_ethnicity_ Writing.csv"
+        },
+      :economic_profile =>
+        {
+          :median_household_income => "./data/Median household income.csv",
+          :children_in_poverty => "./data/School-aged children in poverty.csv",
+          :free_or_reduced_price_lunch => "./data/Students qualifying for free or reduced price lunch.csv",
+          :title_i => "./data/Title I students.csv"
+        }
     })
     @ha = HeadcountAnalyst.new(@dr)
   end
