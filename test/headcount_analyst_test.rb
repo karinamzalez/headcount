@@ -129,12 +129,6 @@ class HeadcountAnalystTest < Minitest::Test
     @ha.top_statewide_test_year_over_year_growth(grade: 3, top: 2, subject: :math)
   end
 
-  def test_it_can_find_the_total_subject_proficiency_percent_for_first_year_of_one_district
-    d = @dr.find_by_name("ACADEMY 20")
-    assert_equal 0.798 ,
-    @ha.get_total_subject_percent_for_first_year({grade: 3}, d)
-  end
-
   def test_it_can_get_top_three_poverty_stricken_districts
     data =
     [
@@ -197,7 +191,7 @@ class HeadcountAnalystTest < Minitest::Test
 
   def test_it_can_calculate_total_subject_prof_average_for_one_district
     d = @dr.find_by_name("ACADEMY 20")
-    assert_equal ["ACADEMY 20", 0.033],
+    assert_equal ["ACADEMY 20", -0.004],
     @ha.percentage_growth_across_all_subjects_for_district({grade: 3}, d)
   end
 
