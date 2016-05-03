@@ -199,6 +199,7 @@ class HeadcountAnalystTest < Minitest::Test
     d = @dr.find_by_name("ACADEMY 20")
     assert_equal ["ACADEMY 20", 0.033],
     @ha.percentage_growth_across_all_subjects_for_district({grade: 3}, d)
+  end
 
   def test_it_can_condence_test_scores_per_district_to_one_avg_per_subject
     data = [0.303, 0.511, 0.363]
