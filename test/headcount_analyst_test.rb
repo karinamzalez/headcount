@@ -130,24 +130,6 @@ class HeadcountAnalystTest < Minitest::Test
     @ha.top_statewide_test_year_over_year_growth(grade: 3, top: 2, subject: :math)
   end
 
-  # def test_it_can_find_the_total_subject_proficiency_percent_for_first_year_of_one_district
-  #   d = @dr.find_by_name("ACADEMY 20")
-  #   assert_equal 0.798 ,
-  #   @ha.get_total_subject_percent_for_first_year({grade: 3}, d)
-  # end
-
-  # def test_it_can_find_the_total_subject_proficiency_percent_for_last_year_of_one_district
-  #   d = @dr.find_by_name("ACADEMY 20")
-  #   assert_equal 0.797 ,
-  #   @ha.get_total_subject_percent_for_last_year({grade: 3}, d)
-  # end
-
-  # def test_it_can_find_percentage_growth_across_all_subjects_for_one_district
-  #   d = @dr.find_by_name("ACADEMY 20")
-  #   assert_equal (-0.001) ,
-  #   @ha.find_percentage_growth_across_all_subjects_for_district({grade: 3}, d)
-  # end
-
   def test_it_can_find_the_top_district_across_all_subjects
     assert_equal ["ADAMS-ARAPAHOE 28J", 0.006],
     @ha.top_statewide_test_year_over_year_growth(grade: 3)
@@ -158,21 +140,5 @@ class HeadcountAnalystTest < Minitest::Test
     assert_equal ["ACADEMY 20", 0.033],
     @ha.percentage_growth_across_all_subjects_for_district({grade: 3}, d)
   end
-
-  # def test_it_can_find_the_last_year_with_data_for_math
-  #   d = @dr.find_by_name("ACADEMY 20")
-  #   assert_equal 2010, @ha.find_last_year_math_for_district({grade: 3}, d)
-  # end
-  #
-  # def test_it_can_find_the_first_year_with_data_for_math
-  #   d = @dr.find_by_name("ACADEMY 20")
-  #   assert_equal 2007, @ha.find_first_year_math_for_district({grade: 3}, d)
-  # end
-
-  # def test_it_returns_nil_if_no_years_have_data
-  #
-  # end
-
-
 
 end
