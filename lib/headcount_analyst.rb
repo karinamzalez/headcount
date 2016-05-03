@@ -122,7 +122,7 @@ class HeadcountAnalyst
   def top_statewide_test_year_over_year_growth(input)
      all_data = @dr.districts.map do |district|
       if input.keys == [:grade]
-        [district.name,find_percentage_growth_across_all_subjects(input, district)]
+        percentage_growth_across_all_subjects_for_district(input, district)
       else
         [district.name,find_percentage_growth_for_one_district(input, district)]
       end
@@ -156,19 +156,19 @@ class HeadcountAnalyst
       truncate_percents(last-first)/(years[-1] - years[0])
   end
 
-  def find_percentage_growth_across_all_subjects(input, district)
-    years = district.statewide_test.proficient_by_grade(get_grade(input)).keys
-    first = get_total_subject_percent_for_first_year(input, district)
-    last = get_total_subject_percent_for_last_year(input, district)
-    truncate_percents((last-first)/(years[-1] - years[0]))
-  end
+  # def find_percentage_growth_across_all_subjects(input, district)
+  #   years = district.statewide_test.proficient_by_grade(get_grade(input)).keys
+  #   first = get_total_subject_percent_for_first_year(input, district)
+  #   last = get_total_subject_percent_for_last_year(input, district)
+  #   truncate_percents((last-first)/(years[-1] - years[0]))
+  # end
 
   # def get_total_subject_percent_for_first_year(input, district)
   #   data = district.statewide_test
+  #   # require "pry"; binding.pry
   #   years = district.statewide_test.proficient_by_grade(get_grade(input)).keys
   #   math = data.proficient_for_subject_by_grade_in_year(
   #     :math, get_grade(input), years[0])
-  #     require "pry"; binding.pry
   #   reading = data.proficient_for_subject_by_grade_in_year(
   #     :reading, get_grade(input), years[0])
   #   writing = data.proficient_for_subject_by_grade_in_year(
@@ -176,48 +176,13 @@ class HeadcountAnalyst
   #   truncate_percents((math + reading + writing) / 3)
   # end
 
-  def find_first_year_math_for_district(input, district)
-    data = district.statewide_test
-    years = district.statewide_test.proficient_by_grade(get_grade(input)).keys
-    years.min_by do |year|
-      data.proficient_by_grade(get_grade(input))[year][:math]
-    end
-  end
-
-  def find_last_year_math_for_district(input, district)
-    data = district.statewide_test
-    years = district.statewide_test.proficient_by_grade(get_grade(input)).keys
-    puts district.statewide_test.proficient_by_grade(get_grade(input)).values
-    puts years.inspect
-    years.max_by do |year|
-      data.proficient_by_grade(get_grade(input))[year][:math]
-    end
-  end
-
-
-
-  def find_first_year_reading_for_district(input, district)
-
-  end
-
-  def find_first_year_writing(input, district)
-
-  end
-
-
-
-  def find_first_year(input, district)
-    years = district.statewide_test.proficient_by_grade(get_grade(input)).keys
+  def percentage_growth_across_all_subjects_for_district(input, district)
     data = district.statewide_test.proficient_by_grade(get_grade(input))
-    years.min_by {|year| data[year].class == Float}
-    # require "pry"; binding.pry
-  end
-
-  def find_last_year(input, district)
     years = district.statewide_test.proficient_by_grade(get_grade(input)).keys
-    data = district.statewide_test.proficient_by_grade(get_grade(input))
-    years.max_by {|year| data[year].class == Float }
-    # require "pry"; binding.pry
+    first = data[years.min].values.reduce(:+) / data[years.min].values.count
+    last = data[years.max].values.reduce(:+) / data[years.max].values.count
+    percent = truncate_percents((last - first) / (years.max - years.min))
+    [district.name, percent]
   end
 
   # def get_total_subject_percent_for_last_year(input, district)
