@@ -108,27 +108,6 @@ class HeadcountAnalystTest < Minitest::Test
     @ha.top_statewide_test_year_over_year_growth(grade: 3, subject: :math)
   end
 
-  # def test_it_can_find_the_top_3_districts_in_growth
-  #   data =
-  #   [
-  #     ["ADAMS-ARAPAHOE 28J", -0.016],
-  #     ["ADAMS COUNTY 14", -0.02],
-  #     ["ACADEMY 20", -0.033]
-  #   ]
-  #   assert_equal data,
-  #   @ha.top_statewide_test_year_over_year_growth(grade: 3, top: 3, subject: :math)
-  # end
-
-  # def test_it_can_find_a_different_number_of_top_districts
-  #   data =
-  #   [
-  #     ["ADAMS-ARAPAHOE 28J", -0.016],
-  #     ["ADAMS COUNTY 14", -0.02],
-  #   ]
-  #   assert_equal data,
-  #   @ha.top_statewide_test_year_over_year_growth(grade: 3, top: 2, subject: :math)
-  # end
-
   def test_it_can_find_the_total_subject_proficiency_percent_for_first_year_of_one_district
     d = @dr.find_by_name("ACADEMY 20")
     assert_equal 0.798 ,
