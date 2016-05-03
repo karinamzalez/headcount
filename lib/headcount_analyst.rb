@@ -121,12 +121,28 @@ class HeadcountAnalyst
 
   def top_statewide_test_year_over_year_growth(input)
      all_data = @dr.districts.map do |district|
-      [district.name,find_percentage_growth_for_one_district(input, district)]
+      [district.name, find_percentage_growth_for_one_district(input, district)]
     end
     if input.keys.include?(:top)
       ignore_statewide_data(all_data).max_by(input[:top]) {|pair| pair[1]}
     else
       ignore_statewide_data(all_data).max
+    end
+  end
+
+  def find_percentage_growth_for_one_district(input, district)
+    data = district.statewide_test
+    if !district.statewide_test.proficient_by_grade(get_grade(input)).nil?
+      years = district.statewide_test.proficient_by_grade(get_grade(input)).keys
+    end
+    if !years.nil?
+      first = data.proficient_for_subject_by_grade_in_year(
+      get_subject(input), get_grade(input), years[0])
+      last = data.proficient_for_subject_by_grade_in_year(
+      get_subject(input), get_grade(input), years[-1])
+      if !last.nil? && !first.nil?
+        truncate_percents(last-first)/(years[-1] - years[0])
+      end
     end
   end
 
@@ -181,15 +197,6 @@ class HeadcountAnalyst
     {:math => comparisons[0], :reading => comparisons[1], :writing => comparisons[2]}
   end
 
-  def find_percentage_growth_for_one_district(input, district)
-    data = district.statewide_test
-    years = district.statewide_test.proficient_by_grade(get_grade(input)).keys
-    first = data.proficient_for_subject_by_grade_in_year(
-      get_subject(input), get_grade(input), years[0])
-    last = data.proficient_for_subject_by_grade_in_year(
-      get_subject(input), get_grade(input), years[-1])
-    truncate_percents(last-first)/(years[-1] - years[0])
-  end
 
   def ignore_statewide_data(all_data)
     all_data.reject {|array| array[0] == "COLORADO"}

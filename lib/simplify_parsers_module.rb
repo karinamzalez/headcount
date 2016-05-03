@@ -24,6 +24,10 @@ module SimplifyParsers
     end
   end
 
+  def does_data_exist?(percent_data)
+    clean_data(percent_data).class != String
+  end
+
   def group_by_district_name(file, name_of_hash)
     case name_of_hash
     when "third_grade_proficiency"

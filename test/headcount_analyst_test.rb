@@ -104,7 +104,7 @@ class HeadcountAnalystTest < Minitest::Test
   end
 
   def test_it_can_find_a_single_leading_district_in_test_proficiency_growth
-    assert_equal ["ADAMS-ARAPAHOE 28J", -0.016],
+    assert_equal ["YUMA SCHOOL DISTRICT 1", -0.020666666666666667],
     @ha.top_statewide_test_year_over_year_growth(grade: 3, subject: :math)
   end
 
@@ -147,11 +147,11 @@ class HeadcountAnalystTest < Minitest::Test
 
   def test_it_can_get_bottom_three_poverty_stricken_districts
     data =
-    [
-      ["EAST YUMA COUNTY RJ-2", 0.012],
-      ["WEST YUMA COUNTY RJ-1", 0.019],
-      ["DOUGLAS COUNTY RE 1", 0.027]
-    ]
+      [
+        ["DOUGLAS COUNTY RE 1", 0.027],
+        ["ASPEN 1", 0.038],
+        ["ACADEMY 20", 0.041]
+      ]
     assert_equal data, @ha.top_or_bottom_three_poverty_stricken_districts(bottom: 3)
   end
 
@@ -205,19 +205,22 @@ class HeadcountAnalystTest < Minitest::Test
 
   def test_it_can_condence_test_cores_to_one_avg_per_subject_for_bottom_3_impoverished
     data =
-    {
-      :bottom_3_impoverished=>{:math=>0.232, :reading=>0.269, :writing=>0.226}
-    }
+      {
+        :bottom_3_impoverished=>
+        {
+          :math=>0.705, :reading=>0.836, :writing=>0.704
+        }
+      }
     assert_equal data, @ha.condenced_test_scores(bottom: 3)
   end
 
   def test_it_compares_the_top_and_bottom_3_districts
     data =
-    {
-      :math=>1.689,
-      :reading=>2.13,
-      :writing=>1.654
-    }
+      {
+        :math=>0.556,
+        :reading=>0.685,
+        :writing=>0.531
+      }
     assert_equal data, @ha.comparison_of_test_scores_based_upon_poverty
   end
 
