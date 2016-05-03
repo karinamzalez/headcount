@@ -1,7 +1,5 @@
 class EconomicProfile
   attr_reader :data,
-              :years,
-              :incomes,
               :lunch_years
 
   def initialize(data)
@@ -10,11 +8,11 @@ class EconomicProfile
   end
 
   def years
-    years = data[:median_household_income].keys
+    data[:median_household_income].keys
   end
 
   def incomes
-    incomes = data[:median_household_income].values
+    data[:median_household_income].values
   end
 
   def name

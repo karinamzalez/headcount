@@ -168,21 +168,21 @@ class HeadcountAnalystTest < Minitest::Test
     assert_equal data, @ha.corresponding_test_scores_for_districts(top: 3)
   end
 
-  def test_it_can_condence_test_scores_per_district_to_one_avg_per_subject
+  def test_it_can_condense_test_scores_per_district_to_one_avg_per_subject
     data = [0.303, 0.511, 0.363]
-    assert_equal data, @ha.almost_condenced_scores(:math, top: 3)
+    assert_equal data, @ha.almost_condensed(:math, top: 3)
   end
 
-  def test_it_can_condence_test_cores_to_one_avg_per_subject_for_top_3_impoverished
+  def test_it_can_condense_test_cores_to_one_avg_per_subject_for_top_3_impoverished
     data =
     {
       :top_3_impoverished=>
       {:math=>0.392, :reading=>0.573, :writing=>0.374}
     }
-    assert_equal data, @ha.condenced_test_scores(top: 3)
+    assert_equal data, @ha.condensed_test_scores(top: 3)
   end
 
-  def test_it_can_condence_test_cores_to_one_avg_per_subject_for_bottom_3_impoverished
+  def test_it_can_condense_test_cores_to_one_avg_per_subject_for_bottom_3_impoverished
     data =
       {
         :bottom_3_impoverished=>
@@ -190,7 +190,7 @@ class HeadcountAnalystTest < Minitest::Test
           :math=>0.705, :reading=>0.836, :writing=>0.704
         }
       }
-    assert_equal data, @ha.condenced_test_scores(bottom: 3)
+    assert_equal data, @ha.condensed_test_scores(bottom: 3)
   end
 
   def test_it_compares_the_top_and_bottom_3_districts

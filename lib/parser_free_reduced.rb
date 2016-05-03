@@ -4,7 +4,8 @@ module ParserFreeReduced
     lines = get_raw_data(file)
       lines.map do |h|
 
-      if h.values.include?("Eligible for Free Lunch") && does_data_exist?(h[:data])
+      if
+      h.values.include?("Eligible for Free Lunch") && does_data_exist?(h[:data])
           {
             name: h[:location], "#{name_of_hash}":
             {
