@@ -6,9 +6,15 @@ class EconomicProfile
 
   def initialize(data)
     @data = data
-    @years = data[:median_household_income].keys
-    @incomes = data[:median_household_income].values
     @lunch_years = data[:free_or_reduced_price_lunch]
+  end
+
+  def years
+    years = data[:median_household_income].keys
+  end
+
+  def incomes
+    incomes = data[:median_household_income].values
   end
 
   def name
@@ -30,7 +36,7 @@ class EconomicProfile
     years.map do |array|
       range = (array[0]..array[1])
       if range.include?(year)
-        @data[:median_household_income][array]
+        data[:median_household_income][array]
       end
     end.compact
   end
@@ -45,16 +51,23 @@ class EconomicProfile
   end
 
   def children_in_poverty_in_year(year)
-    if @data[:children_in_poverty].keys.include?(year)
-      @data[:children_in_poverty][year]
+    if data[:children_in_poverty].keys.include?(year)
+      data[:children_in_poverty][year]
     else
       raise UnknownDataError
     end
   end
 
+  def avg_children_in_poverty_per_district
+    if !data[:children_in_poverty].nil?
+      v = data[:children_in_poverty].values
+      v.inject(:+)/v.count
+    end
+  end
+
   def free_or_reduced_price_lunch_percentage_in_year(year)
     if lunch_years.keys.include?(year)
-      @data[:free_or_reduced_price_lunch][year][:percentage]
+      data[:free_or_reduced_price_lunch][year][:percentage]
     else
       raise UnknownDataError
     end
@@ -62,15 +75,15 @@ class EconomicProfile
 
   def free_or_reduced_price_lunch_number_in_year(year)
     if lunch_years.keys.include?(year)
-      @data[:free_or_reduced_price_lunch][year][:total]
+      data[:free_or_reduced_price_lunch][year][:total]
     else
       raise UnknownDataError
     end
   end
 
   def title_i_in_year(year)
-    if @data[:title_i].keys.include?(year)
-      @data[:title_i][year]
+    if data[:title_i].keys.include?(year)
+      data[:title_i][year]
     else
       raise UnknownDataError
     end
