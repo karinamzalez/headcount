@@ -134,16 +134,55 @@ class HeadcountAnalyst
     end
   end
 
-  def ignore_statewide_data(all_data)
-    all_data.reject {|array| array[0] == "COLORADO"}
+  def top_or_bottom_three_poverty_stricken_districts(input)
+    all_data = @dr.districts.map do |district|
+      if district.economic_profile.data[:name] != "Colorado"
+       [district.name, truncate_percents(district.economic_profile.avg_children_in_poverty_per_district)]
+      end
+    end.compact
+    if input.keys.include?(:top)
+      ignore_statewide_data(all_data).max_by(input[:top]) {|pair| pair[1]}
+    else input.keys.include?(:bottom)
+      ignore_statewide_data(all_data).min_by(input[:bottom]) {|pair| pair[1]}
+    end
   end
 
-  def truncate_percents(percent)
-    if percent.to_s[0] == "-"
-      percent.to_s[0..5].to_f
-    else
-      percent.to_s[0..4].to_f
+  def corresponding_test_scores_for_districts(input)
+    top_or_bottom_districts = top_or_bottom_three_poverty_stricken_districts(input)
+    top_or_bottom_districts.map do |array|
+      [array[0],
+      @dr.find_by_name(array[0]).statewide_test.data[:all_students]]
     end
+  end
+
+  def almost_condenced_scores(subject, input)
+    c = corresponding_test_scores_for_districts(input)
+    c.map do |array|
+      scores = array[1].values.map do |hash|
+        hash[subject]
+      end
+      (scores.inject(:+)/scores.count).to_s[0..4].to_f
+    end
+  end
+
+  def condenced_test_scores(input)
+    math = (almost_condenced_scores(:math, input).inject(:+)/almost_condenced_scores(:math, input).count).to_s[0..4].to_f
+    reading = (almost_condenced_scores(:reading, input).inject(:+)/almost_condenced_scores(:reading, input).count).to_s[0..4].to_f
+    writing = (almost_condenced_scores(:writing, input).inject(:+)/almost_condenced_scores(:writing, input).count).to_s[0..4].to_f
+    if input.include?(:top)
+      {top_3_impoverished: {:math => math, :reading => reading, :writing => writing}}
+    else
+      {bottom_3_impoverished: {:math => math, :reading => reading, :writing => writing}}
+    end
+  end
+
+  def comparison_of_test_scores_based_upon_poverty
+    top = condenced_test_scores(top: 3)[:top_3_impoverished].values
+    bottom = condenced_test_scores(bottom: 3)[:bottom_3_impoverished].values
+    comparisons = top.zip(bottom).map do |array|
+      array.inject(:/).to_s[0..4].to_f
+    end
+    {:math => comparisons[0], :reading => comparisons[1], :writing => comparisons[2]}
   end
 
   def find_percentage_growth_for_one_district(input, district)
@@ -164,6 +203,19 @@ class HeadcountAnalyst
     percent = truncate_percents((last - first) / (years.max - years.min))
     [district.name, percent]
   end
+
+  def ignore_statewide_data(all_data)
+    all_data.reject {|array| array[0] == "COLORADO"}
+  end
+
+  def truncate_percents(percent)
+    if percent.to_s[0] == "-"
+      percent.to_s[0..5].to_f
+    else
+      percent.to_s[0..4].to_f
+    end
+  end
+
 
   def get_grade(input)
     if !input[:grade].nil?
