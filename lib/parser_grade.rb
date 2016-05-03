@@ -3,14 +3,16 @@ module ParserGrade
   def format_grade_hash_per_line(file, name_of_grade)
     cleaned_data = delete_dataformat(file)
     cleaned_data.map do |h|
-      {
-        name: h[:location], "#{name_of_grade}":
+      if does_data_exist?(h[:data])
         {
-          h[:timeframe].to_i =>
-          {:"#{h[:score]}".downcase => clean_data(h[:data])}
+          name: h[:location], "#{name_of_grade}":
+          {
+            h[:timeframe].to_i =>
+            {:"#{h[:score]}".downcase => clean_data(h[:data])}
+          }
         }
-      }
-    end
+      end
+    end.compact
   end
 
   def deep_merge_levels(h1, h2)

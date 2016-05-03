@@ -10,7 +10,7 @@ module ParserSubjectProficiency
   def format_subject_hash_per_line(file, subject)
     cleaned_data = delete_dataformat(file)
     cleaned_data.map do |h|
-      if h[:race_ethnicity].include?("/")
+      if h[:race_ethnicity].include?("/") && does_data_exist?(h[:data])
         x = h[:race_ethnicity].downcase.split("/")[1].split(" ").join("_")
       else
         x = h[:race_ethnicity].downcase.split(" ").join("_")
@@ -21,7 +21,7 @@ module ParserSubjectProficiency
           h[:timeframe].to_i => {:"#{subject}" => h[:data][0..4].to_f}
         }
       }
-    end
+    end.compact
   end
 
   def deep_merge(h1, h2)

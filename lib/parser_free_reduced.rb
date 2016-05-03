@@ -3,7 +3,8 @@ module ParserFreeReduced
   def format_free_reduced_hash_per_line(file, name_of_hash)
     lines = get_raw_data(file)
       lines.map do |h|
-      if h.values.include?("Eligible for Free Lunch")
+
+      if h.values.include?("Eligible for Free Lunch") && does_data_exist?(h[:data])
           {
             name: h[:location], "#{name_of_hash}":
             {
@@ -14,6 +15,8 @@ module ParserFreeReduced
       end
     end.compact
   end
+
+
 
   def dataformat(h)
     if h[:dataformat].include?("Number")

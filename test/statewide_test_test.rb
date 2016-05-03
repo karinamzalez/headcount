@@ -53,7 +53,7 @@ class StatewideTestTest < Minitest::Test
       @st.proficient_by_race_or_ethnicity(:something)
     end
   end
-  
+
   def test_it_can_find_proficiency_percent_for_subject_grade_year
     assert_equal 0.857,
     @st.proficient_for_subject_by_grade_in_year(:math, 3, 2008)
