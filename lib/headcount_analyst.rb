@@ -121,7 +121,11 @@ class HeadcountAnalyst
 
   def top_statewide_test_year_over_year_growth(input)
      all_data = @dr.districts.map do |district|
-      [district.name,find_percentage_growth_for_one_district(input, district)]
+      if input.keys == [:grade]
+        [district.name,find_percentage_growth_across_all_subjects(input, district)]
+      else
+        [district.name,find_percentage_growth_for_one_district(input, district)]
+      end
     end
     if input.keys.include?(:top)
       ignore_statewide_data(all_data).max_by(input[:top]) {|pair| pair[1]}
@@ -152,11 +156,12 @@ class HeadcountAnalyst
     truncate_percents(last-first)/(years[-1] - years[0])
   end
 
-  # def find_percentage_growth_across_all_subjects(input, district)
-  #   data = district.statewide_test
-  #   years = district.statewide_test.proficient_by_grade(get_grade(input)).keys
-  #
-  # end
+  def find_percentage_growth_across_all_subjects(input, district)
+    years = district.statewide_test.proficient_by_grade(get_grade(input)).keys
+    first = get_total_subject_percent_for_first_year(input, district)
+    last = get_total_subject_percent_for_last_year(input, district)
+    truncate_percents((last-first)/(years[-1] - years[0]))
+  end
 
   def get_total_subject_percent_for_first_year(input, district)
     data = district.statewide_test
@@ -167,7 +172,19 @@ class HeadcountAnalyst
       :reading, get_grade(input), years[0])
     writing = data.proficient_for_subject_by_grade_in_year(
       :writing, get_grade(input), years[0])
-    (math + reading + writing) / 3
+    truncate_percents((math + reading + writing) / 3)
+  end
+
+  def get_total_subject_percent_for_last_year(input, district)
+    data = district.statewide_test
+    years = district.statewide_test.proficient_by_grade(get_grade(input)).keys
+    math = data.proficient_for_subject_by_grade_in_year(
+      :math, get_grade(input), years[1])
+    reading = data.proficient_for_subject_by_grade_in_year(
+      :reading, get_grade(input), years[1])
+    writing = data.proficient_for_subject_by_grade_in_year(
+      :writing, get_grade(input), years[1])
+    truncate_percents((math + reading + writing) / 3)
   end
 
   def get_grade(input)
