@@ -134,6 +134,22 @@ class HeadcountAnalyst
     end
   end
 
+  def find_percentage_growth_for_one_district(input, district)
+    data = district.statewide_test
+    if !district.statewide_test.proficient_by_grade(get_grade(input)).nil?
+      years = district.statewide_test.proficient_by_grade(get_grade(input)).keys
+    end
+    if !years.nil?
+      first = data.proficient_for_subject_by_grade_in_year(
+      get_subject(input), get_grade(input), years[0])
+      last = data.proficient_for_subject_by_grade_in_year(
+      get_subject(input), get_grade(input), years[-1])
+      if !last.nil? && !first.nil?
+        truncate_percents(last-first)/(years[-1] - years[0])
+      end
+    end
+  end
+
   def top_or_bottom_three_poverty_stricken_districts(input)
     all_data = @dr.districts.map do |district|
       if district.economic_profile.data[:name] != "Colorado"
