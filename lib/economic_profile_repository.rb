@@ -15,11 +15,15 @@ class EconomicProfileRepository
   include StatewideTestingFormatter
   include ParserSubjectProficiency
   include SimplifyParsers
+  # include MasterParser
   include ParserEnrollment
+  # include ParserSpitball
   include ParserPovertyData
   include ParserMedianIncome
   include ParserFreeReduced
   include ParserGrade
+
+  #REPO_PARSERS = [ParserGrade]
 
   attr_reader :economic_profiles
 

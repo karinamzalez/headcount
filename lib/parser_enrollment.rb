@@ -12,4 +12,21 @@ module ParserEnrollment
     end.compact
   end
 
+  def make_base_data(something_is_true, location, name_of_hash,timeframe, some_var)
+    if something_is_true
+      {name: location, name_of_hash: {timeframe: some_var}}
+    end
+  end
+
 end
+class BaseDatum
+  def initialize(....)
+    base_common_thing....
+    if isFreeReduced
+      ...
+    else
+      ...
+    end
+
+    @record = {name: .....}
+  end

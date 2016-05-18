@@ -1,4 +1,4 @@
-module ParserFreeReduced
+ module ParserFreeReduced
 
   def format_free_reduced_hash_per_line(file, name_of_hash)
     lines = get_raw_data(file)
